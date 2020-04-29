@@ -26,20 +26,39 @@ module.exports = {
 		'node': true
 	},
 	rules: {
-		'@typescript-eslint/no-var-requires': 0,
-		'import/order': 2,
-		'import/first': 2,
-		'import/exports-last': 2,
-		'import/no-duplicates': 2,
-		'quotes': [2, 'single'],
-		'comma-dangle': ['error', {
-			'arrays': 'always-multiline',
-			'objects': 'always-multiline',
-			'imports': 'always-multiline',
-			'exports': 'always-multiline',
-			'functions': 'never'
+		'@typescript-eslint/explicit-function-return-type': ['warn', {
+			allowExpressions: true,
 		}],
-		'semi': 'off',
-		'@typescript-eslint/semi': ['error', 'always', { 'omitLastInOneLineBlock': true}]
-	}
+		'@typescript-eslint/no-var-requires': 'off',
+		'@typescript-eslint/no-explicit-any': 'off',
+
+		'react-hooks/rules-of-hooks': 'error',
+		'react-hooks/exhaustive-deps': 'warn',
+
+		'import/exports-last': 'error',
+		'import/first': 'error',
+		'import/no-duplicates': 'error',
+		'import/order': ['error', {
+			alphabetize: { order: 'asc' },
+			'newlines-between': 'always',
+		}],
+
+		'sort-imports': ['warn', {
+			ignoreCase: true,
+			ignoreDeclarationSort: true,
+		}],
+	},
+	overrides: [
+		{
+				"files": ["**/*.tsx"],
+				"rules": {
+						"react/prop-types": "off"
+				}
+		}
+	],
+	settings: {
+		react: {
+			version: 'detect',
+		},
+	},
 };
