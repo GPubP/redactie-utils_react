@@ -1,2 +1,2 @@
-export { default as useApiQueryParams } from './useAPIQueryParams';
+export { default as useAPIQueryParams } from './useAPIQueryParams';
 export * from './useAPIQueryParams.types';

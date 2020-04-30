@@ -1,11 +1,13 @@
-import { DecodedValueMap, SetQuery, useQueryParams, QueryParamConfigMap } from 'use-query-params';
+import { DecodedValueMap, QueryParamConfigMap, SetQuery, useQueryParams } from 'use-query-params';
 
-import { DEFAULT_API_QUERY_PARAMS } from './useAPIQueryParams.const';
+import { DEFAULT_API_QUERY_PARAMS_CONFIG } from './useAPIQueryParams.const';
+import { generateAPIQueryParams } from './useAPIQueryParams.helpers';
+import { APIQueryParamsConfig } from './useAPIQueryParams.types';
 
 const useAPIQueryParams = (
-	defaults: QueryParamConfigMap = DEFAULT_API_QUERY_PARAMS
+	defaults: APIQueryParamsConfig = DEFAULT_API_QUERY_PARAMS_CONFIG
 ): [DecodedValueMap<QueryParamConfigMap>, SetQuery<QueryParamConfigMap>] => {
-	const [query, setQuery] = useQueryParams(defaults);
+	const [query, setQuery] = useQueryParams(generateAPIQueryParams(defaults));
 
 	return [query, setQuery];
 };

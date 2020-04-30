@@ -1,8 +1,6 @@
-import { QueryParamConfig, QueryParamConfigMap } from 'use-query-params';
-
 type FlatObject<V = string> = { [key: string]: V | null | undefined };
 
-export type ApiQueryParamType =
+export type APIQueryParamType =
 	| 'string'
 	| 'number'
 	| 'boolean'
@@ -16,30 +14,18 @@ export type ApiQueryParamType =
 	| 'delimitedNumericArray'
 	| 'json';
 
-export type APIQueryParamsConfig<C extends { [key: string]: { type: APIQUeryParamValue } }> = {
-	[K in keyof C]: {
-		defaultValue?: C[K]['type'] extends 'string'
-			? string
-			: C[K]['type'] extends 'number'
-			? number
-			: C[K]['type'] extends 'boolean'
-			? boolean
-			: C[K]['type'] extends 'date' | 'dateTime'
-			? Date
-			: C[K]['type'] extends 'object'
-			? FlatObject
-			: C[K]['type'] extends 'numericObject'
-			? FlatObject<number>
-			: C[K]['type'] extends 'array' | 'delimitedArray'
-			? (string | null)[]
-			: C[K]['type'] extends 'numericArray' | 'delimitedNumericArray'
-			? (number | null)[]
-			: any; // Any value is for json
-		type: ApiQueryParamType;
+export type APIQueryParamsConfig = {
+	[key: string]: {
+		defaultValue?:
+			| string
+			| number
+			| boolean
+			| Date
+			| FlatObject
+			| FlatObject<number>
+			| (string | null)[]
+			| (number | null)[]
+			| any; // Any accounts for the JsonParam serialize
+		type: APIQueryParamType;
 	};
 };
-
-export interface DefaultAPIQueryParams extends QueryParamConfigMap {
-	page: QueryParamConfig<number>;
-	pagesize: QueryParamConfig<number>;
-}

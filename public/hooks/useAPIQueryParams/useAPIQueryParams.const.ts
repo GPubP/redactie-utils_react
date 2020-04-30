@@ -1,28 +1,35 @@
-import { DefaultAPIQueryParams } from './useAPIQueryParams.types';
 import {
-	withDefault,
-	NumberParam,
-	StringParam,
-	ObjectParam,
 	ArrayParam,
-	JsonParam,
+	BooleanParam,
 	DateParam,
 	DateTimeParam,
-	BooleanParam,
-	NumericObjectParam,
 	DelimitedArrayParam,
 	DelimitedNumericArrayParam,
+	JsonParam,
+	NumberParam,
 	NumericArrayParam,
+	NumericObjectParam,
+	ObjectParam,
+	StringParam,
 } from 'use-query-params';
 
-const DEFAULT_API_QUERY_PARAM_VALUES = {
-	page: 1,
-	pagesize: 20,
-};
+import { APIQueryParamsConfig } from './useAPIQueryParams.types';
 
-export const DEFAULT_API_QUERY_PARAMS: DefaultAPIQueryParams = {
-	page: withDefault(NumberParam, DEFAULT_API_QUERY_PARAM_VALUES.page),
-	pagesize: withDefault(NumberParam, DEFAULT_API_QUERY_PARAM_VALUES.pagesize),
+export const DEFAULT_API_QUERY_PARAMS_CONFIG: APIQueryParamsConfig = {
+	page: {
+		defaultValue: 1,
+		type: 'number',
+	},
+	pagesize: {
+		defaultValue: 20,
+		type: 'number',
+	},
+	sort: {
+		type: 'string',
+	},
+	direction: {
+		type: 'string',
+	},
 };
 
 export const QUERY_PARAMS_MAP = {
