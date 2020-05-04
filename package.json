@@ -20,6 +20,11 @@
     "Utils",
     "Package"
   ],
+  "files": [
+    "dist",
+    "package.json",
+    "README.md"
+  ],
   "publishConfig": {
     "@redactie:registry": "https://nexusrepo.antwerpen.be/repository/npm-private/"
   },
@@ -32,6 +37,8 @@
     "@babel/preset-typescript": "^7.9.0",
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
+    "@types/jest": "^25.2.1",
+    "@types/react": "^16.9.34",
     "@typescript-eslint/eslint-plugin": "^2.30.0",
     "@typescript-eslint/parser": "^2.30.0",
     "babel-jest": "^25.4.0",
