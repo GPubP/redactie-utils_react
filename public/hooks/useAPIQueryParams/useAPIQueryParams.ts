@@ -5,11 +5,15 @@ import { generateAPIQueryParams } from './useAPIQueryParams.helpers';
 import { APIQueryParamsConfig } from './useAPIQueryParams.types';
 
 const useAPIQueryParams = (
-	defaults: APIQueryParamsConfig = DEFAULT_API_QUERY_PARAMS_CONFIG
+	config: APIQueryParamsConfig = {},
+	extendDefaultConfig = true
 ): [DecodedValueMap<QueryParamConfigMap>, SetQuery<QueryParamConfigMap>] => {
-	const [query, setQuery] = useQueryParams(generateAPIQueryParams(defaults));
-
-	return [query, setQuery];
+	return useQueryParams(
+		generateAPIQueryParams({
+			...(extendDefaultConfig ? DEFAULT_API_QUERY_PARAMS_CONFIG : null),
+			...config,
+		})
+	);
 };
 
 export default useAPIQueryParams;
