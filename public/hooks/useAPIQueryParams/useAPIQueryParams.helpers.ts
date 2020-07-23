@@ -16,7 +16,7 @@ export const generateAPIQueryParams = (
 
 		return {
 			...acc,
-			[key]: defaultValue
+			[key]: typeof defaultValue === undefined
 				? withDefault(paramType as QueryParamConfig<any, any>, defaultValue)
 				: paramType,
 		};
