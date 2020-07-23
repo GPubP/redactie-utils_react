@@ -14,11 +14,15 @@ export const generateAPIQueryParams = (
 			return acc;
 		}
 
+		const value = withDefault(paramType as QueryParamConfig<any, any>, defaultValue);
+
+		if (value === undefined) {
+			return acc;
+		}
+
 		return {
 			...acc,
-			[key]: typeof defaultValue === undefined
-				? withDefault(paramType as QueryParamConfig<any, any>, defaultValue)
-				: paramType,
+			[key]: value,
 		};
 	}, {});
 };
