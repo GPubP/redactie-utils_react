@@ -84,18 +84,20 @@ const Example = () => {
 ```
 
 Config options:
-Property                | Type             
-------------------------|------------------
-defaultValue (optional) | `any`
-type                    | `'string' | 'number' | 'boolean' | 'object' | 'date' | 'dateTime' | 'numericObject' | 'array' | 'delimitedArray' | 'numericArray' | 'delimitedNumericArray' | 'json'`
+
+| Property                | Type
+| ----------------------- | -----------------
+| defaultValue (optional) | `any`
+| type                    | `'string' | 'number' | 'boolean' | 'object' | 'date' | 'dateTime' | 'numericObject' | 'array' | 'delimitedArray' | 'numericArray' | 'delimitedNumericArray' | 'json'`
 
 By default the config is extended with the following values:
-Name      | Type             | Default value
-----------|------------------|--------------
-page      | `number`         | 1
-pagesize  | `number`         | 20
-sort      | `string`         | undefined
-direction | `'asc' | 'desc'` | undefined
+
+| Name      | Type             | Default value
+| --------- | ---------------- | -------------
+| page      | `number`         | 1
+| pagesize  | `number`         | 20
+| sort      | `string`         | undefined
+| direction | `'asc' | 'desc'` | undefined
 
 you can disable these defaults by adding your config and `false` as second param:
 
