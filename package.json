@@ -32,6 +32,7 @@
   "author": "Andry Charlier",
   "license": "ISC",
   "devDependencies": {
+    "@acpaas-ui/react-components": "^4.4.0",
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.5",
     "@babel/preset-react": "^7.9.4",
@@ -67,6 +68,7 @@
   },
   "dependencies": {
     "query-string": "^6.12.1",
+    "react-toastify": "^6.0.8",
     "use-query-params": "^1.1.1"
   }
 }
