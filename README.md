@@ -92,16 +92,16 @@ useAPIQueryParams options:
 | Property                | Type
 | ----------------------- | ----
 | defaultValue (optional) | `any`
-| type                    | ```'string' | 'number' | 'boolean' | 'object' | 'date' | 'dateTime' | 'numericObject' | 'array' | 'delimitedArray' | 'numericArray' | 'delimitedNumericArray' | 'json'```
+| type                    | `'string' \| 'number' \| 'boolean' \| 'object' \| 'date' \| 'dateTime' \| 'numericObject' \| 'array' \| 'delimitedArray' \| 'numericArray' \| 'delimitedNumericArray' \| 'json'`
 
 By default the config is extended with the following values:
 
-| Name      | Type                 | Default value
-| --------- | -------------------- | -------------
-| page      | `number`             | 1
-| pagesize  | `number`             | 20
-| sort      | `string`             | undefined
-| direction | ```'asc' | 'desc'``` | undefined
+| Name      | Type              | Default value
+| --------- | ----------------- | -------------
+| page      | `number`          | 1
+| pagesize  | `number`          | 20
+| sort      | `string`          | undefined
+| direction | `'asc' \| 'desc'` | undefined
 
 you can disable these defaults by adding your config and `false` as second param:
 
@@ -172,13 +172,13 @@ const Example = () => {
 
 `alertService()` alert props:
 
-| Property       | Type                 | Default value
-| -------------- | -------------------- | -----
-| className?:    | `string | undefined`  | undefined
-| closable?:     | `boolean | undefined` | true
-| ariaLabelClose | `string | undefined`  | undefined
-| message:       | `ReactNode`          | undefined
-| title?:        | `string | undefined`  | undefined
+| Property       | Type                  | Default value
+| -------------- | --------------------- | -----
+| className?:    | `string \| undefined`  | undefined
+| closable?:     | `boolean \| undefined` | true
+| ariaLabelClose | `string \| undefined`  | undefined
+| message:       | `ReactNode`           | undefined
+| title?:        | `string \| undefined`  | undefined
 
 
 ## Sandbox
