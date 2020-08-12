@@ -13,3 +13,7 @@ export interface AlertProps {
 	message: ReactNode;
 	title?: string;
 }
+
+export interface AlertWithOnCloseProps extends AlertProps {
+	onClose?: <T = {}>(props: T) => void;
+}
