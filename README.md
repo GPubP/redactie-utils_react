@@ -7,8 +7,10 @@ Set of utilities to use in Redactie App and Modules.
 - [Installation](#installation)
 - [Usage](#usage)
 - [Utilities](#features)
-  * [Hooks](#hooks)
-    + [useAPIQueryParams](#useapiqueryparams)
+	* [Hooks](#hooks)
+		+ [useAPIQueryParams](#useapiqueryparams)
+	* [Services](#services)
+		+ [alertService](#alertservice)
 - [Sandbox](#features)
 
 ## Installation
@@ -83,21 +85,23 @@ const Example = () => {
 }
 ```
 
-Config options:
+**Config**
+
+useAPIQueryParams options:
 
 | Property                | Type
-| ----------------------- | -----------------
+| ----------------------- | ----
 | defaultValue (optional) | `any`
-| type                    | `'string' | 'number' | 'boolean' | 'object' | 'date' | 'dateTime' | 'numericObject' | 'array' | 'delimitedArray' | 'numericArray' | 'delimitedNumericArray' | 'json'`
+| type                    | ```'string' | 'number' | 'boolean' | 'object' | 'date' | 'dateTime' | 'numericObject' | 'array' | 'delimitedArray' | 'numericArray' | 'delimitedNumericArray' | 'json'```
 
 By default the config is extended with the following values:
 
-| Name      | Type             | Default value
-| --------- | ---------------- | -------------
-| page      | `number`         | 1
-| pagesize  | `number`         | 20
-| sort      | `string`         | undefined
-| direction | `'asc' | 'desc'` | undefined
+| Name      | Type                 | Default value
+| --------- | -------------------- | -------------
+| page      | `number`             | 1
+| pagesize  | `number`             | 20
+| sort      | `string`             | undefined
+| direction | ```'asc' | 'desc'``` | undefined
 
 you can disable these defaults by adding your config and `false` as second param:
 
@@ -113,6 +117,70 @@ const Example = () => {
 }
 ```
 
+### Services
+
+#### AlertService
+
+Built upon [react-toastify](https://github.com/fkhadra/react-toastify). For more info on `<AlertContainer />` or `alertService()` options be sure to check their API docs.
+
+**Usage**:
+
+Add the `<AlertContainer />` component where you want your alerts to show in the app.
+
+```typescript
+import { AlertContainer } from '@redactie/utils';
+import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
+const Root = () => {
+	return (
+		<AlertContainer />
+		<Router>
+			<App />
+		</Router>
+	);
+}
+```
+
+Then we can call our `alertService()` to show an alert in our container.
+
+```typescript
+const Example = () => {
+	const showAlert = () => {
+		alertService({ title: 'A title', message: 'Lorem ipsum' });
+	};
+
+	return (
+		<button onClick={showAlert}>Alert me</button>
+	);
+}
+```
+
+**Config**
+
+`<AlertContainer />` prop defaults:
+
+| Property             | Value
+| -------------------- | -----
+| autoClose            | false
+| closeButton          | false
+| closeOnClick         | false
+| draggable            | false
+| enableMultiContainer | true
+| hideProgressBar      | true
+| limit                | 1
+
+`alertService()` alert props:
+
+| Property       | Type                 | Default value
+| -------------- | -------------------- | -----
+| className?:    | `string | undefined`  | undefined
+| closable?:     | `boolean | undefined` | true
+| ariaLabelClose | `string | undefined`  | undefined
+| message:       | `ReactNode`          | undefined
+| title?:        | `string | undefined`  | undefined
+
+
 ## Sandbox
 
 You can test utilities in the sandbox environment before publishing
@@ -121,6 +189,7 @@ Create a tarball file from utils package.
 This will create a file `redactie-utils-x.x.x.tgz`
 
 ```shell
+$ npm run build
 $ npm pack
 ```
 
