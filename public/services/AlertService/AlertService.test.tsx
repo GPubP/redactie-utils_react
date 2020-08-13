@@ -11,7 +11,7 @@ describe('Services: alertService', () => {
 	it('Should show an alert', async () => {
 		const { findByText } = render(<AlertContainer />);
 
-		alertService({ message });
+		alertService.info({ message });
 
 		await findByText(message);
 	});
@@ -40,7 +40,7 @@ describe('Services: alertService', () => {
 		const title = 'A title';
 		const { findByText } = render(<AlertContainer />);
 
-		alertService({ message, title });
+		alertService.info({ message, title });
 
 		await findByText(title);
 	});
@@ -49,7 +49,7 @@ describe('Services: alertService', () => {
 		const closeMethod = jest.fn();
 		const { findByText } = render(<AlertContainer />);
 
-		alertService({ message }, { onClose: closeMethod });
+		alertService.info({ message }, { onClose: closeMethod });
 
 		const alert = await findByText(message);
 		const closeButton = alert.querySelector('.m-alert__close');

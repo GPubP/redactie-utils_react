@@ -142,12 +142,12 @@ const Root = () => {
 }
 ```
 
-Then we can call our `alertService()` to show an alert in our container.
+Then we can call our `alertService.[info|success|warning|danger]()` to show an alert in our container.
 
 ```typescript
 const Example = () => {
 	const showAlert = () => {
-		alertService({ title: 'A title', message: 'Lorem ipsum' });
+		alertService.info({ title: 'A title', message: 'Lorem ipsum' });
 	};
 
 	return (
