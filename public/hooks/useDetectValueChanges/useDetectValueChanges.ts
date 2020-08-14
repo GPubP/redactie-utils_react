@@ -5,9 +5,9 @@ const useDetectValueChanges = (isLoaded: boolean, value: unknown): [boolean, Fun
 	const ref = useRef<unknown>();
 	const [isChanged, setIsChanged] = useState<boolean>(false);
 
-	const reset = () => {
+	const reset = (): void => {
 		ref.current = undefined;
-	}
+	};
 
 	useEffect(() => {
 		if (!isLoaded) {

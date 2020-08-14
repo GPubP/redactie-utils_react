@@ -1,6 +1,5 @@
 import { Button, ButtonGroup } from '@acpaas-ui/react-components';
-import { Container } from '@acpaas-ui/react-editorial-components';
-import { useAPIQueryParams } from '@redactie/utils';
+import { useAPIQueryParams, alertService } from '@redactie/utils';
 import React, { FC, useEffect } from 'react';
 
 const SandboxView: FC = () => {
@@ -26,7 +25,9 @@ const SandboxView: FC = () => {
 	};
 
 	return (
-		<Container>
+		<>
+			<h2 className="u-margin-bottom-xs">Hooks</h2>
+			<h3 className="u-margin-bottom">useAPIQueryParams</h3>
 			<div className="u-margin-bottom">
 				<code>{JSON.stringify(query)}</code>
 			</div>
@@ -34,7 +35,20 @@ const SandboxView: FC = () => {
 				<Button onClick={() => onPageChange(query.page - 1)}>Previous page</Button>
 				<Button onClick={() => onPageChange(query.page + 1)}>Next page</Button>
 			</ButtonGroup>
-		</Container>
+
+			<h2 className="u-margin-top-lg u-margin-bottom-xs">Services</h2>
+			<h3 className="u-margin-bottom">alertService</h3>
+			<Button
+				onClick={() =>
+					alertService.info({ title: 'This is an info alert', message: 'Lorem ipsum' })
+				}
+			>
+				Alert me
+			</Button>
+			<Button onClick={() => alertService.dismiss()} type="danger">
+				Clear alerts
+			</Button>
+		</>
 	);
 };
 
