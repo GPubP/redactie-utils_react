@@ -45,7 +45,16 @@ const SandboxView: FC = () => {
 			>
 				Alert me
 			</Button>
-			<Button onClick={() => alertService.dismiss()} type="danger">
+			<Button
+				onClick={() => {
+					alertService.dismiss();
+					alertService.success({
+						title: 'This is a success alert',
+						message: 'Lorem ipsum',
+					});
+				}}
+				type="danger"
+			>
 				Clear alerts
 			</Button>
 		</>

@@ -189,7 +189,6 @@ Create a tarball file from utils package.
 This will create a file `redactie-utils-x.x.x.tgz`
 
 ```shell
-$ npm run build
 $ npm pack
 ```
 
