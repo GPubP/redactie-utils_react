@@ -10,7 +10,8 @@
     "build:w": "npm run build:types && webpack -w",
     "lint": "eslint . --ext .ts,.tsx",
     "test": "jest ./public",
-    "prepublishOnly": "npm run test && npm run build"
+    "prepack": "npm run build",
+    "prepublishOnly": "npm run test"
   },
   "repository": {
     "type": "git",
