@@ -40,6 +40,7 @@
     "@babel/preset-typescript": "^7.9.0",
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
+    "@datorama/akita": "^5.2.3",
     "@testing-library/react": "^10.4.8",
     "@types/jest": "^25.2.1",
     "@types/ramda": "^0.27.6",
@@ -78,5 +79,9 @@
     "query-string": "^6.12.1",
     "react-toastify": "^6.0.8",
     "use-query-params": "^1.1.1"
+  },
+  "peerDependencies": {
+    "@datorama/akita": "^5.2.3",
+    "@acpaas-ui/react-components": "^4.4.0"
   }
 }

@@ -49,6 +49,8 @@ module.exports = {
 	],
 	externals: {
 		react: 'react',
+		'@datarama/akita': '@datorama/akita',
+		'@acpaas-ui/react-components': '@acpaas-ui/react-components',
 	},
 	output: {
 		filename: 'redactie-utils.umd.js',
