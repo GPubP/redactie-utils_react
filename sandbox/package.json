@@ -6,7 +6,7 @@
     "@a-ui/core": "^4.1.1",
     "@acpaas-ui/react-components": "^4.1.0",
     "@acpaas-ui/react-editorial-components": "0.0.1-9",
-    "@redactie/utils": "file:../redactie-utils-0.0.1.tgz",
+    "@redactie/utils": "file:../redactie-utils-0.4.0.tgz",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
@@ -17,7 +17,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.4.1",
+    "react-scripts": "^3.4.2",
     "typescript": "^3.7.5"
   },
   "scripts": {
@@ -43,6 +43,6 @@
   },
   "devDependencies": {
     "@types/react-router-dom": "^5.1.5",
-    "node-sass": "^4.14.0"
+    "node-sass": "^4.14.1"
   }
 }

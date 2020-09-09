@@ -1,5 +1,8 @@
 const path = require('path');
+
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const cssnano = require('cssnano');
+const postcssPresetEnv = require('postcss-preset-env');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
@@ -12,6 +15,26 @@ module.exports = {
 				test: /\.ts(x)?$/,
 				use: 'ts-loader',
 				exclude: /node_modules/,
+			},
+			{
+				test: /\.s[ac]ss$/i,
+				use: [
+					'style-loader',
+					{
+						loader: 'css-loader',
+						options: {
+							importLoaders: 2,
+						},
+					},
+					{
+						loader: 'postcss-loader',
+						options: {
+							ident: 'postcss',
+							plugins: () => [postcssPresetEnv(), cssnano({ preset: 'default' })],
+						},
+					},
+					'sass-loader',
+				],
 			},
 		],
 	},
@@ -26,6 +49,8 @@ module.exports = {
 	],
 	externals: {
 		react: 'react',
+		'@datarama/akita': '@datorama/akita',
+		'@acpaas-ui/react-components': '@acpaas-ui/react-components',
 	},
 	output: {
 		filename: 'redactie-utils.umd.js',

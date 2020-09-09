@@ -1,6 +1,6 @@
 {
   "name": "@redactie/utils",
-  "version": "0.3.0",
+  "version": "0.4.1",
   "description": "Redactie utils package",
   "main": "dist/redactie-utils.umd.js",
   "types": "dist/index.d.ts",
@@ -10,7 +10,8 @@
     "build:w": "npm run build:types && webpack -w",
     "lint": "eslint . --ext .ts,.tsx",
     "test": "jest ./public",
-    "prepublishOnly": "npm run test && npm run build"
+    "prepack": "npm run build",
+    "prepublishOnly": "npm run test"
   },
   "repository": {
     "type": "git",
@@ -32,12 +33,15 @@
   "author": "Andry Charlier",
   "license": "ISC",
   "devDependencies": {
+    "@acpaas-ui/react-components": "^4.4.0",
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.5",
     "@babel/preset-react": "^7.9.4",
     "@babel/preset-typescript": "^7.9.0",
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
+    "@datorama/akita": "^5.2.3",
+    "@testing-library/react": "^10.4.8",
     "@types/jest": "^25.2.1",
     "@types/ramda": "^0.27.6",
     "@types/react": "^16.9.34",
@@ -45,6 +49,8 @@
     "@typescript-eslint/parser": "^2.30.0",
     "babel-jest": "^25.4.0",
     "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^4.2.1",
+    "cssnano": "^4.1.10",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-import": "^2.20.2",
@@ -55,10 +61,14 @@
     "husky": "^4.2.5",
     "jest": "^25.4.0",
     "lint-staged": "^10.1.7",
+    "postcss-loader": "^3.0.0",
+    "postcss-preset-env": "^6.7.0",
     "prettier": "^2.0.5",
     "ramda": "^0.27.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "sass-loader": "^9.0.3",
+    "style-loader": "^1.2.1",
     "ts-loader": "^7.0.1",
     "typescript": "^3.8.3",
     "webpack": "^4.43.0",
@@ -67,9 +77,11 @@
   },
   "dependencies": {
     "query-string": "^6.12.1",
+    "react-toastify": "^6.0.8",
     "use-query-params": "^1.1.1"
   },
   "peerDependencies": {
-    "@datorama/akita": "^5.2.3"
+    "@datorama/akita": "^5.2.3",
+    "@acpaas-ui/react-components": "^4.4.0"
   }
 }
