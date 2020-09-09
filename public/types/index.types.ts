@@ -5,10 +5,3 @@ export enum LoadingState {
 	Loaded = 'loaded',
 	Error = 'error',
 }
-
-export interface Tab {
-	name: string;
-	target: string;
-	active: boolean;
-	disabled?: boolean;
-}
