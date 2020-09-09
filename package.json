@@ -68,5 +68,8 @@
   "dependencies": {
     "query-string": "^6.12.1",
     "use-query-params": "^1.1.1"
+  },
+  "peerDependencies": {
+    "@datorama/akita": "^5.2.3"
   }
 }
