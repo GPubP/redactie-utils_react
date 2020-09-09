@@ -1,7 +1,7 @@
 import { BaseEntityQuery } from './baseEntity.query';
 import { BaseEntityStore } from './baseEntity.store';
 
-export class BaseMultiEntity<
+export class BaseEntityFacade<
 	S extends BaseEntityStore<any, any>,
 	SE,
 	Q extends BaseEntityQuery<any>
