@@ -13,6 +13,12 @@ export class BaseMultiEntityFacade<
 	public readonly getItemValue = this.query.getItemValue;
 	public readonly getItemError = this.query.getItemError;
 	public readonly getIsFetching = this.query.getItemIsFetching;
+
+	public readonly selectItem = this.query.selectItem;
+	public readonly selectItemValue = this.query.selectItemValue;
+	public readonly selectItemError = this.query.selectItemError;
+	public readonly selectItemIsFetching = this.query.selectItemIsFetching;
+
 	public readonly isCreating$ = this.query.isCreating$;
 	public readonly isUpdating$ = this.query.isUpdating$;
 }
