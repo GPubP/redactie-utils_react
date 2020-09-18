@@ -36,7 +36,7 @@ export class BaseMultiEntityStore<
 	}
 
 	public setItemValue(id: IDType, value: getEntityType<S>['value']): void {
-		this.update(id, state => ({
+		this.update(id, (state) => ({
 			...state,
 			value,
 			error: null,
@@ -45,7 +45,7 @@ export class BaseMultiEntityStore<
 	}
 
 	public setItemError(id: IDType, error: any): void {
-		this.update(id, state => ({
+		this.update(id, (state) => ({
 			...state,
 			error,
 			isFetching: false,
@@ -53,7 +53,7 @@ export class BaseMultiEntityStore<
 	}
 
 	public setItemIsFetching(uuid: IDType, isFetching = false): void {
-		this.update(uuid, state => ({
+		this.update(uuid, (state) => ({
 			...state,
 			isFetching: isFetching,
 		}));
