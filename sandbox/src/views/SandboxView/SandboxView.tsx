@@ -1,5 +1,6 @@
-import { Button, ButtonGroup } from '@acpaas-ui/react-components';
-import { useAPIQueryParams, alertService } from '@redactie/utils';
+import { Button, ButtonGroup, TextField } from '@acpaas-ui/react-components';
+import { useAPIQueryParams, alertService, ErrorMessage } from '@redactie/utils';
+import { Field, Form, Formik } from 'formik';
 import React, { FC, useEffect } from 'react';
 
 const SandboxView: FC = () => {
@@ -24,8 +25,43 @@ const SandboxView: FC = () => {
 		setQuery({ page });
 	};
 
+	const validateUsername = (value: string) => {
+		let error;
+		if (value === 'admin') {
+			error = 'Nice try!, try to fill in an other username';
+		}
+		return error;
+	}
+
 	return (
 		<>
+			<h2 className="u-margin-bottom-xs">Components</h2>
+			<h3 className="u-margin-bottom">Formik ErrorMessage</h3>
+			<div className="u-margin-bottom">
+				<Formik
+					initialValues={{
+						username: '',
+					}}
+					onSubmit={values => {
+						// same shape as initial values
+						console.log(values);
+					}}
+					>
+					{() => (
+						<Form>
+						<Field
+							as={TextField}
+							label="username"
+							description="Fill in a username, admin will throw an error"
+							name="username"
+							validate={validateUsername} />
+						<ErrorMessage name="username"/>
+
+						<button type="submit">Submit</button>
+						</Form>
+					)}
+				</Formik>
+			</div>
 			<h2 className="u-margin-bottom-xs">Hooks</h2>
 			<h3 className="u-margin-bottom">useAPIQueryParams</h3>
 			<div className="u-margin-bottom">

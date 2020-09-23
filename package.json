@@ -9,7 +9,7 @@
     "build": "npm run build:types && webpack",
     "build:w": "npm run build:types && webpack -w",
     "lint": "eslint . --ext .ts,.tsx",
-    "test": "jest ./public",
+    "test": "jest ./public --env jest-environment-jsdom-fourteen",
     "prepack": "npm run build",
     "prepublishOnly": "npm run test"
   },
@@ -64,9 +64,6 @@
     "postcss-loader": "^3.0.0",
     "postcss-preset-env": "^6.7.0",
     "prettier": "^2.0.5",
-    "ramda": "^0.27.0",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
     "sass-loader": "^9.0.3",
     "style-loader": "^1.2.1",
     "ts-loader": "^7.0.1",
@@ -78,10 +75,17 @@
   "dependencies": {
     "query-string": "^6.12.1",
     "react-toastify": "^6.0.8",
-    "use-query-params": "^1.1.1"
+    "use-query-params": "^1.1.1",
+    "formik": "^2.1.4",
+    "ramda": "^0.27.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
   },
   "peerDependencies": {
     "@datorama/akita": "^5.2.3",
-    "@acpaas-ui/react-components": "^4.4.0"
+    "@acpaas-ui/react-components": "^4.4.0",
+    "formik": "^2.1.4",
+    "react": "^16.12.0",
+    "react-dom": "16.12.0"
   }
 }
