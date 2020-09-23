@@ -49,7 +49,9 @@ module.exports = {
 	],
 	externals: {
 		react: 'react',
-		'@datarama/akita': '@datorama/akita',
+		formik: 'formik',
+		'react-dom': 'react-dom',
+		'@datorama/akita': '@datorama/akita',
 		'@acpaas-ui/react-components': '@acpaas-ui/react-components',
 	},
 	output: {
