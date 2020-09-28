@@ -48,11 +48,13 @@ module.exports = {
 		// new BundleAnalyzerPlugin(),
 	],
 	externals: {
-		react: 'react',
+		classnames: 'classnames',
 		formik: 'formik',
+		react: 'react',
 		'react-dom': 'react-dom',
-		'@datorama/akita': '@datorama/akita',
+		'react-router-dom': 'react-router-dom',
 		'@acpaas-ui/react-components': '@acpaas-ui/react-components',
+		'@datorama/akita': '@datorama/akita',
 	},
 	output: {
 		filename: 'redactie-utils.umd.js',
