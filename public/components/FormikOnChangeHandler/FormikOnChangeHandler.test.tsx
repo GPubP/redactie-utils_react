@@ -4,7 +4,7 @@ import React from 'react';
 
 import FormikOnChangeHandler from './FormikOnChangeHandler';
 
-jest.mock('lodash.debounce', () => (fn) => fn);
+jest.mock('lodash.debounce', () => (fn: () => null) => fn);
 
 const renderFormikForm = (
 	onChangeHanlder: (values: FormikValues) => void,
