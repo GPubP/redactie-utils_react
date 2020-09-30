@@ -43,6 +43,50 @@ import { useAPIQueryParams } from '@redactie/utils';
 
 ## Utilities
 
+### Components
+
+Commonly used components
+
+#### RenderChildRoutes
+
+This component is used to render child routes.
+It wraps the `Core.routes.render` function inside a component
+
+**Usage**
+
+```js
+import { RenderChildRoutes } from '@redactie/utils';
+import React from 'react';
+
+const Root = () => {
+	const routes = [
+		component: () => <div>route component</div>,
+		path: 'path',
+		guardOptions: {}
+	];
+	const guardsMeta = {
+		tenantId: 'id'
+	};
+	const extraOptions = {
+		data: 'some data',
+	};
+	return (
+		<Router>
+			<RenderChildRoutes routes={routes} guardsMeta={guardsMeta} extraOptions={extraOptions}>
+		<Router>
+	)
+}
+```
+
+**Props**
+By default the config is extended with the following values:
+
+| Name              | Type                   | Default value | description
+| ----------------- | ---------------------- | ------------- | -----------
+| routes            | `ModuleRouteConfig[] ` | undefined     | routes to render
+| guardsMeta        | `Record<string, any>`  | undefined     | meta data that will be available for all guards
+| extraOptions      | `Record<string, any>`  | undefined     | extra options that will be available for each child route
+
 ### Hooks
 
 Custom React hooks.
