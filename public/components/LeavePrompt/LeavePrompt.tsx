@@ -1,7 +1,7 @@
 import { Button } from '@acpaas-ui/react-components';
 import { Location } from 'history';
 import React, { FC, useEffect, useState } from 'react';
-import { Prompt, useHistory } from 'react-router-dom';
+import { Prompt, useHistory, useLocation } from 'react-router-dom';
 
 import { LEAVE_PROMPT_DEFAULT_PROPS } from './LeavePrompt.const';
 import LeavePromptModal from './LeavePrompt.modal';
@@ -16,6 +16,7 @@ const LeavePrompt: FC<LeavePromptProps> = ({
 	onCancel,
 	onConfirm,
 	onDelete,
+	shouldBlockNavigationOnConfirm = () => false,
 	title = LEAVE_PROMPT_DEFAULT_PROPS.title,
 	when,
 }) => {
@@ -27,6 +28,7 @@ const LeavePrompt: FC<LeavePromptProps> = ({
 	const [lastLocation, setLastLocation] = useState<Location | null>(null);
 	const [confirmedNavigation, setConfirmedNavigation] = useState(false);
 	const history = useHistory();
+	const location = useLocation();
 
 	const navigate = navigateFn || history.push;
 
@@ -50,12 +52,22 @@ const LeavePrompt: FC<LeavePromptProps> = ({
 		return true;
 	};
 
-	const handleAction = (onAction?: () => void): void => {
-		if (onAction) {
-			onAction();
+	const handleDelete = (): void => {
+		if (onDelete) {
+			onDelete();
 		}
 		setShowModal(false);
 		setConfirmedNavigation(true);
+	};
+
+	const handleConfirm = (): void => {
+		if (onConfirm) {
+			onConfirm();
+		}
+		setShowModal(false);
+		if (!shouldBlockNavigationOnConfirm(location)) {
+			setConfirmedNavigation(true);
+		}
 	};
 
 	const handleCancel = (): void => {
@@ -76,10 +88,10 @@ const LeavePrompt: FC<LeavePromptProps> = ({
 				<Button onClick={handleCancel} outline>
 					{cancelText}
 				</Button>
-				<Button onClick={() => handleAction(onDelete)} outline type="danger">
+				<Button onClick={handleDelete} outline type="danger">
 					{deleteText}
 				</Button>
-				<Button onClick={() => handleAction(onConfirm)} type="success">
+				<Button onClick={handleConfirm} type="success">
 					{confirmText}
 				</Button>
 			</LeavePromptModal>
