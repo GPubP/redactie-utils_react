@@ -1,7 +1,7 @@
 import { FormikValues, useFormikContext } from 'formik';
 import debounce from 'lodash.debounce';
 import { equals } from 'ramda';
-import { FC, useCallback, useEffect, useRef } from 'react';
+import { FC, useEffect, useRef } from 'react';
 
 import { FormikOnChangeHandlerProps } from './FormikOnChangeHandler.types';
 
@@ -12,15 +12,17 @@ const FormikOnChangeHandler: FC<FormikOnChangeHandlerProps> = ({
 }): null => {
 	const { initialValues, values } = useFormikContext() || formikProps;
 	const oldValues = useRef(initialValues);
-
-	const debouncedOnChange = useCallback(debounce(onChange, delay), [delay]);
+	const debouncedOnChange = debounce(onChange, delay, {
+		leading: true,
+	});
 
 	useEffect(() => {
 		if (!equals(oldValues.current, values)) {
 			oldValues.current = values;
 			debouncedOnChange(values as FormikValues);
 		}
-	}, [values, debouncedOnChange]);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [values]);
 
 	return null;
 };
