@@ -58,6 +58,23 @@ describe('<LeavePrompt />', () => {
 		expect(queryByTestId(dummyId)).not.toBeNull();
 	});
 
+	it('should not continue navigation when user confirms and shouldBlockNavigationOnConfirm return true', () => {
+		const confirmMethod = jest.fn();
+		const { getByTestId, getByText, queryByTestId } = render(
+			<AppWithRouter shouldBlockNavigationOnConfirm={() => true} onConfirm={confirmMethod} />
+		);
+
+		const linkEl = getByTestId(linkId);
+		fireEvent.click(linkEl);
+
+		const confirmEl = getByText(LEAVE_PROMPT_DEFAULT_PROPS.confirmText);
+		fireEvent.click(confirmEl);
+
+		expect(confirmMethod).toHaveBeenCalled();
+		expect(confirmMethod).toHaveBeenCalledTimes(1);
+		expect(queryByTestId(dummyId)).toBeNull();
+	});
+
 	it('Should continue navigation when user deletes', () => {
 		const deleteMethod = jest.fn();
 		const { getByTestId, getByText, queryByTestId } = render(
