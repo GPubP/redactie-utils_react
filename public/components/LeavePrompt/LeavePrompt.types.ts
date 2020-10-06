@@ -6,13 +6,13 @@ export interface LeavePromptProps {
 	cancelText?: string;
 	confirmText?: string;
 	deleteText?: string;
+	title?: string;
+	when: boolean;
 	navigate?: (path: string) => void;
 	onCancel?: () => void;
 	onConfirm?: () => void;
 	onDelete?: () => void;
 	shouldBlockNavigationOnConfirm?: (location: Location) => boolean;
-	title?: string;
-	when: boolean;
 }
 
 export interface LeavePromptModalProps {
