@@ -55,7 +55,6 @@ module.exports = {
 		'react-router-dom': 'react-router-dom',
 		'@acpaas-ui/react-components': '@acpaas-ui/react-components',
 		'@redactie/redactie-core': '@redactie/redactie-core',
-		'@redactie/react-router-guards': '@redactie/react-router-guards',
 		'@datorama/akita': '@datorama/akita',
 	},
 	output: {
