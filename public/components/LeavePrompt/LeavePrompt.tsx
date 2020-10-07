@@ -1,13 +1,14 @@
 import { Button } from '@acpaas-ui/react-components';
 import { Location } from 'history';
 import React, { FC, useEffect, useState } from 'react';
-import { Prompt, useHistory, useLocation } from 'react-router-dom';
+import { matchPath, Prompt, useHistory, useLocation } from 'react-router-dom';
 
 import { LEAVE_PROMPT_DEFAULT_PROPS } from './LeavePrompt.const';
 import LeavePromptModal from './LeavePrompt.modal';
 import { LeavePromptProps } from './LeavePrompt.types';
 
 const LeavePrompt: FC<LeavePromptProps> = ({
+	allowedPaths = [],
 	body = LEAVE_PROMPT_DEFAULT_PROPS.body,
 	cancelText = LEAVE_PROMPT_DEFAULT_PROPS.cancelText,
 	confirmText = LEAVE_PROMPT_DEFAULT_PROPS.confirmText,
@@ -17,6 +18,7 @@ const LeavePrompt: FC<LeavePromptProps> = ({
 	onConfirm,
 	onDelete,
 	shouldBlockNavigationOnConfirm = () => false,
+	shouldBlockNavigation = () => true,
 	title = LEAVE_PROMPT_DEFAULT_PROPS.title,
 	when,
 }) => {
@@ -44,7 +46,15 @@ const LeavePrompt: FC<LeavePromptProps> = ({
 	 */
 
 	const handleBlockedNavigation = (nextLocation: Location): boolean => {
-		if (!confirmedNavigation) {
+		const isPathAllowed = !!allowedPaths.find((path) =>
+			matchPath(nextLocation.pathname, {
+				path,
+				exact: true,
+				strict: false,
+			})
+		);
+
+		if (!confirmedNavigation && shouldBlockNavigation(nextLocation) && !isPathAllowed) {
 			setShowModal(true);
 			setLastLocation(nextLocation);
 			return false;

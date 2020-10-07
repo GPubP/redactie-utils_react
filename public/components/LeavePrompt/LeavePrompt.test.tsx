@@ -122,4 +122,32 @@ describe('<LeavePrompt />', () => {
 
 		expect(promptEl).toBeNull();
 	});
+
+	it('Should continue navigation when next location is allowed', () => {
+		const { getByTestId, queryByTestId, queryByText } = render(
+			<AppWithRouter allowedPaths={['/dummy']} />
+		);
+
+		const linkEl = getByTestId(linkId);
+		fireEvent.click(linkEl);
+
+		const promptEl = queryByText(LEAVE_PROMPT_DEFAULT_PROPS.title);
+
+		expect(promptEl).toBeNull();
+		expect(queryByTestId(dummyId)).not.toBeNull();
+	});
+
+	it('Should block navigation when shouldBlockNavigation returns `true`', () => {
+		const { getByTestId, queryByTestId, queryByText } = render(
+			<AppWithRouter shouldBlockNavigation={(location) => location.pathname === '/dummy'} />
+		);
+
+		const linkEl = getByTestId(linkId);
+		fireEvent.click(linkEl);
+
+		const promptEl = queryByText(LEAVE_PROMPT_DEFAULT_PROPS.title);
+
+		expect(promptEl).not.toBeNull();
+		expect(queryByTestId(dummyId)).toBeNull();
+	});
 });
