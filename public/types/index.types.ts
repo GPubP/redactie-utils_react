@@ -5,3 +5,5 @@ export enum LoadingState {
 	Loaded = 'loaded',
 	Error = 'error',
 }
+
+export type HandlerFn = (...args: any[]) => any;
