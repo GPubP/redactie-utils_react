@@ -17,8 +17,8 @@ const LeavePrompt: FC<LeavePromptProps> = ({
 	onCancel,
 	onConfirm,
 	onDelete,
-	shouldBlockNavigationOnConfirm = () => false,
 	shouldBlockNavigation = () => true,
+	shouldBlockNavigationOnConfirm = false,
 	title = LEAVE_PROMPT_DEFAULT_PROPS.title,
 	when,
 }) => {
@@ -74,8 +74,15 @@ const LeavePrompt: FC<LeavePromptProps> = ({
 		if (onConfirm) {
 			onConfirm();
 		}
+
 		setShowModal(false);
-		if (!shouldBlockNavigationOnConfirm(location)) {
+
+		const blockOnConfirm =
+			typeof shouldBlockNavigationOnConfirm === 'function'
+				? shouldBlockNavigationOnConfirm(location)
+				: shouldBlockNavigationOnConfirm;
+
+		if (!blockOnConfirm) {
 			setConfirmedNavigation(true);
 		}
 	};

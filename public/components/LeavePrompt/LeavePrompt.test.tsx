@@ -58,10 +58,10 @@ describe('<LeavePrompt />', () => {
 		expect(queryByTestId(dummyId)).not.toBeNull();
 	});
 
-	it('should not continue navigation when user confirms and shouldBlockNavigationOnConfirm return true', () => {
+	it('should not continue navigation when user confirms and shouldBlockNavigationOnConfirm returns `true`', () => {
 		const confirmMethod = jest.fn();
 		const { getByTestId, getByText, queryByTestId } = render(
-			<AppWithRouter shouldBlockNavigationOnConfirm={() => true} onConfirm={confirmMethod} />
+			<AppWithRouter shouldBlockNavigationOnConfirm onConfirm={confirmMethod} />
 		);
 
 		const linkEl = getByTestId(linkId);

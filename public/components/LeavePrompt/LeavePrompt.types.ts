@@ -12,6 +12,7 @@ export interface LeavePromptProps {
 	onConfirm?: () => void;
 	onDelete?: () => void;
 	shouldBlockNavigation?: (location: Location) => boolean;
+	shouldBlockNavigationOnConfirm?: ((location: Location) => boolean) | boolean;
 	title?: string;
 	when: boolean;
 }
