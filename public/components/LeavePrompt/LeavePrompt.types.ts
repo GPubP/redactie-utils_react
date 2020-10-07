@@ -2,6 +2,7 @@ import { Location } from 'history';
 import { ReactNode } from 'react';
 
 export interface LeavePromptProps {
+	allowedPaths?: string[];
 	body?: ReactNode;
 	cancelText?: string;
 	confirmText?: string;
@@ -12,7 +13,8 @@ export interface LeavePromptProps {
 	onCancel?: () => void;
 	onConfirm?: () => void;
 	onDelete?: () => void;
-	shouldBlockNavigationOnConfirm?: (location: Location) => boolean;
+	shouldBlockNavigation?: (location: Location) => boolean;
+	shouldBlockNavigationOnConfirm?: ((location: Location) => boolean) | boolean;
 }
 
 export interface LeavePromptModalProps {
