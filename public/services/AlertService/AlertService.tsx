@@ -7,13 +7,13 @@ import { AlertProps, AlertType, AlertWithOnCloseProps, CustomOptions } from './A
 class AlertService {
 	public info = this.showAlert;
 	public success(props: AlertProps, options?: ToastOptions): ReactText {
-		return this.showAlert(props, { autoDismiss: true, ...options }, AlertType.Success);
+		return this.showAlert(props, options, AlertType.Success);
 	}
 	public warning(props: AlertProps, options?: ToastOptions): ReactText {
-		return this.showAlert(props, { autoDismiss: true, ...options }, AlertType.Warning);
+		return this.showAlert(props, options, AlertType.Warning);
 	}
 	public danger(props: AlertProps, options?: ToastOptions): ReactText {
-		return this.showAlert(props, { autoDismiss: true, ...options }, AlertType.Danger);
+		return this.showAlert(props, options, AlertType.Danger);
 	}
 
 	public clearWaitingQueue = toast.clearWaitingQueue;
@@ -25,7 +25,7 @@ class AlertService {
 
 	private showAlert(
 		props: AlertProps,
-		{ autoDismiss, ...options }: CustomOptions = {},
+		{ autoDismiss = true, ...options }: CustomOptions = {},
 		type?: AlertType
 	): ReactText {
 		const alertProps = { ...props, onClose: options?.onClose, type };
