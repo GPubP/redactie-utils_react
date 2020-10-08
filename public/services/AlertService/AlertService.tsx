@@ -2,18 +2,18 @@ import { Alert } from '@acpaas-ui/react-components';
 import React, { ReactElement, ReactText } from 'react';
 import { toast, ToastContentProps, ToastOptions } from 'react-toastify';
 
-import { AlertProps, AlertType, AlertWithOnCloseProps } from './AlertService.types';
+import { AlertProps, AlertType, AlertWithOnCloseProps, CustomOptions } from './AlertService.types';
 
 class AlertService {
 	public info = this.showAlert;
 	public success(props: AlertProps, options?: ToastOptions): ReactText {
-		return this.showAlert(props, options, AlertType.Success);
+		return this.showAlert(props, { autoDismiss: true, ...options }, AlertType.Success);
 	}
 	public warning(props: AlertProps, options?: ToastOptions): ReactText {
-		return this.showAlert(props, options, AlertType.Warning);
+		return this.showAlert(props, { autoDismiss: true, ...options }, AlertType.Warning);
 	}
 	public danger(props: AlertProps, options?: ToastOptions): ReactText {
-		return this.showAlert(props, options, AlertType.Danger);
+		return this.showAlert(props, { autoDismiss: true, ...options }, AlertType.Danger);
 	}
 
 	public clearWaitingQueue = toast.clearWaitingQueue;
@@ -23,8 +23,15 @@ class AlertService {
 	public isActive = toast.isActive;
 	public update = toast.update;
 
-	private showAlert(props: AlertProps, options?: ToastOptions, type?: AlertType): ReactText {
+	private showAlert(
+		props: AlertProps,
+		{ autoDismiss, ...options }: CustomOptions = {},
+		type?: AlertType
+	): ReactText {
 		const alertProps = { ...props, onClose: options?.onClose, type };
+		if (autoDismiss) {
+			toast.dismiss();
+		}
 		return toast((toastProps) => this.renderAlert(alertProps, toastProps), options);
 	}
 

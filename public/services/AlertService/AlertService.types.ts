@@ -1,9 +1,14 @@
 import { ReactNode } from 'react';
+import { ToastOptions } from 'react-toastify';
 
 export enum AlertType {
 	Success = 'success',
 	Warning = 'warning',
 	Danger = 'danger',
+}
+
+export interface CustomOptions extends ToastOptions {
+	autoDismiss?: boolean;
 }
 
 export interface AlertProps {
