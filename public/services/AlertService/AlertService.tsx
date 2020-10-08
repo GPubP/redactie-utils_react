@@ -2,7 +2,7 @@ import { Alert } from '@acpaas-ui/react-components';
 import React, { ReactElement, ReactText } from 'react';
 import { toast, ToastContentProps, ToastOptions } from 'react-toastify';
 
-import { AlertProps, AlertType, AlertWithOnCloseProps } from './AlertService.types';
+import { AlertProps, AlertType, AlertWithOnCloseProps, CustomOptions } from './AlertService.types';
 
 class AlertService {
 	public info = this.showAlert;
@@ -23,8 +23,15 @@ class AlertService {
 	public isActive = toast.isActive;
 	public update = toast.update;
 
-	private showAlert(props: AlertProps, options?: ToastOptions, type?: AlertType): ReactText {
+	private showAlert(
+		props: AlertProps,
+		{ autoDismiss = true, ...options }: CustomOptions = {},
+		type?: AlertType
+	): ReactText {
 		const alertProps = { ...props, onClose: options?.onClose, type };
+		if (autoDismiss) {
+			toast.dismiss();
+		}
 		return toast((toastProps) => this.renderAlert(alertProps, toastProps), options);
 	}
 
