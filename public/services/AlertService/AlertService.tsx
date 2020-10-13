@@ -1,18 +1,18 @@
 import { Alert } from '@acpaas-ui/react-components';
 import React, { ReactElement, ReactText } from 'react';
-import { toast, ToastContentProps, ToastOptions } from 'react-toastify';
+import { toast, ToastContentProps } from 'react-toastify';
 
 import { AlertProps, AlertType, AlertWithOnCloseProps, CustomOptions } from './AlertService.types';
 
 class AlertService {
 	public info = this.showAlert;
-	public success(props: AlertProps, options?: ToastOptions): ReactText {
+	public success(props: AlertProps, options?: CustomOptions): ReactText {
 		return this.showAlert(props, options, AlertType.Success);
 	}
-	public warning(props: AlertProps, options?: ToastOptions): ReactText {
+	public warning(props: AlertProps, options?: CustomOptions): ReactText {
 		return this.showAlert(props, options, AlertType.Warning);
 	}
-	public danger(props: AlertProps, options?: ToastOptions): ReactText {
+	public danger(props: AlertProps, options?: CustomOptions): ReactText {
 		return this.showAlert(props, options, AlertType.Danger);
 	}
 
