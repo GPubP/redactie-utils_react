@@ -24,6 +24,7 @@ Set of utilities to use in Redactie App and Modules.
 		+ [useWillUnmount](#useWillUnmount)
 		+ [usePrevious](#usePrevious)
 		+ [usePersist](#usePersist)
+		+ [useObservable](#useObservable)
 	* [Context](#Context)
 		+ [TenantContext](#TenantContext)
 		+ [SiteContext](#SiteContext)
@@ -724,6 +725,38 @@ const ExpensiveTree = React.memo<{ [key: string]: any }>(({ showCount }) => {
 | Name              | Type                   | Default value | description
 | ----------------- | ---------------------- | ------------- | -----------
 | fn                | `(...args: any[]) => any`            | undefined     | Function that requires persistence
+
+<br/>
+
+#### useObservable
+<hr></br>
+
+React state hook that tracks the latest value of an Observable.
+
+**Usage**:
+
+```tsx
+import {useObservable} from '@redactie/utils';
+
+const counter$ = new BehaviorSubject(0);
+const Demo = () => {
+  const value = useObservable(counter$, 0);
+
+  return (
+    <button onClick={() => counter$.next(value + 1)}>
+      Clicked {value} times
+    </button>
+  );
+};
+
+```
+
+**Props**
+
+| Name              | Type                   | Default value | description
+| ----------------- | ---------------------- | ------------- | -----------
+| Observable        | Observable             | undefined     | The Observable to subscribe on
+| initialValue      | any                    | undefined     | First emitted value
 
 <br/>
 
