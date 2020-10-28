@@ -9,3 +9,4 @@ export * from './useNavigate';
 export * from './useTenantContext';
 export * from './useSiteContext';
 export * from './useRoutes';
+export * from './useObservable';
