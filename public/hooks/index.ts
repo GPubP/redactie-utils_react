@@ -10,3 +10,4 @@ export * from './useTenantContext';
 export * from './useSiteContext';
 export * from './useRoutes';
 export * from './useObservable';
+export * from './useWorker';
