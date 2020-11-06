@@ -1,6 +1,6 @@
 {
   "name": "@redactie/utils",
-  "version": "0.11.0",
+  "version": "0.12.0-15",
   "description": "Redactie utils package",
   "main": "dist/redactie-utils.umd.js",
   "types": "dist/index.d.ts",
@@ -54,6 +54,7 @@
     "@typescript-eslint/parser": "^2.30.0",
     "babel-jest": "^25.4.0",
     "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^6.3.0",
     "css-loader": "^4.2.1",
     "cssnano": "^4.1.10",
     "eslint": "^6.8.0",
@@ -76,7 +77,8 @@
     "typescript": "^3.8.3",
     "webpack": "^4.43.0",
     "webpack-bundle-analyzer": "^3.7.0",
-    "webpack-cli": "^3.3.11"
+    "webpack-cli": "^3.3.11",
+    "worker-loader": "^3.0.5"
   },
   "dependencies": {
     "@redactie/react-router-guards": "^1.0.2",

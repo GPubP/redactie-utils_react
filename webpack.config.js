@@ -1,6 +1,7 @@
 const path = require('path');
 
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const copyWebpackPlugin = require('copy-webpack-plugin');
 const cssnano = require('cssnano');
 const postcssPresetEnv = require('postcss-preset-env');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
@@ -46,6 +47,14 @@ module.exports = {
 		new CleanWebpackPlugin(),
 		// Uncomment this line to analyse your bundle
 		// new BundleAnalyzerPlugin(),
+		new copyWebpackPlugin({
+			patterns: [
+				{
+					from: path.resolve(__dirname, './webpack'),
+					to: path.resolve(__dirname, 'dist/webpack'),
+				},
+			],
+		}),
 	],
 	externals: {
 		classnames: 'classnames',
