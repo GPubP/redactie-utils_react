@@ -5,9 +5,9 @@ import { WorkerMessageEvent } from '../../types/workers.types';
 
 // You can pass a path to a worker or an instance of Worker
 function useWorker<Data = any, ReturnValue = any>(
+	bffModulePath: string
 	workerOrPath: Worker | string,
-	data: Data,
-	bffModulePath = BFF_MODULE_PUBLIC_PATH
+	data: Data
 ): [ReturnValue | null, ErrorEvent | any] {
 	const [worker, setWorker] = useState<Worker | null>(null);
 	const [returnValue, setReturnValue] = useState<ReturnValue | null>(null);

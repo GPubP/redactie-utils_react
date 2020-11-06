@@ -15,7 +15,8 @@ module.exports = ({
 	styleIncludes = [/public/],
 	externals = {},
 	outputPath = path.resolve(process.cwd(), 'dist'),
-}) => (env) => {
+	definitions = {},
+} = {}) => (env) => {
 	const defaultConfig = {
 		mode,
 		entry: {
@@ -60,6 +61,7 @@ module.exports = ({
 		plugins: [
 			// add default plugins here
 			new webpack.DefinePlugin({
+				...definitions,
 				BFF_MODULE_PUBLIC_PATH: JSON.stringify(
 					`${kebabCase(packageJSON.name + packageJSON.version)}/dist/`
 				),
