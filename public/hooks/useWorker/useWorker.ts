@@ -21,10 +21,13 @@ const useWorker = <Data = any, ReturnValue = any>(
 			return;
 		}
 
+		let localWorker: Worker | undefined;
+
 		if (typeof workerOrPath === 'string') {
-			setWorker(
-				new Worker(`/v1/tenants/${tenantId}/bundles/${bffModulePath}${workerOrPath}.umd.js`)
+			localWorker = new Worker(
+				`/v1/tenants/${tenantId}/bundles/${bffModulePath}${workerOrPath}.umd.js`
 			);
+			setWorker(localWorker);
 		}
 
 		if (workerOrPath instanceof Worker) {
@@ -32,7 +35,7 @@ const useWorker = <Data = any, ReturnValue = any>(
 		}
 
 		return () => {
-			worker && worker.terminate();
+			localWorker && localWorker.terminate();
 		};
 	}, [Worker, tenantId, workerOrPath]); // eslint-disable-line react-hooks/exhaustive-deps
 
