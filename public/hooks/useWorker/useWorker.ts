@@ -1,10 +1,11 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
-import TenantContext from '../../context/TenantContext/TenantContext';
 import { WorkerMessageEvent } from '../../types/workers.types';
+// import { useTenantContext } from '../useTenantContext';
 
 // You can pass a path to a worker or an instance of Worker
 const useWorker = <Data = any, ReturnValue = any>(
+	tenantId: string,
 	bffModulePath: string,
 	workerOrPath: Worker | string,
 	data: Data
@@ -12,7 +13,7 @@ const useWorker = <Data = any, ReturnValue = any>(
 	const [worker, setWorker] = useState<Worker | null>(null);
 	const [returnValue, setReturnValue] = useState<ReturnValue | null>(null);
 	const [error, setError] = useState<ErrorEvent | any>(null);
-	const { tenantId } = useContext(TenantContext);
+	// const { tenantId } = useTenantContext();
 
 	useEffect(() => {
 		// Worker not supported so skip functionality
