@@ -5,6 +5,8 @@ import { LoadingState } from '../../types/index.types';
 
 import { DataLoaderProps } from './DataLoader.types';
 
+import './DataLoader.scss';
+
 const DataLoader: FC<DataLoaderProps> = ({
 	errorMessage = 'Er ging iets mis tijdens het ophalen van de data',
 	loadingState,
@@ -20,7 +22,7 @@ const DataLoader: FC<DataLoaderProps> = ({
 			);
 
 		case LoadingState.Loaded:
-			return render() || <p>{notFoundMessage}</p>;
+			return render() || <p className="u-text-wrapped">{notFoundMessage}</p>;
 
 		case LoadingState.Error:
 			return <p>{errorMessage}</p>;
