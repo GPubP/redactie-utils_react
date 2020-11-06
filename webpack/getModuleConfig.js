@@ -10,12 +10,12 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 export const getModuleConfig = ({
 	packageJSON,
 	mode = 'productions',
-	mainEntryPath = './public/index.tsx',
+	mainEntryPath = path.resolve(process.cwd(), './public/index.tsx'),
 	tsIncludes = [/public/],
 	styleIncludes = [/public/],
 	externals = {},
-	outputPath = path.resolve(__dirname, 'dist'),
-}): Record<string, any> => (env) => {
+	outputPath = path.resolve(process.cwd(), 'dist'),
+}) => (env) => {
 	const defaultConfig = {
 		mode,
 		entry: {

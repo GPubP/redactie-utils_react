@@ -8,7 +8,7 @@ export const getWorkerConfig = ({
 	clean = true,
 	outputPath = path.resolve(process.cwd(), 'dist'),
 	mode = 'production',
-} = {}): any => ({
+} = {}) => ({
 	entry,
 	mode,
 	performance: {
