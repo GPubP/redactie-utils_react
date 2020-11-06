@@ -9,7 +9,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 
 module.exports = ({
 	packageJSON,
-	mode = 'productions',
+	mode = 'production',
 	mainEntryPath = path.resolve(process.cwd(), './public/index.tsx'),
 	tsIncludes = [/public/],
 	styleIncludes = [/public/],
@@ -93,38 +93,34 @@ module.exports = ({
 	};
 
 	if (env.analyse) {
-		return [
-			{
-				...defaultConfig,
-				plugins: [
-					...defaultConfig.plugins,
-					new BundleAnalyzerPlugin(),
-					new webpack.SourceMapDevToolPlugin({
-						filename: '[name].umd.js.map',
-						publicPath: `${kebabCase(packageJSON.name + packageJSON.version)}/dist/`,
-					}),
-				],
-			},
-		];
+		return {
+			...defaultConfig,
+			plugins: [
+				...defaultConfig.plugins,
+				new BundleAnalyzerPlugin(),
+				new webpack.SourceMapDevToolPlugin({
+					filename: '[name].umd.js.map',
+					publicPath: `${kebabCase(packageJSON.name + packageJSON.version)}/dist/`,
+				}),
+			],
+		};
 	}
 
 	if (env.prod) {
-		return [
-			{
-				...defaultConfig,
-				plugins: [
-					...defaultConfig.plugins,
-					new RedactionWebpackPlugin({
-						moduleName: packageJSON.name,
-					}),
-					new webpack.SourceMapDevToolPlugin({
-						filename: '[name].umd.js.map',
-						publicPath: `${kebabCase(packageJSON.name + packageJSON.version)}/dist/`,
-					}),
-				],
-			},
-		];
+		return {
+			...defaultConfig,
+			plugins: [
+				...defaultConfig.plugins,
+				new RedactionWebpackPlugin({
+					moduleName: packageJSON.name,
+				}),
+				new webpack.SourceMapDevToolPlugin({
+					filename: '[name].umd.js.map',
+					publicPath: `${kebabCase(packageJSON.name + packageJSON.version)}/dist/`,
+				}),
+			],
+		};
 	}
 
-	return [defaultConfig];
+	return defaultConfig;
 };
