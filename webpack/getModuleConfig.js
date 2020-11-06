@@ -7,11 +7,35 @@ const postcssPresetEnv = require('postcss-preset-env');
 const webpack = require('webpack');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
+const getStyleLoaders = (cssLoaderOptions = { importLoaders: 1 }, preProcessor = '') => {
+	const loaders = [
+		'style-loader',
+		{
+			loader: 'css-loader',
+			options: cssLoaderOptions,
+		},
+		{
+			loader: 'postcss-loader',
+			options: {
+				ident: 'postcss',
+				plugins: () => [postcssPresetEnv(), cssnano({ preset: 'default' })],
+			},
+		},
+	];
+
+	if (preProcessor) {
+		loaders.push(preProcessor);
+	}
+
+	return loaders;
+};
+
 module.exports = ({
 	packageJSON,
 	mode = 'production',
 	mainEntryPath = path.resolve(process.cwd(), './public/index.tsx'),
 	tsIncludes = [/public/],
+	sassIncludes = [/public/],
 	styleIncludes = [/public/],
 	externals = {},
 	outputPath = path.resolve(process.cwd(), 'dist'),
@@ -33,25 +57,26 @@ module.exports = ({
 					include: tsIncludes,
 				},
 				{
-					test: /\.s[ac]ss$/i,
-					use: [
-						'style-loader',
-						{
-							loader: 'css-loader',
-							options: {
-								importLoaders: 1,
-							},
-						},
-						{
-							loader: 'postcss-loader',
-							options: {
-								ident: 'postcss',
-								plugins: () => [postcssPresetEnv(), cssnano({ preset: 'default' })],
-							},
-						},
-						'sass-loader',
-					],
+					test: /\.css$/i,
+					use: getStyleLoaders(),
 					include: styleIncludes,
+				},
+				{
+					test: /\.module\.s[ac]ss$/i,
+					use: getStyleLoaders(
+						{
+							modules: true,
+							importLoaders: 2,
+						},
+						'sass-loader'
+					),
+					include: sassIncludes,
+				},
+				{
+					test: /\.s[ac]ss$/i,
+					exclude: /\.module\.s[ac]ss$/i,
+					use: getStyleLoaders({ importLoaders: 2 }, 'sass-loader'),
+					include: sassIncludes,
 				},
 			],
 		},
