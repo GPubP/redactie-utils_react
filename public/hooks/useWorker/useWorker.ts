@@ -5,7 +5,7 @@ import { WorkerMessageEvent } from '../../types/workers.types';
 
 // You can pass a path to a worker or an instance of Worker
 function useWorker<Data = any, ReturnValue = any>(
-	bffModulePath: string
+	bffModulePath: string,
 	workerOrPath: Worker | string,
 	data: Data
 ): [ReturnValue | null, ErrorEvent | any] {
