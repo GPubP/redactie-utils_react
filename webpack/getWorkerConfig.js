@@ -2,7 +2,7 @@ const path = require('path');
 
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-module.exports.getWorkerConfig = ({
+module.exports = ({
 	entry = './public/lib/workers/index.ts',
 	workerFilter = /\.worker\.ts$/,
 	clean = true,
