@@ -8,7 +8,7 @@ const useWorker = <Data = any, ReturnValue = any>(
 	bffModulePath: string,
 	workerOrPath: Worker | string,
 	data: Data,
-	defaultValue = null,
+	defaultValue = null as any,
 	tenantContext = TenantContext
 ): [ReturnValue | null, ErrorEvent | any] => {
 	const [worker, setWorker] = useState<Worker | null>(null);
