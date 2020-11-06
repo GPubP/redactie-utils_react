@@ -4,11 +4,11 @@ import TenantContext from '../../context/TenantContext/TenantContext';
 import { WorkerMessageEvent } from '../../types/workers.types';
 
 // You can pass a path to a worker or an instance of Worker
-function useWorker<Data = any, ReturnValue = any>(
+const useWorker = <Data = any, ReturnValue = any>(
 	bffModulePath: string,
 	workerOrPath: Worker | string,
 	data: Data
-): [ReturnValue | null, ErrorEvent | any] {
+): [ReturnValue | null, ErrorEvent | any] => {
 	const [worker, setWorker] = useState<Worker | null>(null);
 	const [returnValue, setReturnValue] = useState<ReturnValue | null>(null);
 	const [error, setError] = useState<ErrorEvent | any>(null);
@@ -62,6 +62,6 @@ function useWorker<Data = any, ReturnValue = any>(
 	}, [worker]);
 
 	return [returnValue, error];
-}
+};
 
 export default useWorker;
