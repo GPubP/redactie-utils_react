@@ -7,7 +7,7 @@ const postcssPresetEnv = require('postcss-preset-env');
 const webpack = require('webpack');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-export const getModuleConfig = ({
+module.exports.getModuleConfig = ({
 	packageJSON,
 	mode = 'productions',
 	mainEntryPath = path.resolve(process.cwd(), './public/index.tsx'),

@@ -1,2 +1,4 @@
-export * from './getWorkerConfig';
-export * from './getModuleConfig';
+module.exports = {
+	getModuleConfig: require('./getModuleConfig'),
+	getWorkerConfig: require('./getWorkerConfig'),
+};
