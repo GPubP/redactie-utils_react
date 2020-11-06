@@ -1,5 +1,3 @@
-import { getWorkerConfig } from './getWorkerConfig';
-
 const path = require('path');
 
 const RedactionWebpackPlugin = require('@redactie/module-webpack-plugin');
@@ -93,13 +91,9 @@ export const getModuleConfig = ({
 			libraryTarget: 'umd',
 		},
 	};
-	const workerConfig = getWorkerConfig({
-		outputPath,
-	});
 
 	if (env.analyse) {
 		return [
-			workerConfig,
 			{
 				...defaultConfig,
 				plugins: [
@@ -116,7 +110,6 @@ export const getModuleConfig = ({
 
 	if (env.prod) {
 		return [
-			workerConfig,
 			{
 				...defaultConfig,
 				plugins: [
@@ -133,5 +126,5 @@ export const getModuleConfig = ({
 		];
 	}
 
-	return [workerConfig, defaultConfig];
+	return [defaultConfig];
 };
