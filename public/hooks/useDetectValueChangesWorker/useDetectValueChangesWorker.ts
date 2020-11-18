@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { TenantContext } from '../../context';
-import { HasChangesWorkerData } from '../../workers/hasChanges/hasChanges.types';
+import { HasChangesWorkerData } from '../../types/workers.types';
 import { useWorker } from '../useWorker';
 
 const useDetectValueChangesWorker = (

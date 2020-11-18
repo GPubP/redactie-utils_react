@@ -83,5 +83,5 @@ module.exports = () => {
 		outputPath: path.resolve(__dirname, 'dist'),
 		mode: 'production',
 	});
-	return [libraryConfig, workerConfig];
+	return [workerConfig, libraryConfig];
 };
