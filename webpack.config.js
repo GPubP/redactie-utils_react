@@ -71,7 +71,7 @@ module.exports = {
 		'@datorama/akita': '@datorama/akita',
 	},
 	output: {
-		filename: '[name].umd.js',
+		filename: '[name].js',
 		path: path.resolve(__dirname, 'dist'),
 		library: 'redactie-utils',
 		libraryTarget: 'umd',
