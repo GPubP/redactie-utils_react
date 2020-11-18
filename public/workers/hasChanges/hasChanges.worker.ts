@@ -1,6 +1,6 @@
 import { equals } from 'ramda';
 
-import { WorkerCtx, WorkerMessageEvent } from '../workers.types';
+import { WorkerCtx, WorkerMessageEvent } from '../../types/workers.types';
 
 import { HasChangesWorkerData } from './hasChanges.types';
 
