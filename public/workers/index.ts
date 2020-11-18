@@ -1,1 +1,1 @@
-export * from './hasChanges';
+import './hasChanges/hasChanges.worker';

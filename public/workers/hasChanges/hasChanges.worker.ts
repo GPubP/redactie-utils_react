@@ -1,8 +1,6 @@
 import { equals } from 'ramda';
 
-import { WorkerCtx, WorkerMessageEvent } from '../../types/workers.types';
-
-import { HasChangesWorkerData } from './hasChanges.types';
+import { HasChangesWorkerData, WorkerCtx, WorkerMessageEvent } from '../../types/workers.types';
 
 const ctx = (self as unknown) as WorkerCtx;
 

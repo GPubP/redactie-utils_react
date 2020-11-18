@@ -2,7 +2,7 @@
   "name": "@redactie/utils",
   "version": "0.13.0",
   "description": "Redactie utils package",
-  "main": "dist/main.js",
+  "main": "dist/redactie-utils.umd.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build:types": "tsc --emitDeclarationOnly",
