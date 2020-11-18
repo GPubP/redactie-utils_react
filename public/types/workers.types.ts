@@ -9,3 +9,9 @@ export interface WorkerCtx {
 	postMessage: WorkerPostMessage;
 	onmessage: WorkerOnMessage;
 }
+
+export interface HasChangesWorkerData {
+	currentValue: any;
+	nextValue: any;
+	isLoaded?: boolean;
+}
