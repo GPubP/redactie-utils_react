@@ -9,7 +9,10 @@ const postcssPresetEnv = require('postcss-preset-env');
 module.exports = {
 	mode: 'production',
 	devtool: 'source-map',
-	entry: './public/index.ts',
+	entry: {
+		main: './public/index.ts',
+		workers: './public/workers/index.ts',
+	},
 	module: {
 		rules: [
 			{
@@ -68,8 +71,9 @@ module.exports = {
 		'@datorama/akita': '@datorama/akita',
 	},
 	output: {
-		filename: 'redactie-utils.umd.js',
+		filename: '[name].umd.js',
 		path: path.resolve(__dirname, 'dist'),
+		library: 'redactie-utils',
 		libraryTarget: 'umd',
 	},
 };
