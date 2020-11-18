@@ -11,3 +11,4 @@ export * from './useSiteContext';
 export * from './useRoutes';
 export * from './useObservable';
 export * from './useWorker';
+export * from './useDetectValueChangesWorker';

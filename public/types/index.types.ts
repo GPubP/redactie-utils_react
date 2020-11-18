@@ -7,5 +7,3 @@ export enum LoadingState {
 }
 
 export type HandlerFn = (...args: any[]) => any;
-
-export * from './workers.types';

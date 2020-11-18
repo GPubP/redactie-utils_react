@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 
 import { TenantContext } from '../../context';
-import { WorkerMessageEvent } from '../../types/workers.types';
+import { WorkerMessageEvent } from '../../workers/workers.types';
 
 // You can pass a path to a worker or an instance of Worker
 const useWorker = <Data = any, ReturnValue = any>(
