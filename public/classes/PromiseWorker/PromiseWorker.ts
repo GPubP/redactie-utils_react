@@ -1,0 +1,48 @@
+import { Subject } from 'rxjs';
+import { filter, map, timeout } from 'rxjs/operators';
+
+import { WorkerMessageEvent } from '../../types/index.types';
+
+import { PromiseWorkerMessage } from './PromiseWorker.types';
+
+let messageIds = 0;
+
+export default class PromiseWorker<Data = any, ReturnValue = any> {
+	private readonly _worker: Worker;
+	private _timeoutTime: number;
+	private _messages$ = new Subject<PromiseWorkerMessage>();
+
+	constructor(worker: Worker, timeoutTime = 30000) {
+		this._worker = worker;
+		this._timeoutTime = timeoutTime;
+		this._worker.addEventListener('message', (e: WorkerMessageEvent<PromiseWorkerMessage>) =>
+			this._onMessage(e)
+		);
+	}
+
+	public postMessage<D = Data, R = ReturnValue>(data: D): Promise<R> {
+		const id = messageIds++;
+
+		this._worker.postMessage({
+			id,
+			data,
+		});
+
+		return this._messages$
+			.pipe(
+				filter((e: PromiseWorkerMessage<R>) => e.id === id),
+				map((e: PromiseWorkerMessage<R>) => e.data),
+				timeout(this._timeoutTime)
+			)
+			.toPromise<R>();
+	}
+
+	public terminate(): void {
+		this._worker.removeEventListener('message', this._onMessage);
+		this._worker.terminate();
+	}
+
+	private _onMessage(e: WorkerMessageEvent<PromiseWorkerMessage>): void {
+		this._messages$.next(e.data);
+	}
+}
