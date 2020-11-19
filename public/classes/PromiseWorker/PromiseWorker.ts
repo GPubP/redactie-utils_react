@@ -9,7 +9,7 @@ export default class PromiseWorker<Data = any, ReturnValue = any> {
 	private _worker: Worker;
 	private _timeoutTime: number;
 	private _messages$ = new Subject<PromiseWorkerMessage>();
-	private messageIds = 0;
+	private _messageIds = 0;
 	private _onMessageBind: (e: WorkerMessageEvent<PromiseWorkerMessage>) => void;
 
 	constructor(worker: Worker, timeoutTime = 30000) {
@@ -20,7 +20,7 @@ export default class PromiseWorker<Data = any, ReturnValue = any> {
 	}
 
 	public postMessage<D = Data, R = ReturnValue>(data: D): Promise<R> {
-		const id = this.messageIds++;
+		const id = this._messageIds++;
 
 		this._worker.postMessage({
 			id,
