@@ -5,23 +5,22 @@ import { WorkerMessageEvent } from '../../types/index.types';
 
 import { PromiseWorkerMessage } from './PromiseWorker.types';
 
-let messageIds = 0;
-
 export default class PromiseWorker<Data = any, ReturnValue = any> {
-	private readonly _worker: Worker;
+	private _worker: Worker;
 	private _timeoutTime: number;
 	private _messages$ = new Subject<PromiseWorkerMessage>();
+	private messageIds = 0;
+	private _onMessageBind: (e: WorkerMessageEvent<PromiseWorkerMessage>) => void;
 
 	constructor(worker: Worker, timeoutTime = 30000) {
 		this._worker = worker;
 		this._timeoutTime = timeoutTime;
-		this._worker.addEventListener('message', (e: WorkerMessageEvent<PromiseWorkerMessage>) =>
-			this._onMessage(e)
-		);
+		this._onMessageBind = this._onMessage.bind(this);
+		this._worker.addEventListener('message', this._onMessageBind);
 	}
 
 	public postMessage<D = Data, R = ReturnValue>(data: D): Promise<R> {
-		const id = messageIds++;
+		const id = this.messageIds++;
 
 		this._worker.postMessage({
 			id,
@@ -38,7 +37,7 @@ export default class PromiseWorker<Data = any, ReturnValue = any> {
 	}
 
 	public terminate(): void {
-		this._worker.removeEventListener('message', this._onMessage);
+		this._worker.removeEventListener('message', this._onMessageBind);
 		this._worker.terminate();
 	}
 
