@@ -1,3 +1,4 @@
+import classnames from 'classnames';
 import React from 'react';
 import { cssTransition, ToastContainer, ToastContainerProps } from 'react-toastify';
 
@@ -13,12 +14,16 @@ const NoTransition = cssTransition({
 
 const AlertContainer: React.FC<ToastContainerProps> = ({
 	autoClose = false as false,
+	bodyClassName,
+	className,
 	closeButton = false,
 	closeOnClick = false,
 	draggable = false,
 	enableMultiContainer = true,
 	hideProgressBar = true,
 	limit = 1,
+	progressClassName,
+	toastClassName,
 	transition = NoTransition,
 	...rest
 }) => {
@@ -26,16 +31,16 @@ const AlertContainer: React.FC<ToastContainerProps> = ({
 		<ToastContainer
 			{...rest}
 			autoClose={autoClose}
-			bodyClassName="o-alert-body"
-			className="o-alert-container"
+			bodyClassName={classnames(bodyClassName, 'o-alert-body')}
+			className={classnames(className, 'o-alert-container')}
 			closeButton={closeButton}
 			closeOnClick={closeOnClick}
 			draggable={draggable}
 			enableMultiContainer={enableMultiContainer}
 			hideProgressBar={hideProgressBar}
 			limit={limit}
-			progressClassName="o-alert-progress"
-			toastClassName="o-alert-toast"
+			progressClassName={classnames(progressClassName, 'o-alert-progress')}
+			toastClassName={classnames(toastClassName, 'o-alert-toast')}
 			transition={transition}
 		/>
 	);
