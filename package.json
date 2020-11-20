@@ -1,6 +1,6 @@
 {
   "name": "@redactie/utils",
-  "version": "0.14.0",
+  "version": "0.15.0",
   "description": "Redactie utils package",
   "main": "dist/redactie-utils.umd.js",
   "types": "dist/index.d.ts",
