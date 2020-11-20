@@ -25,6 +25,9 @@ Set of utilities to use in Redactie App and Modules.
 		+ [usePrevious](#usePrevious)
 		+ [usePersist](#usePersist)
 		+ [useObservable](#useObservable)
+		+ [useWorker](#useWorker)
+		+ [usePromiseWorker](#usePromiseWorker)
+		+ [useDetectValueChangesWorker](#useDetectValueChangesWorker)
 	* [Context](#Context)
 		+ [TenantContext](#TenantContext)
 		+ [SiteContext](#SiteContext)
@@ -757,6 +760,101 @@ const Demo = () => {
 | ----------------- | ---------------------- | ------------- | -----------
 | Observable        | Observable             | undefined     | The Observable to subscribe on
 | initialValue      | any                    | undefined     | First emitted value
+
+<br/>
+
+#### useWorker
+<hr></br>
+
+A hook to use a web worker
+
+**Usage**:
+
+```tsx
+import { useWorker } from '@redactie/utils';
+
+const workerData = useMemo(
+	() =>
+		({
+			data
+		}),
+	[data]
+);
+const defaultResult = null;
+const [result] = useWorker<WorkerData, ResultData>(
+	BFF_MODULE_PUBLIC_PATH,
+	'custom.worker',
+	workerData,
+	defaultResult,
+);
+```
+
+**Props**
+
+| Name               | Type                   | Default value | description
+| -----------------  | ---------------------- | ------------- | -----------
+| bffModulePath      | string                 | undefined     | path where we can find the worker
+| workerOrPath       | Worker | string        | undefined     | instance from a worker or a path where we can find it
+| data               | any                    | undefined     | data send to the worker
+| defaultValue       | any                    | undefined     | default result
+| tenantContext      | any                    | Tenantcontext | context where we can find the tenantId
+
+
+<br/>
+
+#### usePromiseWorker
+<hr></br>
+
+A hook that makes it possible to communicate with a web worker by using a Promise API
+
+```tsx
+import { usePromiseWorker } from '@redactie/utils';
+
+const [promiseWorker] = usePromiseWorker<WorkerData, ResultData>(
+	BFF_MODULE_PUBLIC_PATH,
+	'custom.worker',
+);
+promiseWorker.postMessage({data})
+	.then(result => console.log(result))
+	.catch(error => console.log(error))
+
+```
+
+**Props**
+
+| Name               | Type                   | Default value | description
+| -----------------  | ---------------------- | ------------- | -----------
+| bffModulePath      | string                 | undefined     | path where we can find the worker
+| workerOrPath       | Worker | string        | undefined     | instance from a worker or a path where we can find it
+| timeoutTime        | number                 | 30000ms       | max time the worker has to respond
+| tenantContext      | any                    | Tenantcontext | context where we can find the tenantId
+
+<br/>
+
+#### useDetectValueChangesWorker
+<hr></br>
+
+A hook that detect value changes by use a worker
+
+
+```tsx
+import { useDetectValueChangesWorker } from '@redactie/utils';
+
+const [hasChanges] = useDetectValueChangesWorker(
+		isLoaded,
+		valueToCheck,
+		BFF_MODULE_PUBLIC_PATH
+	);
+```
+
+**Props**
+
+| Name               | Type                   | Default value | description
+| -----------------  | ---------------------- | ------------- | -----------
+| isLoaded           | boolean                | undefined     | Indicates that the value to check is loaded successfully
+| value              | any                    | undefined     | value to check
+| bffModulePath      | string                 | undefined     | path where we can find the worker
+| tenantContext      | any                    | Tenantcontext | context where we can find the tenantId
 
 <br/>
 
