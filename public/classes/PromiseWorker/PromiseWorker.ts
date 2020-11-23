@@ -1,5 +1,5 @@
 import { Subject } from 'rxjs';
-import { filter, map, timeout } from 'rxjs/operators';
+import { filter, map, take, timeout } from 'rxjs/operators';
 
 import { WorkerMessageEvent } from '../../types/index.types';
 
@@ -31,6 +31,7 @@ export default class PromiseWorker<Data = any, ReturnValue = any> {
 			.pipe(
 				filter((e: PromiseWorkerMessage<R>) => e.id === id),
 				map((e: PromiseWorkerMessage<R>) => e.data),
+				take(1),
 				timeout(this._timeoutTime)
 			)
 			.toPromise<R>();
@@ -39,6 +40,7 @@ export default class PromiseWorker<Data = any, ReturnValue = any> {
 	public terminate(): void {
 		this._worker.removeEventListener('message', this._onMessageBind);
 		this._worker.terminate();
+		this._messages$.complete();
 	}
 
 	private _onMessage(e: WorkerMessageEvent<PromiseWorkerMessage>): void {
