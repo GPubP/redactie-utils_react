@@ -41,6 +41,7 @@ module.exports = ({
 	externals = {},
 	outputPath = path.resolve(process.cwd(), 'dist'),
 	definitions = {},
+	clean = false,
 } = {}) => (env) => {
 	const defaultConfig = {
 		mode,
@@ -86,7 +87,7 @@ module.exports = ({
 		},
 		plugins: [
 			// add default plugins here
-			new CleanWebpackPlugin(),
+			...(clean ? [new CleanWebpackPlugin()] : []),
 			new webpack.DefinePlugin({
 				...definitions,
 				BFF_MODULE_PUBLIC_PATH: JSON.stringify(
