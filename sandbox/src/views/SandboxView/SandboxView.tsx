@@ -1,5 +1,5 @@
 import { Button, ButtonGroup, TextField } from '@acpaas-ui/react-components';
-import { useAPIQueryParams, alertService, ErrorMessage } from '@redactie/utils';
+import { useAPIQueryParams, alertService, ErrorMessage, CopyValue } from '@redactie/utils';
 import { Field, Form, Formik } from 'formik';
 import React, { FC, useEffect } from 'react';
 
@@ -31,7 +31,7 @@ const SandboxView: FC = () => {
 			error = 'Nice try!, try to fill in an other username';
 		}
 		return error;
-	}
+	};
 
 	return (
 		<>
@@ -42,22 +42,25 @@ const SandboxView: FC = () => {
 					initialValues={{
 						username: '',
 					}}
-					onSubmit={values => {
+					onSubmit={(values) => {
 						// same shape as initial values
 						console.log(values);
 					}}
-					>
+				>
 					{() => (
 						<Form>
-						<Field
-							as={TextField}
-							label="username"
-							description="Fill in a username, admin will throw an error"
-							name="username"
-							validate={validateUsername} />
-						<ErrorMessage name="username"/>
+							<Field
+								as={TextField}
+								label="username"
+								description="Fill in a username, admin will throw an error"
+								name="username"
+								validate={validateUsername}
+							/>
+							<ErrorMessage name="username" />
 
-						<button type="submit">Submit</button>
+							<CopyValue label="UUID" value="1234-4567-890" />
+
+							<button type="submit">Submit</button>
 						</Form>
 					)}
 				</Formik>
