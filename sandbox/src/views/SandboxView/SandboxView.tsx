@@ -58,7 +58,7 @@ const SandboxView: FC = () => {
 							/>
 							<ErrorMessage name="username" />
 
-							<CopyValue title="UUID" value="1234-4567-890" buttonText="Kopieer" />
+							<CopyValue label="UUID" value="1234-4567-890" />
 
 							<button type="submit">Submit</button>
 						</Form>
