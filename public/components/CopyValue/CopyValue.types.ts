@@ -1,5 +1,6 @@
 export interface CopyValueProps {
-	title: string;
+	label: string;
 	value: string;
-	buttonText: string;
+	buttonText?: string;
+	className?: string;
 }
