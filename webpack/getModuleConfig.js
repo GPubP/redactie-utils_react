@@ -1,6 +1,7 @@
 const path = require('path');
 
 const RedactionWebpackPlugin = require('@redactie/module-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const cssnano = require('cssnano');
 const kebabCase = require('lodash.kebabcase');
 const postcssPresetEnv = require('postcss-preset-env');
@@ -40,6 +41,7 @@ module.exports = ({
 	externals = {},
 	outputPath = path.resolve(process.cwd(), 'dist'),
 	definitions = {},
+	clean = false,
 } = {}) => (env) => {
 	const defaultConfig = {
 		mode,
@@ -85,6 +87,7 @@ module.exports = ({
 		},
 		plugins: [
 			// add default plugins here
+			...(clean ? [new CleanWebpackPlugin()] : []),
 			new webpack.DefinePlugin({
 				...definitions,
 				BFF_MODULE_PUBLIC_PATH: JSON.stringify(
