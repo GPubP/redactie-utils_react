@@ -4,7 +4,7 @@ import { LoadingState } from '../../types/index.types';
 
 export interface DataLoaderProps {
 	errorMessage?: string;
-	loadingState: LoadingState;
+	loadingState: LoadingState | boolean;
 	notFoundMessage?: string;
 	render: () => ReactElement | null;
 }
