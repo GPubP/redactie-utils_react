@@ -12,25 +12,18 @@ const DataLoader: FC<DataLoaderProps> = ({
 	notFoundMessage = DATALOADER_DEFAULT_PROPS.notFoundMessage,
 	render,
 }) => {
-	const renderLoading = (): ReactElement => (
-		<div className="u-text-center u-margin-top">
-			<Spinner />
-		</div>
-	);
-
-	const renderLoaded = (): ReactElement =>
-		render() || <p className="u-text-prewrap">{notFoundMessage}</p>;
-
-	if (typeof loadingState === 'boolean') {
-		return loadingState ? renderLoading() : renderLoaded();
-	}
-
 	switch (loadingState) {
 		case LoadingState.Loading:
-			return renderLoading();
+		case true:
+			return (
+				<div className="u-text-center u-margin-top">
+					<Spinner />
+				</div>
+			);
 
 		case LoadingState.Loaded:
-			return renderLoaded();
+		case false:
+			return render() || <p className="u-text-prewrap">{notFoundMessage}</p>;
 
 		case LoadingState.Error:
 			return <p>{errorMessage}</p>;
