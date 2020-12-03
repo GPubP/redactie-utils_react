@@ -1,5 +1,5 @@
 import { Spinner } from '@acpaas-ui/react-components';
-import React, { FC, ReactElement } from 'react';
+import React, { FC } from 'react';
 
 import { LoadingState } from '../../types/index.types';
 
