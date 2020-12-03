@@ -1,28 +1,36 @@
 import { Spinner } from '@acpaas-ui/react-components';
-import React, { FC } from 'react';
+import React, { FC, ReactElement } from 'react';
 
 import { LoadingState } from '../../types/index.types';
 
+import { DATALOADER_DEFAULT_PROPS } from './DataLoader.const';
 import { DataLoaderProps } from './DataLoader.types';
 
-import './DataLoader.scss';
-
 const DataLoader: FC<DataLoaderProps> = ({
-	errorMessage = 'Er ging iets mis tijdens het ophalen van de data',
+	errorMessage = DATALOADER_DEFAULT_PROPS.errorMessage,
 	loadingState,
-	notFoundMessage = 'Geen data gevonden',
+	notFoundMessage = DATALOADER_DEFAULT_PROPS.notFoundMessage,
 	render,
 }) => {
+	const renderLoading = (): ReactElement => (
+		<div className="u-text-center u-margin-top">
+			<Spinner />
+		</div>
+	);
+
+	const renderLoaded = (): ReactElement =>
+		render() || <p className="u-text-prewrap">{notFoundMessage}</p>;
+
+	if (typeof loadingState === 'boolean') {
+		return loadingState ? renderLoading() : renderLoaded();
+	}
+
 	switch (loadingState) {
 		case LoadingState.Loading:
-			return (
-				<div className="u-text-center u-margin-top">
-					<Spinner />
-				</div>
-			);
+			return renderLoading();
 
 		case LoadingState.Loaded:
-			return render() || <p className="u-text-wrapped">{notFoundMessage}</p>;
+			return renderLoaded();
 
 		case LoadingState.Error:
 			return <p>{errorMessage}</p>;
