@@ -13,6 +13,7 @@ export interface SearchParams {
 	limit?: number;
 	sort?: string;
 	search?: string;
+	[key: string]: any;
 }
 
 export interface OrderBy {
