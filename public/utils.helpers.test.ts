@@ -78,7 +78,7 @@ describe('Utils', () => {
 				page: 1,
 				pagesize: 10,
 				arr: [1, 2, 3],
-				skip: null,
+				skipNull: null,
 				skipEmptyString: '',
 			};
 			const result = parseSearchParams(searchParams);
