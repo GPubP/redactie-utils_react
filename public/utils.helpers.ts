@@ -1,4 +1,6 @@
-import { OrderBy } from './types/index.types';
+import { stringify } from 'query-string';
+
+import { OrderBy, SearchParams } from './types/index.types';
 
 export const parseOrderByToString = (orderBy: OrderBy): string => {
 	if (!orderBy || typeof orderBy.key !== 'string' || typeof orderBy.order !== 'string') {
@@ -21,4 +23,8 @@ export const parseStringToOrderBy = (orderByString = ''): OrderBy => {
 		key: keys.length > 1 ? keys[1] : keys[0],
 		order: isDesc ? 'desc' : 'asc',
 	};
+};
+
+export const parseSearchParams = (searchParams: SearchParams): string => {
+	return stringify(searchParams, { arrayFormat: 'comma', skipNull: true, skipEmptyString: true });
 };

@@ -1,5 +1,5 @@
 import { OrderBy } from './types/index.types';
-import { parseOrderByToString, parseStringToOrderBy } from './utils.helpers';
+import { parseOrderByToString, parseSearchParams, parseStringToOrderBy } from './utils.helpers';
 
 describe('Utils', () => {
 	describe('parseOrderByToString', () => {
@@ -69,6 +69,20 @@ describe('Utils', () => {
 
 		it('should throw an error when the given value is not a string', () => {
 			expect(() => parseStringToOrderBy({} as any)).toThrow();
+		});
+	});
+
+	describe('parseSearchParams', () => {
+		it('should parse searchParams to a URLSearchParams object', () => {
+			const searchParams = {
+				page: 1,
+				pagesize: 10,
+				arr: [1, 2, 3],
+				skip: null,
+				skipEmptyString: '',
+			};
+			const result = parseSearchParams(searchParams);
+			expect(result).toBe('arr=1,2,3&page=1&pagesize=10');
 		});
 	});
 });
