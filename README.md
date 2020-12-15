@@ -28,6 +28,8 @@ Set of utilities to use in Redactie App and Modules.
 		+ [useWorker](#useWorker)
 		+ [usePromiseWorker](#usePromiseWorker)
 		+ [useDetectValueChangesWorker](#useDetectValueChangesWorker)
+		+ [useActiveRouteConfig](#useActiveRouteConfig)
+		+ [useQuery](#useQuery)
 	* [Context](#Context)
 		+ [TenantContext](#TenantContext)
 		+ [SiteContext](#SiteContext)
@@ -855,6 +857,58 @@ const [hasChanges] = useDetectValueChangesWorker(
 | value              | any                    | undefined     | value to check
 | bffModulePath      | string                 | undefined     | path where we can find the worker
 | tenantContext      | any                    | Tenantcontext | context where we can find the tenantId
+
+<br/>
+
+#### useActiveRouteConfig
+<hr></br>
+
+Get the current active route configuration
+
+
+```tsx
+import { usActiveRouteConfig } from '@redactie/utils';
+import { useLocation } from 'react-router-dom';
+
+const location = useLocation();
+const route = {
+	path: 'path',
+	component: Component,
+	routes: [
+		{
+			path: 'path/child',
+			component: Component,
+		},
+	],
+}
+
+const activeRouteConfig = usActiveRouteConfig(
+		location
+		route
+	);
+```
+
+**Props**
+
+| Name               | Type                   | Default value | description
+| -----------------  | ---------------------- | ------------- | -----------
+| location           | Location               | /             | Browser Location
+| route              | ModuleRouteConfig      | /             | Route config
+
+<br/>
+
+#### useQuery
+<hr></br>
+
+Get the query params from the current url
+
+
+```tsx
+import { useQuery } from '@redactie/utils';
+
+const query = useQuery();
+
+```
 
 <br/>
 
