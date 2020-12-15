@@ -50,12 +50,12 @@ const createUseCompartments = <
 		facade.register(compartments, options);
 	};
 	const activate = (name: State['active']): void => facade.setActiveByNamOrSlug(name);
-	const validate = (name: string, isValid: boolean): void => facade.setValid(name, isValid);
+	const setValid = (name: string, isValid: boolean): void => facade.setValid(name, isValid);
 
 	const compartments = useObservable(facade.all$, []);
 	const active = useObservable(facade.active$);
 
-	return [{ compartments, active }, register, activate, validate];
+	return [{ compartments, active }, register, activate, setValid];
 };
 
 const createDynamicCompartmentsHooks = <
