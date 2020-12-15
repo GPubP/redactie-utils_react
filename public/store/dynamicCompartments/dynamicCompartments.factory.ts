@@ -63,11 +63,12 @@ const createDynamicCompartmentsHooks = <
 	State extends EntityState<DynamicCompartmentModel, string> = EntityState<
 		DynamicCompartmentModel,
 		string
-	>
+	>,
+	Facade extends DynamicCompartmentsFacade<State> = DynamicCompartmentsFacade<State>
 >(
-	facade: DynamicCompartmentsFacade<State>
+	facade: Facade
 ): [UseCompartments<State>] => {
-	return [createUseCompartments(facade)];
+	return [createUseCompartments<State, Facade>(facade)];
 };
 
 export default {
