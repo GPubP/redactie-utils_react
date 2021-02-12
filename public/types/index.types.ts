@@ -24,3 +24,4 @@ export interface OrderBy {
 export type HandlerFn = (...args: any[]) => any;
 
 export * from './workers.types';
+export * from './editorialUI.types';
