@@ -10,6 +10,7 @@ Set of utilities to use in Redactie App and Modules.
 	* [Components](#Components)
 		+ [RenderChildRoutes](#RenderChildRoutes)
 		+ [DataLoader](#DataLoader)
+		+ [DeletePrompt](#DeletePrompt)
 		+ [ErrorMessage](#ErrorMessage)
 		+ [FormikOnChangeHandler](#FormikOnChangeHandler)
 		+ [LeavePrompt](#LeavePromt)
@@ -158,6 +159,47 @@ By default the config is extended with the following values:
 | notFoundMessage  | `string`  | 'Geen data gevonden' | Message that wil be shown when the render component return null
 
 </br>
+
+#### DeletePrompt
+<hr></br>
+
+A prompt that can be shown when deleting items
+
+**Usage**
+
+```tsx
+import { DeletePrompt } from '@redactie/utils';
+
+const ViewComponent = ({
+	showModal = true,
+	onCancel = () => null,
+	onConfirm = () => null,
+}) => {
+	return (
+		<>
+			<DeletePrompt
+				showModal={showModal}
+				onConfirm={onConfirm}
+				onCancel={onCancel}
+			/>
+		</>
+	)
+}
+```
+
+**Props**
+
+| Name              | Type                   | Default value                | description
+| ----------------- | ---------------------- | ---------------------------- | -----------
+| body              | `ReactNode`            | DELETE_PROMPT_DEFAULT_PROPS  | body modal
+| cancelText        | `string`               | DELETE_PROMPT_DEFAULT_PROPS  | cancel button text
+| confirmText       | `string`               | DELETE_PROMPT_DEFAULT_PROPS  | confirm button text
+| title             | `string`               | DELETE_PROMPT_DEFAULT_PROPS  | title modal
+| showModal         | `boolean`              | true                         | title modal
+| onCancel          | `() => void`           | undefined                    | onCancel callback
+| onConfirm         | `() => void`           | undefined                    | onConfirm callback
+
+<br>
 
 #### ErrorMessage
 <hr></br>
