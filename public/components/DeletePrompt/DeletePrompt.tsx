@@ -36,24 +36,24 @@ const DeletePrompt: FC<DeletePromptProps> = ({
 	 */
 
 	return (
-		<>
-			<ControlledModal show={show} onClose={handleCancel} size="large">
-				<ControlledModalHeader>
-					<h4>{title}</h4>
-				</ControlledModalHeader>
-				<ControlledModalBody>
-					<div>{body}</div>
-				</ControlledModalBody>
-				<ControlledModalFooter>
+		<ControlledModal show={show} onClose={handleCancel} size="large">
+			<ControlledModalHeader>
+				<h4>{title}</h4>
+			</ControlledModalHeader>
+			<ControlledModalBody>
+				<div>{body}</div>
+			</ControlledModalBody>
+			<ControlledModalFooter>
+				<div className="u-flex u-flex-justify-end">
 					<Button onClick={handleCancel} negative>
 						{cancelText}
 					</Button>
 					<Button onClick={handleConfirm} type="danger" iconLeft="trash">
 						{confirmText}
 					</Button>
-				</ControlledModalFooter>
-			</ControlledModal>
-		</>
+				</div>
+			</ControlledModalFooter>
+		</ControlledModal>
 	);
 }
 export default DeletePrompt;
