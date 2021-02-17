@@ -44,7 +44,7 @@ const DeletePrompt: FC<DeletePromptProps> = ({
 				<div>{body}</div>
 			</ControlledModalBody>
 			<ControlledModalFooter>
-				<div className="u-flex u-flex-justify-end">
+				<div className="u-flex u-flex-item u-flex-justify-end">
 					<Button onClick={handleCancel} negative>
 						{cancelText}
 					</Button>
