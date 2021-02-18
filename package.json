@@ -43,6 +43,7 @@
     "@commitlint/config-conventional": "^8.3.4",
     "@datorama/akita": "^5.2.3",
     "@redactie/redactie-core": "^2.0.0",
+    "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^10.4.8",
     "@testing-library/react-hooks": "^3.4.2",
     "@types/classnames": "^2.2.10",
