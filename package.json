@@ -6,8 +6,8 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build:types": "tsc --emitDeclarationOnly",
-    "build": "npm run build:types && webpack",
-    "build:w": "npm run build:types && webpack -w",
+    "build": "webpack && npm run build:types",
+    "build:w": "webpack -w && npm run build:types",
     "lint": "eslint . --ext .ts,.tsx",
     "test": "jest ./public --env jest-environment-jsdom-fourteen",
     "prepack": "npm run build",

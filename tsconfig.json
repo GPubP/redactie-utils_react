@@ -21,6 +21,5 @@
   },
   "include": [
     "public",
-    "scripts/jest-setup.ts"
   ]
 }
