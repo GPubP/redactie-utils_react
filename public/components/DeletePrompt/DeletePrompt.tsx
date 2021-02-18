@@ -1,7 +1,7 @@
 import { Button } from '@acpaas-ui/react-components';
 import { ControlledModal, ControlledModalHeader, ControlledModalFooter, ControlledModalBody } from '@acpaas-ui/react-editorial-components';
 
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 
 import { DELETE_PROMPT_DEFAULT_PROPS } from './DeletePrompt.const';
 import { DeletePromptProps } from './DeletePrompt.types';
@@ -55,5 +55,6 @@ const DeletePrompt: FC<DeletePromptProps> = ({
 			</ControlledModalFooter>
 		</ControlledModal>
 	);
-}
+};
+
 export default DeletePrompt;
