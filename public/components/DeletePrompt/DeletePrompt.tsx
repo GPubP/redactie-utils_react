@@ -1,6 +1,10 @@
 import { Button } from '@acpaas-ui/react-components';
-import { ControlledModal, ControlledModalHeader, ControlledModalFooter, ControlledModalBody } from '@acpaas-ui/react-editorial-components';
-
+import {
+	ControlledModal,
+	ControlledModalBody,
+	ControlledModalFooter,
+	ControlledModalHeader,
+} from '@acpaas-ui/react-editorial-components';
 import React, { FC } from 'react';
 
 import { DELETE_PROMPT_DEFAULT_PROPS } from './DeletePrompt.const';

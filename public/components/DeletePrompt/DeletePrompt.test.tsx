@@ -1,5 +1,5 @@
 import { fireEvent, render, RenderResult } from '@testing-library/react';
-import React, { ReactElement } from 'react';
+import React from 'react';
 
 import DeletePrompt from './DeletePrompt';
 import { DELETE_PROMPT_DEFAULT_PROPS } from './DeletePrompt.const';
@@ -25,7 +25,7 @@ describe('<DeletePrompt/>', () => {
 
 	it('should trigger the cancel function', async () => {
 		const cancelFn = jest.fn();
-		const { getByText } = renderDeletePrompt(true, () => {}, cancelFn);
+		const { getByText } = renderDeletePrompt(true, () => null, cancelFn);
 		const cancelButton = getByText(DELETE_PROMPT_DEFAULT_PROPS.cancelText);
 
 		fireEvent.click(cancelButton);
