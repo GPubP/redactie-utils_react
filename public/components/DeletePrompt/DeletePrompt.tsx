@@ -11,11 +11,12 @@ import { DELETE_PROMPT_DEFAULT_PROPS } from './DeletePrompt.const';
 import { DeletePromptProps } from './DeletePrompt.types';
 
 const DeletePrompt: FC<DeletePromptProps> = ({
-	show = false,
-	title = DELETE_PROMPT_DEFAULT_PROPS.title,
 	body = DELETE_PROMPT_DEFAULT_PROPS.body,
 	cancelText = DELETE_PROMPT_DEFAULT_PROPS.cancelText,
 	confirmText = DELETE_PROMPT_DEFAULT_PROPS.confirmText,
+	isDeleting = false,
+	show = false,
+	title = DELETE_PROMPT_DEFAULT_PROPS.title,
 	onCancel,
 	onConfirm,
 }) => {
@@ -52,7 +53,12 @@ const DeletePrompt: FC<DeletePromptProps> = ({
 					<Button onClick={handleCancel} negative>
 						{cancelText}
 					</Button>
-					<Button onClick={handleConfirm} type="danger" iconLeft="trash">
+					<Button
+						iconLeft={isDeleting ? 'circle-o-notch fa-spin' : 'trash'}
+						disabled={isDeleting}
+						onClick={handleConfirm}
+						type="danger"
+					>
 						{confirmText}
 					</Button>
 				</div>
