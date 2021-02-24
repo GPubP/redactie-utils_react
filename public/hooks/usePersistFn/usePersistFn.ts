@@ -1,6 +1,6 @@
 import { useCallback, useRef } from 'react';
 
-import { HandlerFn } from '../../types/index.types';
+import { HandlerFn } from '../../types';
 
 /**
  * Reference https://reactjs.org/docs/hooks-faq.html#how-to-read-an-often-changing-value-from-usecallback

@@ -1,7 +1,7 @@
 import { Subject } from 'rxjs';
 import { filter, map, take, timeout } from 'rxjs/operators';
 
-import { WorkerMessageEvent } from '../../types/index.types';
+import { WorkerMessageEvent } from '../../types';
 
 import { PromiseWorkerMessage } from './PromiseWorker.types';
 

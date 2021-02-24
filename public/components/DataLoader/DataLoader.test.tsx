@@ -1,7 +1,7 @@
 import { render, RenderResult } from '@testing-library/react';
 import React, { ReactElement } from 'react';
 
-import { LoadingState } from '../../types/index.types';
+import { LoadingState } from '../../types';
 
 import DataLoader from './DataLoader';
 import { DATALOADER_DEFAULT_PROPS } from './DataLoader.const';

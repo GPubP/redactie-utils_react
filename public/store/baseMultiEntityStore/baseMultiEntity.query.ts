@@ -2,7 +2,7 @@ import { getEntityType, getIDType, QueryConfigOptions, QueryEntity } from '@dato
 import { Observable } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
 
-import { LoadingState } from '../../types/index.types';
+import { LoadingState } from '../../types';
 
 import { BaseMultiEntityState } from './baseMultiEntity.state';
 import { BaseMultiEntityStore } from './baseMultiEntity.store';

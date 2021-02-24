@@ -1,6 +1,6 @@
 import { MutableRefObject, useCallback, useRef } from 'react';
 
-import { HandlerFn } from '../../types/index.types';
+import { HandlerFn } from '../../types';
 
 /**
  * Returns an array where the first item is the [ref](https://reactjs.org/docs/hooks-reference.html#useref) to a
