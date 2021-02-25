@@ -44,7 +44,7 @@ describe('Hooks: useAPIQueryParams', () => {
 		expect(JSON.stringify(queryParams)).toBe(JSON.stringify(MOCK_CONFIG_RESULT));
 	});
 
-	it('Should return a query object and setter', async () => {
+	it('Should return a query object and setter', () => {
 		const wrapper = ({ children }: any): ReactElement => (
 			<QueryParamProvider history={memoryHistory as any}>{children}</QueryParamProvider>
 		);
@@ -60,6 +60,7 @@ describe('Hooks: useAPIQueryParams', () => {
 		const [query, setQuery] = result.current;
 
 		expect(query.search).toBeUndefined();
+		expect(memoryHistory.location.search).toBe('');
 
 		setQuery({ search: 'query' });
 
