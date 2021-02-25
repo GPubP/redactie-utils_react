@@ -1,3 +1,5 @@
+import { QUERY_PARAMS_MAP } from './useAPIQueryParams.const';
+
 type FlatObject<V = string> = { [key: string]: V | null | undefined };
 
 export type APIQueryParamType =
@@ -15,7 +17,7 @@ export type APIQueryParamType =
 	| 'json';
 
 export type APIQueryParamsConfig = {
-	[key: string]: {
+	[paramName: string]: {
 		defaultValue?:
 			| string
 			| number
@@ -29,3 +31,5 @@ export type APIQueryParamsConfig = {
 		type: APIQueryParamType;
 	};
 };
+
+export type QueryParamsMap = typeof QUERY_PARAMS_MAP;
