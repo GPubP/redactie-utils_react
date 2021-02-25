@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import { HandlerFn } from '../../types/index.types';
+import { HandlerFn } from '../../types';
 import { useCreateHandlerSetter } from '../useCreateHandlerSetter';
 
 /**

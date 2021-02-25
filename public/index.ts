@@ -4,5 +4,5 @@ export * from './context';
 export * from './store';
 export * from './components';
 export * from './classes';
-export * from './utils.helpers';
-export * from './types/index.types';
+export * from './helpers';
+export * from './types';
