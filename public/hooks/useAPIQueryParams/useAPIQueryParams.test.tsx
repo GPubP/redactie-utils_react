@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook, RenderHookResult } from '@testing-library/react-hooks';
 import { createMemoryHistory } from 'history';
 import React, { ReactElement } from 'react';
 import {
@@ -11,6 +11,7 @@ import {
 
 import useAPIQueryParams from './useAPIQueryParams';
 import { generateAPIQueryParams } from './useAPIQueryParams.helpers';
+import { APIQueryParamsConfig } from './useAPIQueryParams.types';
 
 const MOCK_CONFIG = {
 	skip: {
@@ -38,32 +39,63 @@ const MOCK_CONFIG_RESULT = {
 
 const memoryHistory = createMemoryHistory({ initialEntries: ['/'] });
 
+const renderUseAPIQueryParams = (
+	config: APIQueryParamsConfig,
+	extend = true
+): RenderHookResult<{}, ReturnType<typeof useAPIQueryParams>> => {
+	const wrapper = ({ children }: any): ReactElement => (
+		<QueryParamProvider history={memoryHistory as any}>{children}</QueryParamProvider>
+	);
+	return renderHook(() => useAPIQueryParams(config, extend), { wrapper });
+};
+
 describe('Hooks: useAPIQueryParams', () => {
 	it('Should generate query params from a given config', () => {
 		const queryParams = generateAPIQueryParams(MOCK_CONFIG);
 		expect(JSON.stringify(queryParams)).toBe(JSON.stringify(MOCK_CONFIG_RESULT));
 	});
 
-	it('Should return a query object and setter', () => {
-		const wrapper = ({ children }: any): ReactElement => (
-			<QueryParamProvider history={memoryHistory as any}>{children}</QueryParamProvider>
-		);
-		const { result } = renderHook(
-			() =>
-				useAPIQueryParams({
-					search: {
-						type: 'string',
-					},
-				}),
-			{ wrapper }
-		);
+	it('Should update url search params when updating query', () => {
+		const searchValue = 'query';
+		const { result } = renderUseAPIQueryParams({
+			search: { type: 'string' },
+		});
 		const [query, setQuery] = result.current;
 
 		expect(query.search).toBeUndefined();
 		expect(memoryHistory.location.search).toBe('');
 
-		setQuery({ search: 'query' });
+		setQuery({ search: searchValue });
 
-		expect(memoryHistory.location.search).toBe('?search=query');
+		expect(memoryHistory.location.search).toBe(`?search=${searchValue}`);
+	});
+
+	it('Should extend from default config by default', () => {
+		const { result } = renderUseAPIQueryParams({
+			search: { type: 'string' },
+		});
+		const [query] = result.current;
+
+		expect(query.page).toBeDefined();
+		expect(query.pagesize).toBeDefined();
+		// These keys don't have default values but they still exist on the query object
+		// with the value being undefined
+		expect(query).toHaveProperty('sort');
+		expect(query).toHaveProperty('direction');
+	});
+
+	it('Should not extend from default config when passing false', () => {
+		const { result } = renderUseAPIQueryParams(
+			{
+				search: { type: 'string' },
+			},
+			false
+		);
+		const [query] = result.current;
+
+		expect(query.page).toBeUndefined();
+		expect(query.pagesize).toBeUndefined();
+		expect(query.sort).toBeUndefined();
+		expect(query.direction).toBeUndefined();
 	});
 });

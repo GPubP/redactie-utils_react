@@ -1,22 +1,28 @@
-import { DecodedValueMap, SetQuery, useQueryParams } from 'use-query-params';
+import { useQueryParams } from 'use-query-params';
 
 import { DEFAULT_API_QUERY_PARAMS_CONFIG } from './useAPIQueryParams.const';
 import { generateAPIQueryParams } from './useAPIQueryParams.helpers';
-import { APIQueryParamsConfig, QueryParamsMap } from './useAPIQueryParams.types';
+import { APIQueryParamsConfig, UseAPIQUeryParamsReturnValue } from './useAPIQueryParams.types';
 
-const useAPIQueryParams = <Config extends APIQueryParamsConfig>(
-	config = {} as Config,
+function useAPIQueryParams<
+	C extends APIQueryParamsConfig = APIQueryParamsConfig,
+	E extends boolean = true
+>(
+	config: C,
+	extendDefaultConfig?: E
+): E extends true ? UseAPIQUeryParamsReturnValue<C, true> : UseAPIQUeryParamsReturnValue<C, false>;
+function useAPIQueryParams(
+	config: APIQueryParamsConfig,
 	extendDefaultConfig = true
-): [
-	DecodedValueMap<{ [P in keyof Config]: QueryParamsMap[Config[P]['type']] }>,
-	SetQuery<{ [P in keyof Config]: QueryParamsMap[Config[P]['type']] }>
-] => {
-	return useQueryParams<{ [P in keyof Config]: QueryParamsMap[Config[P]['type']] }>(
-		generateAPIQueryParams<Config>({
+):
+	| UseAPIQUeryParamsReturnValue<APIQueryParamsConfig, true>
+	| UseAPIQUeryParamsReturnValue<APIQueryParamsConfig, false> {
+	return useQueryParams(
+		generateAPIQueryParams({
 			...(extendDefaultConfig ? DEFAULT_API_QUERY_PARAMS_CONFIG : null),
 			...config,
 		})
 	);
-};
+}
 
 export default useAPIQueryParams;
