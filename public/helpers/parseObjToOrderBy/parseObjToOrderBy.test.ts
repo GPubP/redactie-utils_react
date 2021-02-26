@@ -1,7 +1,7 @@
 import { parseObjToOrderBy } from './parseObjToOrderBy';
 
 describe('Helpers: parseObjToOrderBy', () => {
-	it('should parse an order by to an object', () => {
+	it('should parse an object to an order by', () => {
 		const obj = {
 			sort: 'test',
 			direction: -1,
