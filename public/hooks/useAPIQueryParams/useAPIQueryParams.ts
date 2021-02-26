@@ -8,7 +8,7 @@ function useAPIQueryParams<
 	C extends APIQueryParamsConfig = APIQueryParamsConfig,
 	E extends boolean = true
 >(
-	config: C,
+	config?: C,
 	extendDefaultConfig?: E
 ): E extends true ? UseAPIQUeryParamsReturnValue<C, true> : UseAPIQUeryParamsReturnValue<C, false>;
 function useAPIQueryParams(

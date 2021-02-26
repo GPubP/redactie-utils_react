@@ -26,7 +26,7 @@ export const DEFAULT_API_QUERY_PARAMS_CONFIG = {
 		type: 'string',
 	},
 	direction: {
-		type: 'string',
+		type: 'number',
 	},
 } as const;
 
