@@ -1,11 +1,11 @@
 import { QueryParamConfig, withDefault } from 'use-query-params';
 
 import { DEFAULT_API_QUERY_PARAMS_CONFIG, QUERY_PARAMS_MAP } from './useAPIQueryParams.const';
-import { APIQueryParamsConfig, QueryParamsMap } from './useAPIQueryParams.types';
+import { APIQueryParamsConfig, ConfigMap } from './useAPIQueryParams.types';
 
-export const generateAPIQueryParams = <Config extends APIQueryParamsConfig>(
-	config = DEFAULT_API_QUERY_PARAMS_CONFIG as Config
-): { [P in keyof Config]: QueryParamsMap[Config[P]['type']] } => {
+export const generateAPIQueryParams = (
+	config: APIQueryParamsConfig = DEFAULT_API_QUERY_PARAMS_CONFIG
+): ConfigMap<APIQueryParamsConfig, false> => {
 	return Object.keys(config).reduce((acc, key) => {
 		const { defaultValue, type } = config[key];
 		const paramType = QUERY_PARAMS_MAP[type];
@@ -24,5 +24,5 @@ export const generateAPIQueryParams = <Config extends APIQueryParamsConfig>(
 			...acc,
 			[key]: value,
 		};
-	}, {} as { [P in keyof Config]: QueryParamsMap[Config[P]['type']] });
+	}, {} as ConfigMap<APIQueryParamsConfig, false>);
 };

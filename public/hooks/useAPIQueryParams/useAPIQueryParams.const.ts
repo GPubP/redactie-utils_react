@@ -13,9 +13,7 @@ import {
 	StringParam,
 } from 'use-query-params';
 
-import { APIQueryParamsConfig } from './useAPIQueryParams.types';
-
-export const DEFAULT_API_QUERY_PARAMS_CONFIG: APIQueryParamsConfig = {
+export const DEFAULT_API_QUERY_PARAMS_CONFIG = {
 	page: {
 		defaultValue: 1,
 		type: 'number',
@@ -30,7 +28,7 @@ export const DEFAULT_API_QUERY_PARAMS_CONFIG: APIQueryParamsConfig = {
 	direction: {
 		type: 'string',
 	},
-};
+} as const;
 
 export const QUERY_PARAMS_MAP = {
 	string: StringParam,
