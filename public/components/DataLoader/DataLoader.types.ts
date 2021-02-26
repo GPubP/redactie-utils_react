@@ -1,10 +1,10 @@
-import { ReactElement } from 'react';
+import { ReactElement, ReactNode } from 'react';
 
 import { LoadingState } from '../../types';
 
 export interface DataLoaderProps {
-	errorMessage?: string;
+	errorMessage?: ReactNode;
 	loadingState: LoadingState | boolean;
-	notFoundMessage?: string;
+	notFoundMessage?: ReactNode;
 	render: () => ReactElement | null;
 }

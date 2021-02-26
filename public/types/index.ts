@@ -49,10 +49,10 @@ export interface Links {
 }
 
 export interface Page {
-	size: string;
+	size: number;
 	totalElements: number;
 	totalPages: number;
-	number: string;
+	number: number;
 }
 
 export interface EmbeddedResponse<T> {
