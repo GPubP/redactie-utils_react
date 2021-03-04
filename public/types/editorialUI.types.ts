@@ -65,7 +65,7 @@ export interface TableColumn<RowData = unknown> {
 	label: string;
 	value?: string;
 	component?: (value: any, rowData: RowData, rowIndex: number) => ReactNode;
-	headerComponent?: (value: any) => ReactNode;
+	headerComponent?: (value: string, label: string) => ReactNode;
 	format?: (value: any, col: TableColumn<RowData>, rowData: RowData, rowIndex: number) => string;
 	hidden?: boolean;
 	disabled?: boolean;
