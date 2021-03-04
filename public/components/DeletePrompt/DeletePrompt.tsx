@@ -54,7 +54,7 @@ const DeletePrompt: FC<DeletePromptProps> = ({
 						{cancelText}
 					</Button>
 					<Button
-						iconLeft={isDeleting ? 'circle-o-notch fa-spin' : 'trash'}
+						iconLeft={isDeleting ? 'circle-o-notch fa-spin' : 'trash-o'}
 						disabled={isDeleting}
 						onClick={handleConfirm}
 						type="danger"
