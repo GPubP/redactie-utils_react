@@ -16,7 +16,7 @@ const DataLoader: FC<DataLoaderProps> = ({
 		case LoadingState.Loading:
 		case true:
 			return (
-				<div className="u-text-center u-margin-top">
+				<div className="u-text-center u-margin-top u-margin-bottom">
 					<Spinner />
 				</div>
 			);
