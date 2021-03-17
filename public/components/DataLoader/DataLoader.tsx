@@ -16,17 +16,17 @@ const DataLoader: FC<DataLoaderProps> = ({
 		case LoadingState.Loading:
 		case true:
 			return (
-				<div className="u-text-center u-margin-top">
+				<div className="u-text-center u-margin-top u-margin-bottom">
 					<Spinner />
 				</div>
 			);
 
 		case LoadingState.Loaded:
 		case false:
-			return render() || <p className="u-text-prewrap">{notFoundMessage}</p>;
+			return render() || <p className="u-text-prewrap u-margin-top u-margin-bottom">{notFoundMessage}</p>;
 
 		case LoadingState.Error:
-			return <p>{errorMessage}</p>;
+			return <p className="u-margin-top u-margin-bottom">{errorMessage}</p>;
 
 		default:
 			return null;
