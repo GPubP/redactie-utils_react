@@ -23,10 +23,10 @@ const DataLoader: FC<DataLoaderProps> = ({
 
 		case LoadingState.Loaded:
 		case false:
-			return render() || <p className="u-text-prewrap">{notFoundMessage}</p>;
+			return render() || <p className="u-text-prewrap u-margin-top u-margin-bottom">{notFoundMessage}</p>;
 
 		case LoadingState.Error:
-			return <p>{errorMessage}</p>;
+			return <p className="u-margin-top u-margin-bottom">{errorMessage}</p>;
 
 		default:
 			return null;
