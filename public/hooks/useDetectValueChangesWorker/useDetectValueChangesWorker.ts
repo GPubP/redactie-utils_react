@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef } from 'react';
 
 import { TenantContext } from '../../context';
 import { HasChangesWorkerData } from '../../types/workers.types';
@@ -10,10 +10,10 @@ const useDetectValueChangesWorker = (
 	bffModulePath: string,
 	tenantContext = TenantContext
 ): [boolean, Function] => {
-	const [currentValue, setCurrentValue] = useState<any>();
+	const currentValue = useRef<unknown>();
 	const data = useMemo<HasChangesWorkerData>(
 		() => ({
-			currentValue,
+			currentValue: currentValue.current ?? value,
 			nextValue: value,
 			isLoaded,
 		}),
@@ -28,7 +28,7 @@ const useDetectValueChangesWorker = (
 	);
 
 	const reset = useCallback(() => {
-		setCurrentValue(undefined);
+		currentValue.current = undefined;
 	}, []);
 
 	useEffect(() => {
@@ -36,8 +36,8 @@ const useDetectValueChangesWorker = (
 			return;
 		}
 
-		if (!currentValue) {
-			setCurrentValue(value);
+		if (currentValue.current === undefined) {
+			currentValue.current = value;
 		}
 	}, [value, isLoaded, currentValue]);
 
