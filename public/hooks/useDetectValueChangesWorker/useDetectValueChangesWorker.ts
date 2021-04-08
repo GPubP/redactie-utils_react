@@ -10,10 +10,10 @@ const useDetectValueChangesWorker = (
 	bffModulePath: string,
 	tenantContext = TenantContext
 ): [boolean, Function] => {
-	const [currentValue, setCurrentValue] = useState<any>();
+	const [currentValue, setCurrentValue] = useState<unknown>();
 	const data = useMemo<HasChangesWorkerData>(
 		() => ({
-			currentValue,
+			currentValue: currentValue ?? value,
 			nextValue: value,
 			isLoaded,
 		}),
@@ -36,7 +36,8 @@ const useDetectValueChangesWorker = (
 			return;
 		}
 
-		if (!currentValue) {
+		// Only check for undefined, if you need an empty initial value use null
+		if (currentValue === undefined) {
 			setCurrentValue(value);
 		}
 	}, [value, isLoaded, currentValue]);
