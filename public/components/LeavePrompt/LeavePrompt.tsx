@@ -37,7 +37,7 @@ const LeavePrompt: FC<LeavePromptProps> = ({
 	useEffect(() => {
 		if (confirmedNavigation && lastLocation) {
 			// Navigate to the previous blocked location with your navigate function
-			navigate(lastLocation.pathname);
+			navigate(`${lastLocation.pathname}${lastLocation.search}`);
 		}
 	}, [confirmedNavigation, lastLocation, navigate]);
 
