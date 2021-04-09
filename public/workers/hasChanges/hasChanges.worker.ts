@@ -6,9 +6,11 @@ const ctx = (self as unknown) as WorkerCtx;
 
 ctx.onmessage = (e: WorkerMessageEvent<HasChangesWorkerData>): void => {
 	const { isLoaded = true } = e.data;
+
 	if (!isLoaded) {
 		return;
 	}
+
 	ctx.postMessage(!equals(e.data.currentValue, e.data.nextValue));
 };
 

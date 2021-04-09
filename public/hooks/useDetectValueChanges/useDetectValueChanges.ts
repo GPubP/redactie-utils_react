@@ -1,12 +1,12 @@
 import { equals } from 'ramda';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const useDetectValueChanges = (isLoaded: boolean, value: unknown): [boolean, Function] => {
-	const ref = useRef<unknown>();
+	const [currentValue, setCurrentValue] = useState<unknown>();
 	const [isChanged, setIsChanged] = useState<boolean>(false);
 
 	const reset = (): void => {
-		ref.current = undefined;
+		setCurrentValue(undefined);
 	};
 
 	useEffect(() => {
@@ -14,12 +14,12 @@ const useDetectValueChanges = (isLoaded: boolean, value: unknown): [boolean, Fun
 			return;
 		}
 
-		if (!ref.current) {
-			ref.current = value;
+		if (currentValue === undefined) {
+			setCurrentValue(value);
 		}
 
-		setIsChanged(!equals(ref.current, value));
-	}, [value, isLoaded]);
+		setIsChanged(!equals(currentValue, value));
+	}, [value, isLoaded, currentValue]);
 
 	return [isChanged, reset];
 };
