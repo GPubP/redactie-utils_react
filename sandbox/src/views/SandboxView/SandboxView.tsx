@@ -1,5 +1,11 @@
 import { Button, ButtonGroup, TextField } from '@acpaas-ui/react-components';
-import { useAPIQueryParams, alertService, ErrorMessage, CopyValue } from '@redactie/utils';
+import {
+	useAPIQueryParams,
+	alertService,
+	ErrorMessage,
+	CopyValue,
+	LeavePrompt,
+} from '@redactie/utils';
 import { Field, Form, Formik } from 'formik';
 import React, { FC, useEffect } from 'react';
 
@@ -13,7 +19,7 @@ const SandboxView: FC = () => {
 			setQuery({
 				pagesize: 20,
 				sort: 'data.property',
-				direction: 'desc',
+				direction: 1,
 			});
 		}
 	}, [query, setQuery]);
@@ -65,14 +71,18 @@ const SandboxView: FC = () => {
 					)}
 				</Formik>
 			</div>
+
+			<h3 className="u-margin-bottom">LeavePrompt</h3>
+			<LeavePrompt when />
+
 			<h2 className="u-margin-bottom-xs">Hooks</h2>
 			<h3 className="u-margin-bottom">useAPIQueryParams</h3>
 			<div className="u-margin-bottom">
 				<code>{JSON.stringify(query)}</code>
 			</div>
 			<ButtonGroup>
-				<Button onClick={() => onPageChange(query.page - 1)}>Previous page</Button>
-				<Button onClick={() => onPageChange(query.page + 1)}>Next page</Button>
+				<Button onClick={() => onPageChange((query.page ?? 0) - 1)}>Previous page</Button>
+				<Button onClick={() => onPageChange((query.page ?? 0) + 1)}>Next page</Button>
 			</ButtonGroup>
 
 			<h2 className="u-margin-top-lg u-margin-bottom-xs">Services</h2>
