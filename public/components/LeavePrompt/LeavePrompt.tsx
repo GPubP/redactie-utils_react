@@ -1,10 +1,15 @@
 import { Button } from '@acpaas-ui/react-components';
+import {
+	ControlledModal,
+	ControlledModalBody,
+	ControlledModalFooter,
+	ControlledModalHeader,
+} from '@acpaas-ui/react-editorial-components';
 import { Location } from 'history';
 import React, { FC, useEffect, useState } from 'react';
 import { matchPath, Prompt, useHistory, useLocation } from 'react-router-dom';
 
 import { LEAVE_PROMPT_DEFAULT_PROPS } from './LeavePrompt.const';
-import LeavePromptModal from './LeavePrompt.modal';
 import { LeavePromptProps } from './LeavePrompt.types';
 
 const LeavePrompt: FC<LeavePromptProps> = ({
@@ -101,17 +106,25 @@ const LeavePrompt: FC<LeavePromptProps> = ({
 	return (
 		<>
 			<Prompt when={when} message={handleBlockedNavigation} />
-			<LeavePromptModal show={showModal} title={title} body={body} onClose={handleCancel}>
-				<Button onClick={handleCancel} outline>
-					{cancelText}
-				</Button>
-				<Button onClick={handleDelete} outline type="danger">
-					{deleteText}
-				</Button>
-				<Button onClick={handleConfirm} type="success">
-					{confirmText}
-				</Button>
-			</LeavePromptModal>
+			<ControlledModal onClose={handleCancel} show={showModal} size="large">
+				<ControlledModalHeader>
+					<h4>{title}</h4>
+				</ControlledModalHeader>
+				<ControlledModalBody>{body}</ControlledModalBody>
+				<ControlledModalFooter>
+					<div className="u-flex u-flex-item u-flex-justify-end">
+						<Button onClick={handleCancel} outline>
+							{cancelText}
+						</Button>
+						<Button onClick={handleDelete} outline type="danger">
+							{deleteText}
+						</Button>
+						<Button onClick={handleConfirm} type="success">
+							{confirmText}
+						</Button>
+					</div>
+				</ControlledModalFooter>
+			</ControlledModal>
 		</>
 	);
 };
