@@ -129,7 +129,12 @@ const LeavePrompt: FC<LeavePromptProps> = ({
 						<Button onClick={handleCancel} disabled={onConfirmLoading} outline>
 							{cancelText}
 						</Button>
-						<Button onClick={handleDelete} disabled={onConfirmLoading} outline type="danger">
+						<Button
+							onClick={handleDelete}
+							disabled={onConfirmLoading}
+							outline
+							type="danger"
+						>
 							{deleteText}
 						</Button>
 						<Button
