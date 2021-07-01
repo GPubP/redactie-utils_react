@@ -34,6 +34,7 @@ const LeavePrompt: FC<LeavePromptProps> = ({
 	const [showModal, setShowModal] = useState(false);
 	const [lastLocation, setLastLocation] = useState<Location | null>(null);
 	const [confirmedNavigation, setConfirmedNavigation] = useState(false);
+	const [onConfirmLoading, setOnConfirmLoading] = useState(false);
 	const history = useHistory();
 	const location = useLocation();
 
@@ -75,11 +76,18 @@ const LeavePrompt: FC<LeavePromptProps> = ({
 		setConfirmedNavigation(true);
 	};
 
-	const handleConfirm = (): void => {
+	const handleConfirm = async (): Promise<void> => {
+		setOnConfirmLoading(true);
 		if (onConfirm) {
-			onConfirm();
+			try {
+				await Promise.resolve(onConfirm());
+			} catch (error) {
+				setOnConfirmLoading(false);
+				return;
+			}
 		}
 
+		setOnConfirmLoading(false);
 		setShowModal(false);
 
 		const blockOnConfirm =
@@ -93,6 +101,11 @@ const LeavePrompt: FC<LeavePromptProps> = ({
 	};
 
 	const handleCancel = (): void => {
+		// Wait for confirm action to complete before closing modal
+		if (onConfirmLoading) {
+			return;
+		}
+
 		if (onCancel) {
 			onCancel();
 		}
@@ -113,13 +126,23 @@ const LeavePrompt: FC<LeavePromptProps> = ({
 				<ControlledModalBody>{body}</ControlledModalBody>
 				<ControlledModalFooter>
 					<div className="u-flex u-flex-item u-flex-justify-end">
-						<Button onClick={handleCancel} outline>
+						<Button onClick={handleCancel} disabled={onConfirmLoading} outline>
 							{cancelText}
 						</Button>
-						<Button onClick={handleDelete} outline type="danger">
+						<Button
+							onClick={handleDelete}
+							disabled={onConfirmLoading}
+							outline
+							type="danger"
+						>
 							{deleteText}
 						</Button>
-						<Button onClick={handleConfirm} type="success">
+						<Button
+							onClick={handleConfirm}
+							iconLeft={onConfirmLoading ? 'circle-o-notch fa-spin' : null}
+							disabled={onConfirmLoading}
+							type="success"
+						>
 							{confirmText}
 						</Button>
 					</div>
