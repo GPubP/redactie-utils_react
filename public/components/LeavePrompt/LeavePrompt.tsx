@@ -83,7 +83,6 @@ const LeavePrompt: FC<LeavePromptProps> = ({
 			try {
 				await Promise.resolve(onConfirm());
 			} catch (error) {
-				console.log('error', error);
 				setOnConfirmLoading(false);
 				return;
 			}
