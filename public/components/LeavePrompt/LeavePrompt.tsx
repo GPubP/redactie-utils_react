@@ -78,6 +78,7 @@ const LeavePrompt: FC<LeavePromptProps> = ({
 
 	const handleConfirm = async (): Promise<void> => {
 		setOnConfirmLoading(true);
+
 		if (onConfirm) {
 			try {
 				await Promise.resolve(onConfirm());

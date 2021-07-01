@@ -1,4 +1,4 @@
-import { fireEvent, render, waitForElementToBeRemoved } from '@testing-library/react';
+import { fireEvent, render, waitFor, waitForElementToBeRemoved } from '@testing-library/react';
 import React, { FC } from 'react';
 import { Link, MemoryRouter, Route } from 'react-router-dom';
 
@@ -41,7 +41,7 @@ describe('<LeavePrompt />', () => {
 		expect(promptEl).not.toBeNull();
 	});
 
-	it('Should continue navigation when user confirms', () => {
+	it('Should continue navigation when user confirms', async () => {
 		const confirmMethod = jest.fn();
 		const { getByTestId, getByText, queryByTestId } = render(
 			<AppWithRouter onConfirm={confirmMethod} />
@@ -55,10 +55,10 @@ describe('<LeavePrompt />', () => {
 
 		expect(confirmMethod).toHaveBeenCalled();
 		expect(confirmMethod).toHaveBeenCalledTimes(1);
-		expect(queryByTestId(dummyId)).not.toBeNull();
+		await waitFor(() => expect(queryByTestId(dummyId)).toBeNull(), { timeout: 500 });
 	});
 
-	it('should not continue navigation when user confirms and shouldBlockNavigationOnConfirm returns `true`', () => {
+	it('should not continue navigation when user confirms and shouldBlockNavigationOnConfirm returns `true`', async () => {
 		const confirmMethod = jest.fn();
 		const { getByTestId, getByText, queryByTestId } = render(
 			<AppWithRouter shouldBlockNavigationOnConfirm onConfirm={confirmMethod} />
@@ -72,7 +72,7 @@ describe('<LeavePrompt />', () => {
 
 		expect(confirmMethod).toHaveBeenCalled();
 		expect(confirmMethod).toHaveBeenCalledTimes(1);
-		expect(queryByTestId(dummyId)).toBeNull();
+		await waitFor(() => expect(queryByTestId(dummyId)).toBeNull(), { timeout: 500 });
 	});
 
 	it('Should continue navigation when user deletes', () => {
