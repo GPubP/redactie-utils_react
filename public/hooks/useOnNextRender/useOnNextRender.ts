@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 // This will trigger an extra render so use with caution!
 const useOnNextRender = <Params extends unknown[] = [], Response = void>(
 	fn: (...params: Params) => Response
-): ((...params: Params) => void) => {
+): [(...params: Params) => void, boolean] => {
 	const [runOnNextRender, setRunOnNextRender] = useState<boolean>(false);
 	const [params, setParams] = useState<Params>();
 
@@ -15,10 +15,13 @@ const useOnNextRender = <Params extends unknown[] = [], Response = void>(
 		}
 	}, [fn, runOnNextRender]); // eslint-disable-line
 
-	return (...params) => {
-		setParams(params);
-		setRunOnNextRender(true);
-	};
+	return [
+		(...params) => {
+			setParams(params);
+			setRunOnNextRender(true);
+		},
+		runOnNextRender,
+	];
 };
 
 export default useOnNextRender;
