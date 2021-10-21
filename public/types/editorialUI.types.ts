@@ -30,7 +30,7 @@ export interface ContextHeaderTab {
 	name: string;
 	target: string;
 	active?: boolean;
-	disabled?: boolean;
+	disabled?: boolean | ((context: Record<string, any>) => boolean);
 }
 
 export interface ContextHeaderTabLinkProps {
@@ -74,4 +74,5 @@ export interface TableColumn<RowData = unknown> {
 	fallback?: string;
 	ellipsis?: boolean;
 	width?: string;
+	hideLabel?: boolean;
 }
