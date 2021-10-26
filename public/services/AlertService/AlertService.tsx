@@ -3,16 +3,31 @@ import React, { ReactElement, ReactText } from 'react';
 import { toast, ToastContentProps } from 'react-toastify';
 
 import { AlertProps, AlertType, AlertWithOnCloseProps, CustomOptions } from './AlertService.types';
+import { alertStore } from './store/alertStore';
 
 class AlertService {
-	public info = this.showAlert;
-	public success(props: AlertProps, options?: CustomOptions): ReactText {
+	public info(props: AlertProps, options?: CustomOptions): ReactText | void {
+		if (options?.containerId) {
+			return alertStore.addAlert(props, options);
+		}
+		return this.showAlert(props, options);
+	}
+	public success(props: AlertProps, options?: CustomOptions): ReactText | void {
+		if (options?.containerId) {
+			return alertStore.addAlert(props, options, AlertType.Success);
+		}
 		return this.showAlert(props, options, AlertType.Success);
 	}
-	public warning(props: AlertProps, options?: CustomOptions): ReactText {
+	public warning(props: AlertProps, options?: CustomOptions): ReactText | void {
+		if (options?.containerId) {
+			return alertStore.addAlert(props, options, AlertType.Warning);
+		}
 		return this.showAlert(props, options, AlertType.Warning);
 	}
-	public danger(props: AlertProps, options?: CustomOptions): ReactText {
+	public danger(props: AlertProps, options?: CustomOptions): ReactText | void {
+		if (options?.containerId) {
+			return alertStore.addAlert(props, options, AlertType.Danger);
+		}
 		return this.showAlert(props, options, AlertType.Danger);
 	}
 
@@ -23,11 +38,11 @@ class AlertService {
 	public isActive = toast.isActive;
 	public update = toast.update;
 
-	private showAlert(
+	public showAlert(
 		props: AlertProps,
 		{ autoDismiss = true, ...options }: CustomOptions = {},
 		type?: AlertType
-	): ReactText {
+	): ReactText | void {
 		const alertProps = { ...props, onClose: options?.onClose, type };
 		if (autoDismiss) {
 			toast.dismiss();

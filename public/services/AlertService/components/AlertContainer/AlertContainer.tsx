@@ -1,6 +1,9 @@
 import classnames from 'classnames';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { cssTransition, ToastContainer, ToastContainerProps } from 'react-toastify';
+
+import { alertService } from '../..';
+import { alertStore } from '../../store/alertStore';
 
 import './AlertContainer.scss';
 
@@ -27,6 +30,22 @@ const AlertContainer: React.FC<ToastContainerProps> = ({
 	transition = NoTransition,
 	...rest
 }) => {
+	useEffect(() => {
+		if (!rest.containerId) {
+			return;
+		}
+
+		const s = alertStore.selectById(rest.containerId).subscribe((toasts) => {
+			toasts.forEach(({ props, options, type }) => {
+				alertService.showAlert(props, options, type);
+			});
+		});
+
+		return () => {
+			s.unsubscribe();
+		};
+	}, [rest.containerId]);
+
 	return (
 		<ToastContainer
 			{...rest}

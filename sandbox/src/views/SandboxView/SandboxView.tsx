@@ -8,8 +8,10 @@ import {
 } from '@redactie/utils';
 import { Field, Form, Formik } from 'formik';
 import React, { FC, useEffect } from 'react';
+import { RouteComponentProps } from 'react-router';
+import { Link } from 'react-router-dom';
 
-const SandboxView: FC = () => {
+const SandboxView: FC<RouteComponentProps> = ({ history }) => {
 	const [query, setQuery] = useAPIQueryParams({
 		search: { defaultValue: 'lorem ipsum', type: 'string' },
 	});
@@ -41,7 +43,8 @@ const SandboxView: FC = () => {
 
 	return (
 		<>
-			<h2 className="u-margin-bottom-xs">Components</h2>
+			<Link to="/alert">Alert test</Link>
+			<h2 className="u-margin-top u-margin-bottom-xs">Components</h2>
 			<h3 className="u-margin-bottom">Formik ErrorMessage</h3>
 			<div className="u-margin-bottom">
 				<Formik
@@ -88,9 +91,13 @@ const SandboxView: FC = () => {
 			<h2 className="u-margin-top-lg u-margin-bottom-xs">Services</h2>
 			<h3 className="u-margin-bottom">alertService</h3>
 			<Button
-				onClick={() =>
-					alertService.info({ title: 'This is an info alert', message: 'Lorem ipsum' })
-				}
+				onClick={() =>{
+					alertService.info(
+						{ title: 'This is an info alert', message: 'Lorem ipsum' },
+						{ containerId: 'alert-view' }
+					);
+					// history.push('/alert');
+				}}
 			>
 				Alert me
 			</Button>
