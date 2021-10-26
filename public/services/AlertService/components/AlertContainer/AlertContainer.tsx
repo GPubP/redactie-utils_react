@@ -43,6 +43,7 @@ const AlertContainer: React.FC<ToastContainerProps> = ({
 
 		return () => {
 			s.unsubscribe();
+			alertStore.clearAlerts(rest.containerId);
 		};
 	}, [rest.containerId]);
 

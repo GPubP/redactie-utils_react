@@ -35,11 +35,15 @@ class AlertStore {
 		this.dispatch({ type: AlertStoreActionTypes.Add, payload: { props, options, type } });
 	}
 
+	public clearAlerts(containerId: Id | undefined): void {
+		this.dispatch({ type: AlertStoreActionTypes.Clear, payload: containerId });
+	}
+
 	private reducer(state: AlertStoreState, action: AlertStoreActions): AlertStoreState {
 		switch (action.type) {
 			case AlertStoreActionTypes.Add: {
 				const { payload } = action as AlertStoreAddAction;
-				const containerId = payload.options.containerId;
+				const { containerId } = payload.options;
 
 				if (!containerId) {
 					return state;

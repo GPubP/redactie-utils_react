@@ -24,7 +24,7 @@ export interface AlertStoreAddAction {
 
 export interface AlertStoreClearAction {
 	type: AlertStoreActionTypes.Clear;
-	payload: Id;
+	payload: Id | undefined;
 }
 
 export type AlertStoreActions = AlertStoreAddAction | AlertStoreClearAction;
