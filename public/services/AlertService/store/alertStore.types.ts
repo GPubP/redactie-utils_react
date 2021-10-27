@@ -13,8 +13,9 @@ export interface AlertStoreState {
 }
 
 export enum AlertStoreActionTypes {
-	Add = '@alert/ADD',
-	Clear = '@alert/CLEAR',
+	Add = '@alert/add',
+	Clear = '@alert/clear',
+	ClearOne = '@alert/clearOne',
 }
 
 export interface AlertStoreAddAction {
@@ -27,4 +28,15 @@ export interface AlertStoreClearAction {
 	payload: Id | undefined;
 }
 
-export type AlertStoreActions = AlertStoreAddAction | AlertStoreClearAction;
+export interface AlertStoreClearOneAction {
+	type: AlertStoreActionTypes.ClearOne;
+	payload: {
+		containerId: Id | undefined;
+		index: number;
+	};
+}
+
+export type AlertStoreActions =
+	| AlertStoreAddAction
+	| AlertStoreClearAction
+	| AlertStoreClearOneAction;
