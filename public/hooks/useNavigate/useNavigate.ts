@@ -28,7 +28,7 @@ const useNavigate = (
 		path: string,
 		params?: NavigateParams,
 		query?: URLSearchParams | NavigateQuery
-	): string => generatePath(combineUrlAndQuery(`${basePath}${path}`, query), params);
+	): string => combineUrlAndQuery(generatePath(`${basePath}${path}`, params), query);
 	const navigate = (
 		path: string,
 		params?: NavigateParams,
