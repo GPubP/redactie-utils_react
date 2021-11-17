@@ -12,5 +12,6 @@ export class BaseEntityFacade<
 	public readonly isFetchingOne$ = this.query.isFetchingOne$;
 	public readonly isCreating$ = this.query.isCreating$;
 	public readonly isUpdating$ = this.query.isUpdating$;
+	public readonly isRemoving$ = this.query.isRemoving$;
 	public readonly error$ = this.query.error$;
 }

@@ -34,4 +34,7 @@ export class BaseEntityQuery<S extends BaseEntityState<unknown, unknown>> extend
 	public isUpdating$ = this.select((state) => state.isUpdating).pipe(
 		map(this.convertBoolToLoadingState)
 	);
+	public isRemoving$ = this.select((state) => state.isRemoving).pipe(
+		map(this.convertBoolToLoadingState)
+	);
 }
