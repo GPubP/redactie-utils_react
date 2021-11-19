@@ -8,6 +8,7 @@ const DEFAULT_INITIAL_STATE = {
 	isFetching: false,
 	isUpdating: false,
 	isCreating: false,
+	isRemoving: false,
 };
 
 export class BaseEntityStore<
@@ -49,6 +50,12 @@ export class BaseEntityStore<
 	public setIsCreating(isCreating = false): void {
 		this.update({
 			isCreating,
+		} as Partial<S>);
+	}
+
+	public setIsRemoving(isRemoving = false): void {
+		this.update({
+			isRemoving,
 		} as Partial<S>);
 	}
 }

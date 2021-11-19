@@ -5,4 +5,5 @@ export interface BaseEntityState<E, IDType> extends EntityState<E, IDType> {
 	isFetchingOne: boolean;
 	isCreating: boolean;
 	isUpdating: boolean;
+	isRemoving: boolean;
 }
