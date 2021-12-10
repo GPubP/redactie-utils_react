@@ -41,7 +41,7 @@ class AlertService {
 			),
 		};
 
-		return this.showAlert(alert, options, AlertType.Danger);
+		return this.showAlert(alert, { scrollToTop: true, ...options }, AlertType.Danger);
 	}
 
 	public clearWaitingQueue = toast.clearWaitingQueue;
@@ -53,13 +53,18 @@ class AlertService {
 
 	public showAlert(
 		props: AlertProps,
-		{ autoDismiss = true, ...options }: CustomOptions = {},
+		{ autoDismiss = true, scrollToTop = false, ...options }: CustomOptions = {},
 		type?: AlertType
 	): ReactText | void {
 		const alertProps = { ...props, onClose: options?.onClose, type };
 		if (autoDismiss) {
 			toast.dismiss();
 		}
+
+		if (scrollToTop) {
+			window.scrollTo(0, 0);
+		}
+
 		return toast((toastProps) => this.renderAlert(alertProps, toastProps), options);
 	}
 
