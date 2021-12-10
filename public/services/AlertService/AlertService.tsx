@@ -30,6 +30,19 @@ class AlertService {
 		}
 		return this.showAlert(props, options, AlertType.Danger);
 	}
+	public invalidForm(options?: CustomOptions): ReactText | void {
+		const alert = {
+			title: 'Opgelet',
+			message: (
+				<p>
+					Er staan fouten in het formulier op deze pagina of je bent iets vergeten
+					invullen. Gelieve de gemarkeerde velden na te kijken.
+				</p>
+			),
+		};
+
+		return this.showAlert(alert, options, AlertType.Danger);
+	}
 
 	public clearWaitingQueue = toast.clearWaitingQueue;
 	public configure = toast.configure;
