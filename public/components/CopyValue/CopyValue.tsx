@@ -25,7 +25,7 @@ const CopyValue: FC<CopyValueProps> = ({
 	return (
 		<div className={className}>
 			<label>{label}</label>
-			<div className="u-flex u-margin-top-xs">
+			<div className="u-flex u-flex-align-center u-margin-top-xs">
 				<span className="u-text-light u-margin-right-xs">{value}</span>
 				<CopyToClipboard text={value} onCopy={handleCopy}>
 					<Button className="u-button-as-link" htmlType="button" type="transparent">
