@@ -9,6 +9,7 @@ export enum AlertType {
 
 export interface CustomOptions extends ToastOptions {
 	autoDismiss?: boolean;
+	scrollToTop?: boolean;
 }
 
 export interface AlertProps {
