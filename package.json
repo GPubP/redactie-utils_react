@@ -34,7 +34,7 @@
   "license": "ISC",
   "devDependencies": {
     "@acpaas-ui/react-components": "^4.4.0",
-    "@acpaas-ui/react-editorial-components": "0.0.10",
+    "@acpaas-ui/react-editorial-components": "0.0.21",
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.5",
     "@babel/preset-react": "^7.9.4",
@@ -85,6 +85,7 @@
     "formik": "^2.1.4",
     "lodash.debounce": "^4.0.8",
     "lodash.kebabcase": "^4.1.1",
+    "moment": "^2.22.1",
     "postcss-loader": "^3.0.0",
     "postcss-preset-env": "^6.7.0",
     "query-string": "^6.12.1",
