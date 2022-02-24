@@ -3,7 +3,8 @@ import { Tooltip, TooltipTypeMap } from '@acpaas-ui/react-editorial-components';
 import moment from 'moment';
 import React, { FC, useRef, useState } from 'react';
 
-import { InfoTooltipProps } from './InfoTooltip.types';
+import { InfoTooltipProps, Status } from './InfoTooltip.types';
+import { STATUS_TRANSLATION_MAP } from './infoTooltip.const';
 
 const InfoTooltip: FC<InfoTooltipProps> = ({ data, icon }) => {
 	const tooltipRef = useRef(null);
@@ -69,10 +70,7 @@ const InfoTooltip: FC<InfoTooltipProps> = ({ data, icon }) => {
 										<b>Status</b>
 									</p>
 									<Label type="primary">
-										{/* 	CONTENT_STATUS_TRANSLATION_MAP[
-												meta.status as ContentStatus
-											] */}
-										{meta.status}
+										{STATUS_TRANSLATION_MAP[meta.status as Status]}
 									</Label>
 								</div>
 							</div>
