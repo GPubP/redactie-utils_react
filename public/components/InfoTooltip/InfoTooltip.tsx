@@ -1,16 +1,12 @@
-import { Card, CardBody, CardTitle, Icon, Label } from '@acpaas-ui/react-components';
-import { Tooltip, TooltipTypeMap } from '@acpaas-ui/react-editorial-components';
-import moment from 'moment';
+import { Card, CardBody, Icon } from '@acpaas-ui/react-components';
+import { Tooltip } from '@acpaas-ui/react-editorial-components';
 import React, { FC, useRef, useState } from 'react';
 
-import { InfoTooltipProps, Status } from './InfoTooltip.types';
-import { STATUS_TRANSLATION_MAP } from './infoTooltip.const';
+import { InfoTooltipProps } from './InfoTooltip.types';
 
-const InfoTooltip: FC<InfoTooltipProps> = ({ data, icon }) => {
+const InfoTooltip: FC<InfoTooltipProps> = ({ icon, placement, type, children }): any => {
 	const tooltipRef = useRef(null);
 	const [isVisible, setVisibility] = useState(false);
-
-	const { meta } = data;
 
 	return (
 		<button
@@ -20,61 +16,10 @@ const InfoTooltip: FC<InfoTooltipProps> = ({ data, icon }) => {
 			onBlur={() => setVisibility(false)}
 		>
 			<Icon name={icon}></Icon>
-			<Tooltip
-				placement="bottom-end"
-				isVisible={isVisible}
-				type={TooltipTypeMap.WHITE}
-				targetRef={tooltipRef}
-			>
+			<Tooltip placement={placement} isVisible={isVisible} type={type} targetRef={tooltipRef}>
 				<div>
 					<Card style={{ border: 'none' }}>
-						<CardBody style={{ padding: '0.5rem' }}>
-							<CardTitle>{meta.label}</CardTitle>
-
-							<div className="u-margin-top">
-								{meta?.description && (
-									<div className="u-margin-bottom u-text-light">
-										{meta.description}
-									</div>
-								)}
-								{meta?.created && (
-									<div className="u-margin-bottom-xs">
-										<b>Aangemaakt op: </b>
-										<span>
-											{moment(meta.created).format('DD/MM/YYYY [-] HH[u]mm')}
-										</span>
-									</div>
-								)}
-								{meta?.lastModified && (
-									<div className="u-margin-bottom-xs">
-										<b>Laatst aangepast op: </b>
-										{moment(meta.lastModified).format('DD/MM/YYYY [-] HH[u]mm')}
-									</div>
-								)}
-								{meta?.historySummary?.published && meta.firstPublished && (
-									<div className="u-margin-bottom-xs">
-										<b>Gepubliceerd op: </b>
-										{moment(meta.firstPublished).format(
-											'DD/MM/YYYY [-] HH[u]mm'
-										)}
-									</div>
-								)}
-								{meta?.lastEditor && (
-									<div className="u-margin-bottom-xs">
-										<b>Door: </b>
-										{`${meta.lastEditor?.firstname} ${meta.lastEditor?.lastname}`}
-									</div>
-								)}
-								<div className="u-margin-top">
-									<p>
-										<b>Status</b>
-									</p>
-									<Label type="primary">
-										{STATUS_TRANSLATION_MAP[meta.status as Status]}
-									</Label>
-								</div>
-							</div>
-						</CardBody>
+						<CardBody style={{ padding: '0.5rem' }}>{children}</CardBody>
 					</Card>
 				</div>
 			</Tooltip>
