@@ -6,7 +6,7 @@ import { InfoTooltipProps } from './InfoTooltip.types';
 
 const InfoTooltip: FC<InfoTooltipProps> = ({ icon, placement, type, children }): any => {
 	const tooltipRef = useRef(null);
-	const [isVisible, setVisibility] = useState(true);
+	const [isVisible, setVisibility] = useState(false);
 
 	return (
 		<>
@@ -14,7 +14,7 @@ const InfoTooltip: FC<InfoTooltipProps> = ({ icon, placement, type, children }):
 				className="a-button a-button-transparent has-icon"
 				ref={tooltipRef}
 				onFocus={() => setVisibility(true)}
-				onBlur={() => setVisibility(true)}
+				onBlur={() => setVisibility(false)}
 			>
 				<Icon name={icon}></Icon>
 			</button>
@@ -25,6 +25,7 @@ const InfoTooltip: FC<InfoTooltipProps> = ({ icon, placement, type, children }):
 					</Card>
 				</div>
 			</Tooltip>
+			{console.info('utils tooltip loaded')}
 		</>
 	);
 };
