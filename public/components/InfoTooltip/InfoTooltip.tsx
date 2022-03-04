@@ -6,16 +6,18 @@ import { InfoTooltipProps } from './InfoTooltip.types';
 
 const InfoTooltip: FC<InfoTooltipProps> = ({ icon, placement, type, children }): any => {
 	const tooltipRef = useRef(null);
-	const [isVisible, setVisibility] = useState(false);
+	const [isVisible, setVisibility] = useState(true);
 
 	return (
-		<button
-			className="a-button a-button-transparent has-icon"
-			ref={tooltipRef}
-			onFocus={() => setVisibility(true)}
-			onBlur={() => setVisibility(false)}
-		>
-			<Icon name={icon}></Icon>
+		<>
+			<button
+				className="a-button a-button-transparent has-icon"
+				ref={tooltipRef}
+				onFocus={() => setVisibility(true)}
+				onBlur={() => setVisibility(true)}
+			>
+				<Icon name={icon}></Icon>
+			</button>
 			<Tooltip placement={placement} isVisible={isVisible} type={type} targetRef={tooltipRef}>
 				<div>
 					<Card style={{ border: 'none' }}>
@@ -23,7 +25,7 @@ const InfoTooltip: FC<InfoTooltipProps> = ({ icon, placement, type, children }):
 					</Card>
 				</div>
 			</Tooltip>
-		</button>
+		</>
 	);
 };
 
