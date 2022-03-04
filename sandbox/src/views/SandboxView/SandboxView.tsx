@@ -81,7 +81,7 @@ const SandboxView: FC<RouteComponentProps> = ({ history }) => {
 			<LeavePrompt when />
 
 			<h2 className="u-margin-bottom-xs">Hooks</h2>
-			<h3 className="u-margin-bottom">useAPIQueryParams	<InfoTooltip icon="file-text-o" data={CONTENT_ITEM_MOCK}/></h3>
+			<h3 className="u-margin-bottom">useAPIQueryParams	<InfoTooltip icon="file-text-o" placement='bottom-end' type="white">test</InfoTooltip></h3>
 			<div className="u-margin-bottom">
 				<code>{JSON.stringify(query)}</code>
 			</div>
