@@ -61,6 +61,12 @@ export interface EmbeddedResponse<T> {
 	_page: Page;
 }
 
+export interface EmbeddedResourceResponse<T extends string = string, V = unknown> {
+	_embedded: Record<T, V[]>;
+	_links: Links;
+	_page: Page;
+}
+
 export type FormikChildrenFn<Values = FormikValues> = (
 	formikProps: FormikProps<Values>
 ) => ReactNode;
