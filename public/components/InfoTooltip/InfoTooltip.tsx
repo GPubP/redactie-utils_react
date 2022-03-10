@@ -20,7 +20,7 @@ const InfoTooltip: FC<InfoTooltipProps> = ({ icon, placement, type, children }):
 			</button>
 			<Tooltip placement={placement} isVisible={isVisible} type={type} targetRef={tooltipRef}>
 				<div>
-					<Card style={{ border: 'none' }}>
+					<Card style={{ border: 'none', padding:'0.5rem' }}>
 						<CardBody style={{ padding: '0.5rem' }}>{children}</CardBody>
 					</Card>
 				</div>
