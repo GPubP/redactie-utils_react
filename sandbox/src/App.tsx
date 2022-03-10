@@ -8,8 +8,6 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { routes } from './routes';
 
 function App() {
-	console.log(CheckboxList);
-
 	return (
 		<Container>
 			{/* <AlertContainer /> */}

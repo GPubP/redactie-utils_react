@@ -11,7 +11,6 @@ const CheckboxList: FC<CheckboxListProps> = ({
 	disabled,
 	value,
 }: CheckboxListProps) => {
-	console.log(value);
 	return (
 		<div className="a-input">
 			<FieldArray name={name}>
