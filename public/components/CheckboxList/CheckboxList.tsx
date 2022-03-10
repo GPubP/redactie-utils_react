@@ -2,6 +2,8 @@ import { Checkbox } from '@acpaas-ui/react-components';
 import { FieldArray } from 'formik';
 import React, { ChangeEvent, FC } from 'react';
 
+import { ErrorMessage } from '../ErrorMessage';
+
 import { CheckboxListProps } from './CheckboxList.types';
 
 const CheckboxList: FC<CheckboxListProps> = ({
@@ -37,6 +39,7 @@ const CheckboxList: FC<CheckboxListProps> = ({
 					</>
 				)}
 			</FieldArray>
+			<ErrorMessage name={name} />
 		</div>
 	);
 };
