@@ -1,4 +1,5 @@
 import { Checkbox } from '@acpaas-ui/react-components';
+import classNames from 'classnames';
 import { FieldArray } from 'formik';
 import React, { ChangeEvent, FC } from 'react';
 
@@ -11,10 +12,17 @@ const CheckboxList: FC<CheckboxListProps> = ({
 	options,
 	required,
 	disabled,
+	label,
+	description,
 	value,
 }: CheckboxListProps) => {
+	const labelClass = classNames('a-input', {
+		'is-required': required,
+	});
+
 	return (
-		<div className="a-input">
+		<div className={labelClass}>
+			<label className="a-input__label">{label}</label>
 			<FieldArray name={name}>
 				{({ push, remove }) => (
 					<>
@@ -39,6 +47,7 @@ const CheckboxList: FC<CheckboxListProps> = ({
 					</>
 				)}
 			</FieldArray>
+			{description && <small>{description}</small>}
 			<ErrorMessage name={name} />
 		</div>
 	);
