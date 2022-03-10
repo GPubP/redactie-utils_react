@@ -29,7 +29,7 @@ const CheckboxList: FC<CheckboxListProps> = ({
 										push(option.value);
 									} else {
 										const idx = value?.indexOf(option.value);
-										idx && remove(idx);
+										remove(Number(idx));
 									}
 								}}
 							/>
