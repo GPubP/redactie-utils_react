@@ -1,6 +1,6 @@
 {
   "name": "@redactie/utils",
-  "version": "2.2.2-1",
+  "version": "2.2.3",
   "description": "Redactie utils package",
   "main": "dist/redactie-utils.umd.js",
   "types": "dist/index.d.ts",
@@ -33,7 +33,7 @@
   "author": "Andry Charlier",
   "license": "ISC",
   "devDependencies": {
-    "@acpaas-ui/react-components": "^4.4.0",
+    "@acpaas-ui/react-components": "^5.0.9",
     "@acpaas-ui/react-editorial-components": "1.0.0",
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.5",
