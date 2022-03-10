@@ -34,7 +34,7 @@
   "license": "ISC",
   "devDependencies": {
     "@acpaas-ui/react-components": "^5.0.9",
-    "@acpaas-ui/react-editorial-components": "1.0.0",
+    "@acpaas-ui/react-editorial-components": "0.0.19",
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.5",
     "@babel/preset-react": "^7.9.4",
