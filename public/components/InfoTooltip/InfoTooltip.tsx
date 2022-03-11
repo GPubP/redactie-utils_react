@@ -25,7 +25,6 @@ const InfoTooltip: FC<InfoTooltipProps> = ({ icon, placement, type, children }):
 					</Card>
 				</div>
 			</Tooltip>
-			{console.info('utils tooltip loaded')}
 		</>
 	);
 };
