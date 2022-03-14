@@ -6,3 +6,4 @@ export * from './DeletePrompt';
 export * from './RenderChildRoutes';
 export * from './DataLoader';
 export * from './InfoTooltip';
+export * from './CheckboxList';
