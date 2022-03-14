@@ -40,19 +40,20 @@ describe('<ErrorMessage/>', () => {
 
 		const input = container.querySelector('input[name="name"]');
 
-		await waitFor(() => {
-			if (input) {
-				fireEvent.change(input, { target: { value: 'admin' } });
-				fireEvent.blur(input);
-			}
-		});
-		const errorMessage = queryByText('Nice try!');
+		if (input) {
+			fireEvent.change(input, { target: { value: 'admin' } });
+			fireEvent.blur(input);
+		}
 
-		expect(errorMessage).not.toBeNull();
-		expect(errorMessage?.classList.contains('u-margin-top-xs')).toBe(true);
-		expect(errorMessage?.classList.contains('u-margin-bottom-xs')).toBe(true);
-		expect(errorMessage?.classList.contains('small')).toBe(true);
-		expect(errorMessage?.classList.contains('u-text-danger')).toBe(true);
-		expect(errorMessage?.classList.contains('custom-class')).toBe(true);
+		await waitFor(() => {
+			const errorMessage = queryByText('Nice try!');
+
+			expect(errorMessage).not.toBeNull();
+			expect(errorMessage?.classList.contains('u-margin-top-xs')).toBe(true);
+			expect(errorMessage?.classList.contains('u-margin-bottom-xs')).toBe(true);
+			expect(errorMessage?.classList.contains('small')).toBe(true);
+			expect(errorMessage?.classList.contains('u-text-danger')).toBe(true);
+			expect(errorMessage?.classList.contains('custom-class')).toBe(true);
+		});
 	});
 });
