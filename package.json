@@ -1,6 +1,6 @@
 {
   "name": "@redactie/utils",
-  "version": "2.2.3",
+  "version": "2.2.4-3",
   "description": "Redactie utils package",
   "main": "dist/redactie-utils.umd.js",
   "types": "dist/index.d.ts",
@@ -9,7 +9,7 @@
     "build": "webpack && npm run build:types",
     "build:w": "webpack -w && npm run build:types",
     "lint": "eslint . --ext .ts,.tsx",
-    "test": "jest ./public --env jest-environment-jsdom-fourteen",
+    "test": "jest ./public",
     "prepack": "npm run build",
     "prepublishOnly": "npm run test"
   },
