@@ -12,26 +12,27 @@ const FormikMultilanguageField: FC<FormikMultilanguageFieldProps> = ({
 	...props
 }) => {
 	const { activeLanguage, languages } = useContext(LanguageHeaderContext);
-	const { values, setFieldValue } = useFormikContext();
+	const { values, errors, setFieldValue } = useFormikContext();
 
 	if (!activeLanguage) {
 		return null;
 	}
 
-	const validateField = (value: any): any => {
+	const validateField = (value: any, lang: string): any => {
 		console.log({ value, validation });
 		const schema = object().shape({
-			[name]: object().shape(
-				languages.reduce((acc: any, l: Language) => ({ ...acc, [l.key]: validation }), {})
-			),
+			[name]: object().shape({ [lang]: validation }),
 		});
 
-		console.log(schema);
-		console.log({ name, activeLanguage });
-
-		console.log({ [name[activeLanguage.key]]: value });
-
-		return schema.validateSync({ [activeLanguage.key]: value });
+		return schema
+			.validate({
+				[name]: {
+					[activeLanguage.key]: value,
+				},
+			})
+			.catch((err) => {
+				return err;
+			});
 	};
 
 	const getFieldValue = (): unknown => {

@@ -48,8 +48,9 @@ const MultilanguageForm: FC = () => {
       <div className="u-margin-top">
         <Formik
           onSubmit={onSave}
-          initialValues={INITIAL_VALUES_MOCK}>
-          {({ errors, values }) => {
+          initialValues={INITIAL_VALUES_MOCK}
+					validationSchema={FORM_VALIDATION_SCHEMA}>
+          {({ errors, values, validateForm }) => {
             onChange(values);
             console.log(errors);
 						console.log(FORM_VALIDATION_SCHEMA);
@@ -76,6 +77,7 @@ const MultilanguageForm: FC = () => {
                     />
                   </div>
                 </div>
+								<button onClick={validateForm}>validate</button>
               </Form>
             )
           }}
