@@ -1,6 +1,6 @@
 {
   "name": "@redactie/utils",
-  "version": "2.2.3",
+  "version": "2.2.4",
   "description": "Redactie utils package",
   "main": "dist/redactie-utils.umd.js",
   "types": "dist/index.d.ts",
@@ -67,6 +67,7 @@
     "eslint-plugin-react-hooks": "^3.0.0",
     "husky": "^4.2.5",
     "jest": "^25.4.0",
+    "jest-environment-jsdom-fourteen": "^1.0.1",
     "lint-staged": "^10.1.7",
     "prettier": "^2.0.5",
     "react-test-renderer": "^16.13.1",
