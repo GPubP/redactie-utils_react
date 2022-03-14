@@ -84,6 +84,7 @@
     "css-loader": "^4.2.1",
     "cssnano": "^4.1.10",
     "formik": "^2.1.4",
+    "jest-environment-jsdom-fourteen": "^1.0.1",
     "lodash.debounce": "^4.0.8",
     "lodash.kebabcase": "^4.1.1",
     "postcss-loader": "^3.0.0",
