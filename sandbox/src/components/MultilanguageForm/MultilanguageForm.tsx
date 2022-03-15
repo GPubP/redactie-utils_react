@@ -11,9 +11,8 @@ import {
 import { FormikMultilanguageField, Language } from '@redactie/utils';
 import { Form, Formik } from 'formik';
 import { Field } from 'formik';
-import { string } from 'yup';
 
-import { FORM_VALIDATION_SCHEMA } from './MultilanguageForm.const';
+import { FORM_VALIDATION_SCHEMA, MULTILANGUAGE_FIELDS_VALIDATION_SCHEMA } from './MultilanguageForm.const';
 import { pathOr } from 'ramda';
 
 const MultilanguageForm: FC = () => {
@@ -52,10 +51,8 @@ const MultilanguageForm: FC = () => {
 					validationSchema={FORM_VALIDATION_SCHEMA}>
           {({ errors, values, validateForm }) => {
             onChange(values);
-            console.log(errors);
-						console.log(FORM_VALIDATION_SCHEMA);
             return (
-              <Form>
+              <Form noValidate>
                 <div className="row u-margin-bottom">
                   <div className="col-xs-12">
                     <Field
@@ -72,8 +69,8 @@ const MultilanguageForm: FC = () => {
                       asComponent={TextField}
                       label="Omschrijving"
                       name="description"
-                      validation={string().required('Beschrijving is een verplicht veld')}
-                      state={activeLanguage && pathOr(null, ['description', activeLanguage.key])(errors) ? 'error' : ''}
+                      validation={MULTILANGUAGE_FIELDS_VALIDATION_SCHEMA.fields.description}
+                      state={activeLanguage && pathOr(null, [activeLanguage.key], errors.description) && 'error'}
                     />
                   </div>
                 </div>

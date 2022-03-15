@@ -2,35 +2,34 @@ import { LanguageHeaderContext, MultilanguageField } from '@acpaas-ui/react-edit
 import { Field, useFormikContext } from 'formik';
 import { pathOr } from 'ramda';
 import React, { FC, useContext } from 'react';
-import { lazy, object } from 'yup';
+import { ValidationError } from 'yup';
 
-import { FormikMultilanguageFieldProps, Language } from './FormikMultilanguageField.types';
+import { FormikMultilanguageFieldProps } from './FormikMultilanguageField.types';
 
 const FormikMultilanguageField: FC<FormikMultilanguageFieldProps> = ({
 	name,
 	validation,
 	...props
 }) => {
-	const { activeLanguage, languages } = useContext(LanguageHeaderContext);
-	const { values, errors, setFieldValue } = useFormikContext();
+	const { activeLanguage } = useContext(LanguageHeaderContext);
+	const { values, setFieldValue } = useFormikContext();
 
 	if (!activeLanguage) {
 		return null;
 	}
 
-	const validateField = (value: any, lang: string): any => {
-		console.log({ value, validation });
-		const schema = object().shape({
-			[name]: object().shape({ [lang]: validation }),
-		});
+	const validateFieldForActiveLang = (value: any): any => {
+		if (!validation) {
+			return;
+		}
 
-		return schema
-			.validate({
-				[name]: {
-					[activeLanguage.key]: value,
-				},
+		// invalid validation will return an object, based on the name, specified in the field below.
+		return validation
+			.validate(value)
+			.then(() => {
+				return;
 			})
-			.catch((err) => {
+			.catch((err: ValidationError) => {
 				return err;
 			});
 	};
@@ -51,8 +50,6 @@ const FormikMultilanguageField: FC<FormikMultilanguageFieldProps> = ({
 			[activeLanguage.key]: value || '',
 		});
 
-		console.log(value);
-
 		return value || '';
 	};
 
@@ -61,7 +58,7 @@ const FormikMultilanguageField: FC<FormikMultilanguageFieldProps> = ({
 			as={MultilanguageField}
 			name={`${name}.${activeLanguage.key}`}
 			value={getFieldValue()}
-			validate={validateField}
+			validate={validateFieldForActiveLang}
 			{...props}
 		/>
 	);
