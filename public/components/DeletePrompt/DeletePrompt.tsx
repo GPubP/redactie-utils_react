@@ -19,6 +19,8 @@ const DeletePrompt: FC<DeletePromptProps> = ({
 	title = DELETE_PROMPT_DEFAULT_PROPS.title,
 	onCancel,
 	onConfirm,
+	confirmButtonType = DELETE_PROMPT_DEFAULT_PROPS.confirmButtonType,
+	confirmButtonIcon = DELETE_PROMPT_DEFAULT_PROPS.confirmButtonIcon,
 }) => {
 	/**
 	 * Methods
@@ -54,10 +56,10 @@ const DeletePrompt: FC<DeletePromptProps> = ({
 						{cancelText}
 					</Button>
 					<Button
-						iconLeft={isDeleting ? 'circle-o-notch fa-spin' : 'trash-o'}
+						iconLeft={isDeleting ? 'circle-o-notch fa-spin' : confirmButtonIcon}
 						disabled={isDeleting}
 						onClick={handleConfirm}
-						type="danger"
+						type={confirmButtonType}
 					>
 						{confirmText}
 					</Button>
