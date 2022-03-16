@@ -33,7 +33,7 @@
   "author": "Andry Charlier",
   "license": "ISC",
   "devDependencies": {
-    "@acpaas-ui/react-components": "^5.0.9",
+    "@acpaas-ui/react-components": "5.0.9",
     "@acpaas-ui/react-editorial-components": "0.0.19",
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.5",
@@ -104,8 +104,8 @@
     "worker-loader": "^3.0.5"
   },
   "peerDependencies": {
-    "@acpaas-ui/react-components": "^4.4.0",
-    "@acpaas-ui/react-editorial-components": "0.0.3-0",
+    "@acpaas-ui/react-components": "^5.0.9",
+    "@acpaas-ui/react-editorial-components": "0.0.19",
     "@datorama/akita": "^5.2.3",
     "@redactie/redactie-core": "^2.0.0",
     "classnames": "^2.2.6",
