@@ -4,19 +4,60 @@ import { pathOr } from 'ramda';
 import React, { FC, useContext } from 'react';
 import { ValidationError } from 'yup';
 
-import { FormikMultilanguageFieldProps } from './FormikMultilanguageField.types';
+import { FormikMultilanguageFieldProps, Language } from './FormikMultilanguageField.types';
 
 const FormikMultilanguageField: FC<FormikMultilanguageFieldProps> = ({
 	name,
 	validation,
 	...props
 }) => {
-	const { activeLanguage } = useContext(LanguageHeaderContext);
+	const { activeLanguage, languages, errors, setErrors } = useContext(LanguageHeaderContext);
 	const { values, setFieldValue } = useFormikContext();
 
 	if (!activeLanguage) {
 		return null;
 	}
+
+	const validateForAllLanguages = (): void => {
+		if (!validation) {
+			return;
+		}
+
+		languages.forEach(({ key }: Language) => {
+			const value = pathOr(null, [name, key], values);
+			validation
+				.validate(value)
+				.then(() => {
+					//no error
+					//remove field from errors
+					if (!errors[key] || !errors[key].includes(name)) {
+						return;
+					} else {
+						const newErrors = errors;
+						const filteredKey = newErrors[key].filter(
+							(fieldName: string) => fieldName !== name
+						);
+						setErrors({ ...newErrors, [key]: filteredKey });
+					}
+				})
+				.catch(() => {
+					//validation error
+					//push field to errors
+					if (errors[key] && errors[key].includes(name)) {
+						return;
+					} else {
+						const newErrors = errors;
+						if (!newErrors[key]) {
+							newErrors[key] = [name];
+							setErrors(newErrors);
+						} else {
+							newErrors[key].push(name);
+							setErrors(newErrors);
+						}
+					}
+				});
+		});
+	};
 
 	const validateFieldForActiveLang = (value: any): any => {
 		if (!validation) {
@@ -52,6 +93,8 @@ const FormikMultilanguageField: FC<FormikMultilanguageFieldProps> = ({
 
 		return value || '';
 	};
+
+	validateForAllLanguages();
 
 	return (
 		<Field
