@@ -46,13 +46,13 @@ describe('<ErrorMessage/>', () => {
 				fireEvent.blur(input);
 			}
 		});
-		// const errorMessage = queryByText('Nice try!');
+		const errorMessage = queryByText('Nice try!');
 
-		// expect(errorMessage).not.toBeNull();
-		// expect(errorMessage?.classList.contains('u-margin-top-xs')).toBe(true);
-		// expect(errorMessage?.classList.contains('u-margin-bottom-xs')).toBe(true);
-		// expect(errorMessage?.classList.contains('small')).toBe(true);
-		// expect(errorMessage?.classList.contains('u-text-danger')).toBe(true);
-		// expect(errorMessage?.classList.contains('custom-class')).toBe(true);
+		expect(errorMessage).not.toBeNull();
+		expect(errorMessage?.classList.contains('u-margin-top-xs')).toBe(true);
+		expect(errorMessage?.classList.contains('u-margin-bottom-xs')).toBe(true);
+		expect(errorMessage?.classList.contains('small')).toBe(true);
+		expect(errorMessage?.classList.contains('u-text-danger')).toBe(true);
+		expect(errorMessage?.classList.contains('custom-class')).toBe(true);
 	});
 });
