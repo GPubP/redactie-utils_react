@@ -78,7 +78,7 @@ const FormikMultilanguageField: FC<FormikMultilanguageFieldProps> = ({
 	const getFieldValue = (): unknown => {
 		// NICE TO HAVE: remove value if languages does not contain key of value
 
-		const value = pathOr(null, [name], values);
+		const value = pathOr(null, name.split('.'), values);
 
 		// if multilanguage, get value for active language
 		if (pathOr(false, ['multilanguage'], value)) {
