@@ -1,5 +1,8 @@
+import { AnySchema } from 'yup';
+
 export type FormikMultilanguageFieldProps = {
 	name: string;
+	validation?: AnySchema;
 	asComponent: unknown;
 	[key: string]: unknown;
 };
