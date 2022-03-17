@@ -12,7 +12,7 @@ import { FormikMultilanguageField, Language } from '@redactie/utils';
 import { Form, Formik } from 'formik';
 import { Field } from 'formik';
 
-import { FORM_VALIDATION_SCHEMA, MULTILANGUAGE_FIELDS_VALIDATION_SCHEMA } from './MultilanguageForm.const';
+import { FORM_VALIDATION_SCHEMA } from './MultilanguageForm.const.js';
 import { pathOr } from 'ramda';
 
 const MultilanguageForm: FC = () => {
@@ -48,9 +48,10 @@ const MultilanguageForm: FC = () => {
         <Formik
           onSubmit={onSave}
           initialValues={INITIAL_VALUES_MOCK}
-					validationSchema={FORM_VALIDATION_SCHEMA}>
+					validationSchema={() => FORM_VALIDATION_SCHEMA(languages)}>
           {({ errors, values, validateForm }) => {
             onChange(values);
+						console.log(errors);
             return (
               <Form noValidate>
                 <div className="row u-margin-bottom">
@@ -69,7 +70,6 @@ const MultilanguageForm: FC = () => {
                       asComponent={TextField}
                       label="Omschrijving"
                       name="description"
-                      validation={MULTILANGUAGE_FIELDS_VALIDATION_SCHEMA.fields.description}
                       state={activeLanguage && pathOr(null, [activeLanguage.key], errors.description) && 'error'}
                     />
                   </div>
