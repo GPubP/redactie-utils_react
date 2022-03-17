@@ -11,3 +11,7 @@ export type Language = {
 	key: string;
 	primary?: boolean;
 };
+
+export type LanguageErrors = {
+	[key: string]: string[];
+};

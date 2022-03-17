@@ -1,57 +1,36 @@
-import React, { FC, useEffect, useState } from 'react';
-import { LanguageHeader } from '@acpaas-ui/react-editorial-components';
+import React, { FC, useEffect, useState, useContext } from 'react';
+import { LanguageHeaderContext } from '@acpaas-ui/react-editorial-components';
 import { TextField } from '@acpaas-ui/react-components';
+import { pathOr } from 'ramda';
+import { Form, Formik, Field } from 'formik';
+import { FormikMultilanguageField, handleMultilanguageFormErrors, Language } from '@redactie/utils';
 
 import {
   INITIAL_VALUES_MOCK,
   LANGUAGE_HEADER_MOCK_LANGUAGES,
-  LANGUAGE_HEADER_MOCK_TOOLTIP,
 } from './MultilanguageForm.mock';
-
-import { FormikMultilanguageField, Language } from '@redactie/utils';
-import { Form, Formik } from 'formik';
-import { Field } from 'formik';
-
 import { FORM_VALIDATION_SCHEMA } from './MultilanguageForm.const.js';
-import { pathOr } from 'ramda';
 
-const MultilanguageForm: FC = () => {
+const MultilanguageForm: FC<{activeLanguage: Language}> = ({ activeLanguage }) => {
   const languages: Language[] = LANGUAGE_HEADER_MOCK_LANGUAGES;
-  const [activeLanguage, setActiveLanguage] = useState<Language | null>();
-
-  // setup preselected language
-  useEffect(() => {
-    if (Array.isArray(languages)) {
-      setActiveLanguage(languages.find((l) => l.primary) || languages[0]);
-    }
-  }, [languages]);
+	const {errors, setErros} = useContext(LanguageHeaderContext)
 
   const onSave = (newValue: any) => {
     console.log(newValue);
   };
   const onChange = (newValue: any) => {
     //console.log('change', newValue);
-  };
-  const handleChangeLanguage = (lang: string) => {
-    setActiveLanguage({ key: lang });
-  };
+	};
 
   return (
-    <LanguageHeader
-      className="u-margin"
-      languages={languages}
-      activeLanguage={activeLanguage}
-      tooltipText={LANGUAGE_HEADER_MOCK_TOOLTIP}
-      onChangeLanguage={handleChangeLanguage}
-    >
       <div className="u-margin-top">
         <Formik
           onSubmit={onSave}
           initialValues={INITIAL_VALUES_MOCK}
 					validationSchema={() => FORM_VALIDATION_SCHEMA(languages)}>
-          {({ errors, values, validateForm }) => {
+          {({ errors: formErrors, values, validateForm }) => {
             onChange(values);
-						console.log(errors);
+						handleMultilanguageFormErrors(formErrors, values)
             return (
               <Form noValidate>
                 <div className="row u-margin-bottom">
@@ -80,7 +59,6 @@ const MultilanguageForm: FC = () => {
           }}
         </Formik>
       </div>
-    </LanguageHeader>
   );
 };
 

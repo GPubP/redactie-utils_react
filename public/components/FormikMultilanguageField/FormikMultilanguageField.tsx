@@ -101,7 +101,6 @@ const FormikMultilanguageField: FC<FormikMultilanguageFieldProps> = ({
 			as={MultilanguageField}
 			name={`${name}.${activeLanguage.key}`}
 			value={getFieldValue()}
-			validate={validateFieldForActiveLang}
 			{...props}
 		/>
 	);
