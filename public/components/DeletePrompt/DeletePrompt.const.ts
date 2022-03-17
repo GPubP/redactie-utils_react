@@ -3,4 +3,6 @@ export const DELETE_PROMPT_DEFAULT_PROPS = {
 	body: 'Ben je zeker dat je dit item wil verwijderen? Dit kan niet ongedaan gemaakt worden.',
 	cancelText: 'Annuleer',
 	confirmText: 'Ja, verwijder',
+	confirmButtonType: 'danger',
+	confirmButtonIcon: 'trash-o',
 };
