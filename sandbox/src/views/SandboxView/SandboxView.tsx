@@ -5,11 +5,13 @@ import {
 	ErrorMessage,
 	CopyValue,
 	LeavePrompt,
+	InfoTooltip,
 } from '@redactie/utils';
 import { Field, Form, Formik } from 'formik';
 import React, { FC, useEffect } from 'react';
 import { RouteComponentProps } from 'react-router';
 import { Link } from 'react-router-dom';
+import { CONTENT_ITEM_MOCK } from './mockdata';
 
 const SandboxView: FC<RouteComponentProps> = ({ history }) => {
 	const [query, setQuery] = useAPIQueryParams({
@@ -79,7 +81,7 @@ const SandboxView: FC<RouteComponentProps> = ({ history }) => {
 			<LeavePrompt when />
 
 			<h2 className="u-margin-bottom-xs">Hooks</h2>
-			<h3 className="u-margin-bottom">useAPIQueryParams</h3>
+			<h3 className="u-margin-bottom">useAPIQueryParams	<InfoTooltip icon="file-text-o" placement='bottom-end' type="white">test</InfoTooltip></h3>
 			<div className="u-margin-bottom">
 				<code>{JSON.stringify(query)}</code>
 			</div>
@@ -91,7 +93,7 @@ const SandboxView: FC<RouteComponentProps> = ({ history }) => {
 			<h2 className="u-margin-top-lg u-margin-bottom-xs">Services</h2>
 			<h3 className="u-margin-bottom">alertService</h3>
 			<Button
-				onClick={() =>{
+				onClick={() => {
 					alertService.info(
 						{ title: 'This is an info alert', message: 'Lorem ipsum' },
 						{ containerId: 'alert-view' }
