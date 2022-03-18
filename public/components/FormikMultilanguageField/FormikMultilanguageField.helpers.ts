@@ -12,13 +12,12 @@ export const handleMultilanguageFormErrors = (
 			const fieldErrors = errors[i] || null;
 			//check for errors
 			if (fieldErrors) {
-				console.log(fieldErrors);
 				Object.keys(fieldErrors).forEach((j) => {
-					console.log(!newErrors[j]);
-					if (!newErrors[j] || (newErrors[j] && !newErrors[j].includes(i))) {
+					if (!newErrors[j]) {
+						newErrors[j] = [i];
+					} else if (!newErrors[j].includes(i)) {
 						newErrors[j].push(i);
 					}
-					console.log(newErrors);
 				});
 			}
 		}

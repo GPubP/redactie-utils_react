@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState, useContext } from 'react';
 import { LanguageHeaderContext } from '@acpaas-ui/react-editorial-components';
 import { TextField } from '@acpaas-ui/react-components';
 import { pathOr } from 'ramda';
-import { Form, Formik, Field } from 'formik';
+import { Form, Formik, Field, FormikErrors, FormikValues } from 'formik';
 import { FormikMultilanguageField, handleMultilanguageFormErrors, Language } from '@redactie/utils';
 
 import {
@@ -10,27 +10,33 @@ import {
   LANGUAGE_HEADER_MOCK_LANGUAGES,
 } from './MultilanguageForm.mock';
 import { FORM_VALIDATION_SCHEMA } from './MultilanguageForm.const.js';
+import { useMemo } from 'react';
 
 const MultilanguageForm: FC<{activeLanguage: Language}> = ({ activeLanguage }) => {
   const languages: Language[] = LANGUAGE_HEADER_MOCK_LANGUAGES;
-	const {errors, setErros} = useContext(LanguageHeaderContext)
+	const {errors, setErrors} = useContext(LanguageHeaderContext);
 
   const onSave = (newValue: any) => {
     console.log(newValue);
   };
-  const onChange = (newValue: any) => {
-    //console.log('change', newValue);
+  const onChange = (formErrors: FormikErrors<FormikValues>, newValue: any) => {
+		const newErrors = handleMultilanguageFormErrors(formErrors, newValue);
+		if(newErrors !== formErrors) {
+			setErrors(newErrors);
+		}
+
+		console.log(newValue);
 	};
 
-  return (
+  return useMemo(() => (
       <div className="u-margin-top">
         <Formik
           onSubmit={onSave}
           initialValues={INITIAL_VALUES_MOCK}
 					validationSchema={() => FORM_VALIDATION_SCHEMA(languages)}>
-          {({ errors: formErrors, values, validateForm }) => {
-            onChange(values);
-						handleMultilanguageFormErrors(formErrors, values)
+          {({ errors: formErrors, values: formValues, validateForm }) => {
+						onChange(formErrors, formValues);
+
             return (
               <Form noValidate>
                 <div className="row u-margin-bottom">
@@ -39,7 +45,7 @@ const MultilanguageForm: FC<{activeLanguage: Language}> = ({ activeLanguage }) =
                       as={TextField}
                       label="Titel"
                       name="title"
-                      state={errors.title && 'error'}
+                      state={formErrors.title && 'error'}
                     />
                   </div>
                 </div>
@@ -49,7 +55,7 @@ const MultilanguageForm: FC<{activeLanguage: Language}> = ({ activeLanguage }) =
                       asComponent={TextField}
                       label="Omschrijving"
                       name="description"
-                      state={activeLanguage && pathOr(null, [activeLanguage.key], errors.description) && 'error'}
+                      state={activeLanguage && pathOr(null, [activeLanguage.key], formErrors.description) && 'error'}
                     />
                   </div>
                 </div>
@@ -59,7 +65,7 @@ const MultilanguageForm: FC<{activeLanguage: Language}> = ({ activeLanguage }) =
           }}
         </Formik>
       </div>
-  );
+  ), [errors]);
 };
 
 export default MultilanguageForm;
