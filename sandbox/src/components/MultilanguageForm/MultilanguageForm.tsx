@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState, useContext } from 'react';
+import React, { FC, useContext, useMemo } from 'react';
 import { LanguageHeaderContext } from '@acpaas-ui/react-editorial-components';
 import { TextField } from '@acpaas-ui/react-components';
 import { pathOr } from 'ramda';
@@ -10,11 +10,10 @@ import {
   LANGUAGE_HEADER_MOCK_LANGUAGES,
 } from './MultilanguageForm.mock';
 import { FORM_VALIDATION_SCHEMA } from './MultilanguageForm.const.js';
-import { useMemo } from 'react';
 
 const MultilanguageForm: FC<{activeLanguage: Language}> = ({ activeLanguage }) => {
   const languages: Language[] = LANGUAGE_HEADER_MOCK_LANGUAGES;
-	const {errors, setErrors} = useContext(LanguageHeaderContext);
+	const {setErrors} = useContext(LanguageHeaderContext);
 
   const onSave = (newValue: any) => {
     console.log(newValue);
@@ -65,7 +64,7 @@ const MultilanguageForm: FC<{activeLanguage: Language}> = ({ activeLanguage }) =
           }}
         </Formik>
       </div>
-  ), [errors]);
+  ), []);
 };
 
 export default MultilanguageForm;
