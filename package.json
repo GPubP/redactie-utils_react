@@ -1,6 +1,6 @@
 {
   "name": "@redactie/utils",
-  "version": "2.3.2",
+  "version": "2.3.3",
   "description": "Redactie utils package",
   "main": "dist/redactie-utils.umd.js",
   "types": "dist/index.d.ts",
@@ -41,7 +41,7 @@
     "@babel/preset-typescript": "^7.9.0",
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
-    "@datorama/akita": "^5.2.3",
+    "@datorama/akita": "4.22.0",
     "@redactie/redactie-core": "^2.0.0",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^10.4.8",
