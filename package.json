@@ -41,7 +41,7 @@
     "@babel/preset-typescript": "^7.9.0",
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
-    "@datorama/akita": "^5.2.3",
+    "@datorama/akita": "4.22.0",
     "@redactie/redactie-core": "^2.2.2",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^10.4.8",
@@ -106,7 +106,7 @@
   "peerDependencies": {
     "@acpaas-ui/react-components": "5.0.9",
     "@acpaas-ui/react-editorial-components": "1.1.0",
-    "@datorama/akita": "^5.2.3",
+    "@datorama/akita": "4.22.0",
     "@redactie/redactie-core": "^2.0.0",
     "classnames": "^2.2.6",
     "formik": "^2.1.4",
