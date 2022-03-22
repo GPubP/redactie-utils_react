@@ -1,56 +1,41 @@
-import React, { FC, useEffect, useState } from 'react';
-import { LanguageHeader } from '@acpaas-ui/react-editorial-components';
+import React, { FC, useContext, useMemo } from 'react';
+import { LanguageHeaderContext } from '@acpaas-ui/react-editorial-components';
 import { TextField } from '@acpaas-ui/react-components';
+import { pathOr } from 'ramda';
+import { Form, Formik, Field, FormikErrors, FormikValues } from 'formik';
+import { FormikMultilanguageField, handleMultilanguageFormErrors, Language } from '@redactie/utils';
 
 import {
   INITIAL_VALUES_MOCK,
   LANGUAGE_HEADER_MOCK_LANGUAGES,
-  LANGUAGE_HEADER_MOCK_TOOLTIP,
 } from './MultilanguageForm.mock';
+import { FORM_VALIDATION_SCHEMA } from './MultilanguageForm.const.js';
 
-import { FormikMultilanguageField, Language } from '@redactie/utils';
-import { Form, Formik } from 'formik';
-import { Field } from 'formik';
-
-import { FORM_VALIDATION_SCHEMA, MULTILANGUAGE_FIELDS_VALIDATION_SCHEMA } from './MultilanguageForm.const';
-import { pathOr } from 'ramda';
-
-const MultilanguageForm: FC = () => {
+const MultilanguageForm: FC<{activeLanguage: Language}> = ({ activeLanguage }) => {
   const languages: Language[] = LANGUAGE_HEADER_MOCK_LANGUAGES;
-  const [activeLanguage, setActiveLanguage] = useState<Language | null>();
-
-  // setup preselected language
-  useEffect(() => {
-    if (Array.isArray(languages)) {
-      setActiveLanguage(languages.find((l) => l.primary) || languages[0]);
-    }
-  }, [languages]);
+	const {setErrors} = useContext(LanguageHeaderContext);
 
   const onSave = (newValue: any) => {
     console.log(newValue);
   };
-  const onChange = (newValue: any) => {
-    //console.log('change', newValue);
-  };
-  const handleChangeLanguage = (lang: string) => {
-    setActiveLanguage({ key: lang });
-  };
+  const onChange = (formErrors: FormikErrors<FormikValues>, newValue: any) => {
+		const newErrors = handleMultilanguageFormErrors(formErrors, newValue);
+		if(newErrors !== formErrors) {
+			setErrors(newErrors);
+		}
 
-  return (
-    <LanguageHeader
-      className="u-margin"
-      languages={languages}
-      activeLanguage={activeLanguage}
-      tooltipText={LANGUAGE_HEADER_MOCK_TOOLTIP}
-      onChangeLanguage={handleChangeLanguage}
-    >
+		console.log(newValue);
+	};
+
+  return useMemo(() => (
       <div className="u-margin-top">
         <Formik
           onSubmit={onSave}
           initialValues={INITIAL_VALUES_MOCK}
-					validationSchema={FORM_VALIDATION_SCHEMA}>
-          {({ errors, values, validateForm }) => {
-            onChange(values);
+					validationSchema={() => FORM_VALIDATION_SCHEMA(languages)}>
+          {({ errors: formErrors, values: formValues, validateForm }) => {
+						onChange(formErrors, formValues);
+
             return (
               <Form noValidate>
                 <div className="row u-margin-bottom">
@@ -59,7 +44,7 @@ const MultilanguageForm: FC = () => {
                       as={TextField}
                       label="Titel"
                       name="title"
-                      state={errors.title && 'error'}
+                      state={formErrors.title && 'error'}
                     />
                   </div>
                 </div>
@@ -69,8 +54,7 @@ const MultilanguageForm: FC = () => {
                       asComponent={TextField}
                       label="Omschrijving"
                       name="description"
-                      validation={MULTILANGUAGE_FIELDS_VALIDATION_SCHEMA.fields.description}
-                      state={activeLanguage && pathOr(null, [activeLanguage.key], errors.description) && 'error'}
+                      state={activeLanguage && pathOr(null, [activeLanguage.key], formErrors.description) && 'error'}
                     />
                   </div>
                 </div>
@@ -80,8 +64,7 @@ const MultilanguageForm: FC = () => {
           }}
         </Formik>
       </div>
-    </LanguageHeader>
-  );
+  ), []);
 };
 
 export default MultilanguageForm;

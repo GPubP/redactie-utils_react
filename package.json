@@ -1,6 +1,6 @@
 {
   "name": "@redactie/utils",
-  "version": "2.3.5",
+  "version": "2.3.6",
   "description": "Redactie utils package",
   "main": "dist/redactie-utils.umd.js",
   "types": "dist/index.d.ts",
@@ -34,7 +34,7 @@
   "license": "ISC",
   "devDependencies": {
     "@acpaas-ui/react-components": "5.0.9",
-    "@acpaas-ui/react-editorial-components": "1.1.0",
+    "@acpaas-ui/react-editorial-components": "^1.1.1",
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.5",
     "@babel/preset-react": "^7.9.4",
