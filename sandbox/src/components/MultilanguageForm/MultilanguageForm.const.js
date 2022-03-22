@@ -1,27 +1,7 @@
 import * as Yup from 'yup';
+import { addMultiLanguageValidatorToYup } from '@redactie/utils';
 
-Yup.addMethod(Yup.mixed, 'validateMultiLanguage', function (languages, validation) {
-	return this.test('validateMultiLanguage', function (value) {
-		if(!value) {
-			return
-		};
-
-		return new Promise(async (resolve, reject) => {
-			const errors = languages.map( (l) => {
-				return validation
-					.validate(value[l.key])
-					.then(() => null)
-					.catch(({ message }) => this.createError({ path: `${this.path}.${l.key}`, message }));
-			});
-
-			await Promise.allSettled(errors).then((e) => {
-				reject(new Yup.ValidationError(e.map((i) => i.value)));
-			})
-
-			resolve(true);
-		});
-	});
-});
+addMultiLanguageValidatorToYup(Yup);
 
 export const FORM_VALIDATION_SCHEMA = (languages) =>
 	Yup.object().shape({
