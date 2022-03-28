@@ -1,4 +1,4 @@
-import { addMultiLanguageValidatorToYup, Language, MultilanguageYup } from '@redactie/utils';
+import { MultilanguageYup } from '@redactie/utils';
 
 //addMultiLanguageValidatorToYup(Yup);
 
