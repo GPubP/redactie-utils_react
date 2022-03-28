@@ -11,8 +11,8 @@ import {
 } from './MultilanguageForm.mock';
 import { FORM_VALIDATION_SCHEMA } from './MultilanguageForm.const';
 
-const MultilanguageForm: FC<{activeLanguage: Language}> = ({ activeLanguage }) => {
-  const languages: Language[] = LANGUAGE_HEADER_MOCK_LANGUAGES;
+const MultilanguageForm: FC<{activeLanguage: any}> = ({ activeLanguage }) => {
+  const languages: any[] = LANGUAGE_HEADER_MOCK_LANGUAGES;
 	const {setErrors} = useContext(LanguageHeaderContext);
 
   const onSave = (newValue: any) => {
@@ -24,8 +24,12 @@ const MultilanguageForm: FC<{activeLanguage: Language}> = ({ activeLanguage }) =
 			setErrors(newErrors);
 		}
 
+		console.log(formErrors);
+
 		console.log(newValue);
 	};
+
+	console.log(activeLanguage);
 
   return useMemo(() => (
       <div className="u-margin-top">
@@ -64,7 +68,7 @@ const MultilanguageForm: FC<{activeLanguage: Language}> = ({ activeLanguage }) =
           }}
         </Formik>
       </div>
-	), [])
+	), [activeLanguage, languages])
 };
 
 export default MultilanguageForm;

@@ -29,10 +29,4 @@ yup.addMethod(yup.mixed, 'validateMultiLanguage', function (languages, validatio
 	});
 });
 
-declare module 'yup' {
-	interface MixedSchema<TType, TContext, TOut> extends yup.BaseSchema<TType, TContext, TOut> {
-		validateMultiLanguage(): MixedSchema<TType, TContext, TOut>;
-	}
-}
-
 export default yup;

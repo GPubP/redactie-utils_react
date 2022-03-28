@@ -1,13 +1,12 @@
-import * as Yup from 'yup';
-import { addMultiLanguageValidatorToYup, Language } from '@redactie/utils';
+import { addMultiLanguageValidatorToYup, Language, MultilanguageYup } from '@redactie/utils';
 
-addMultiLanguageValidatorToYup(Yup);
+//addMultiLanguageValidatorToYup(Yup);
 
-export const FORM_VALIDATION_SCHEMA = (languages: Language[]) =>
-	Yup.object().shape({
-		title: Yup.string().required('Titel is een verplicht veld'),
-		description: Yup.object().validateMultiLanguage(
+export const FORM_VALIDATION_SCHEMA = (languages: any) =>
+	MultilanguageYup.object().shape({
+		title: MultilanguageYup.string().required('Titel is een verplicht veld'),
+		description: MultilanguageYup.object().validateMultiLanguage(
 			languages,
-			Yup.string().required('Beschrijving is een verplicht veld')
+			MultilanguageYup.string().required('Beschrijving is een verplicht veld')
 		),
 	});
