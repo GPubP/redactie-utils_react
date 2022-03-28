@@ -9,7 +9,7 @@ import {
   INITIAL_VALUES_MOCK,
   LANGUAGE_HEADER_MOCK_LANGUAGES,
 } from './MultilanguageForm.mock';
-import { FORM_VALIDATION_SCHEMA } from './MultilanguageForm.const.js';
+import { FORM_VALIDATION_SCHEMA } from './MultilanguageForm.const';
 
 const MultilanguageForm: FC<{activeLanguage: Language}> = ({ activeLanguage }) => {
   const languages: Language[] = LANGUAGE_HEADER_MOCK_LANGUAGES;
@@ -64,7 +64,7 @@ const MultilanguageForm: FC<{activeLanguage: Language}> = ({ activeLanguage }) =
           }}
         </Formik>
       </div>
-  ), []);
+	), [])
 };
 
 export default MultilanguageForm;
