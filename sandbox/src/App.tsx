@@ -1,39 +1,40 @@
 import '@a-ui/core/dist/main.css';
 import { Container } from '@acpaas-ui/react-editorial-components';
-import { CheckboxList } from '@redactie/utils';
-import { Field, Form, Formik } from 'formik';
-import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { LanguageHeader, LanguageHeaderContext } from '@acpaas-ui/react-editorial-components';
+import { Language } from '@redactie/utils';
 
-import { routes } from './routes';
-
+import { MultilanguageForm } from './components';
+import {
+	LANGUAGE_HEADER_MOCK_LANGUAGES,
+	LANGUAGE_HEADER_MOCK_TOOLTIP,
+} from './components/MultilanguageForm/MultilanguageForm.mock';
 function App() {
+	const languages: Language[] = LANGUAGE_HEADER_MOCK_LANGUAGES;
+	const [activeLanguage, setActiveLanguage] = useState<Language | null>();
+
+	  // setup preselected language
+		useEffect(() => {
+			if (Array.isArray(languages)) {
+				setActiveLanguage(languages.find((l) => l.primary) || languages[0]);
+			}
+		}, [languages]);
+
+	if(!activeLanguage) {
+		return null;
+	}
+
 	return (
 		<Container>
-			{/* <AlertContainer /> */}
-			<Router>
-				{/* <QueryParamProvider ReactRouterRoute={Route}>{routes}</QueryParamProvider> */}
-				<Formik initialValues={{ languages: ['one'] }} onSubmit={console.log}>
-					{() => (
-						<Form>
-							<Field
-								as={CheckboxList}
-								name='languages'
-								options={[{
-									label: 'One',
-									value: 'one',
-									key: 'one'
-								}, {
-									label: 'Two',
-									value: 'two',
-									key: 'two'
-								}]}
-							/>
-							<input type="submit" />
-						</Form>
-					)}
-				</Formik>
-			</Router>
+			<LanguageHeader
+				className="u-margin"
+				languages={languages}
+				activeLanguage={activeLanguage}
+				tooltipText={LANGUAGE_HEADER_MOCK_TOOLTIP}
+				onChangeLanguage={(language: string) => setActiveLanguage({ key: language })}
+			>
+				<MultilanguageForm activeLanguage={activeLanguage}/>
+			</LanguageHeader>
 		</Container>
 	);
 }
