@@ -20,13 +20,17 @@ yup.addMethod<yup.ObjectSchema<any, any, any>>(
 					return validation
 						.validate(value[l.key])
 						.then(() => null)
-						.catch(({ message }: any) =>
-							this.createError({ path: `${this.path}.${l.key}`, message })
-						);
+						.catch(({ message }: any) => {
+							return this.createError({ path: `${this.path}.${l.key}`, message });
+						});
 				});
 
 				await Promise.allSettled(errors).then((e: any) => {
-					reject(new yup.ValidationError(e.map((i: any) => i.value)));
+					reject(
+						new yup.ValidationError(
+							e.filter((i: any) => i.value).map((i: any) => i.value)
+						)
+					);
 				});
 
 				resolve(true);

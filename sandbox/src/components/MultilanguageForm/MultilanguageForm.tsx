@@ -23,13 +23,7 @@ const MultilanguageForm: FC<{activeLanguage: any}> = ({ activeLanguage }) => {
 		if(newErrors !== formErrors) {
 			setErrors(newErrors);
 		}
-
-		console.log(formErrors);
-
-		console.log(newValue);
 	};
-
-	console.log(activeLanguage);
 
   return useMemo(() => (
       <div className="u-margin-top">
@@ -57,8 +51,8 @@ const MultilanguageForm: FC<{activeLanguage: any}> = ({ activeLanguage }) => {
                     <FormikMultilanguageField
                       asComponent={TextField}
                       label="Omschrijving"
-                      name="description"
-                      state={activeLanguage && pathOr(null, [activeLanguage.key], formErrors.description) && 'error'}
+                      name="url.description"
+                      state={activeLanguage && pathOr(null, [activeLanguage.key], formErrors.url?.description) && 'error'}
                     />
                   </div>
                 </div>
