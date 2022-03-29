@@ -3,7 +3,7 @@ import { LanguageHeaderContext } from '@acpaas-ui/react-editorial-components';
 import { TextField } from '@acpaas-ui/react-components';
 import { pathOr } from 'ramda';
 import { Form, Formik, Field, FormikErrors, FormikValues } from 'formik';
-import { FormikMultilanguageField, handleMultilanguageFormErrors } from '@redactie/utils';
+import { FormikMultilanguageField, FormikOnChangeHandler, handleMultilanguageFormErrors } from '@redactie/utils';
 
 import {
   INITIAL_VALUES_MOCK,
@@ -18,7 +18,7 @@ const MultilanguageForm: FC<{activeLanguage: any}> = ({ activeLanguage }) => {
   const onSave = (newValue: any) => {
     console.log(newValue);
   };
-  const onChange = (formErrors: FormikErrors<FormikValues>, newValue: any) => {
+  const onChange = (newValue: any, formErrors: FormikErrors<FormikValues>) => {
 		const newErrors = handleMultilanguageFormErrors(formErrors, newValue);
 		if(newErrors !== formErrors) {
 			setErrors(newErrors);
@@ -32,10 +32,13 @@ const MultilanguageForm: FC<{activeLanguage: any}> = ({ activeLanguage }) => {
           initialValues={INITIAL_VALUES_MOCK}
 					validationSchema={() => FORM_VALIDATION_SCHEMA(languages)}>
           {({ errors: formErrors, values: formValues, validateForm }) => {
-						onChange(formErrors, formValues);
-
             return (
               <Form noValidate>
+								<FormikOnChangeHandler
+									delay={5000}
+									onChange={console.log}
+									onError={onChange}
+								/>
                 <div className="row u-margin-bottom">
                   <div className="col-xs-12">
                     <Field
