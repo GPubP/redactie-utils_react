@@ -3,6 +3,41 @@ import * as Yup from 'yup';
 
 import { LanguageErrors } from './FormikMultilanguageField.types';
 
+const handleErrors = (
+	values: FormikValues,
+	errors: FormikErrors<FormikValues>,
+	existingErrors?: LanguageErrors
+): LanguageErrors => {
+	const newErrors: LanguageErrors = existingErrors || {};
+
+	Object.keys(values).forEach((i) => {
+		if (values[i].multilanguage) {
+			const fieldErrors = errors[i] || null;
+			//check for errors
+			if (fieldErrors) {
+				Object.keys(fieldErrors).forEach((j) => {
+					if (!newErrors[j]) {
+						newErrors[j] = [i];
+					} else if (!newErrors[j].includes(i)) {
+						newErrors[j].push(i);
+					}
+				});
+			}
+		} else if (typeof values[i] === 'object') {
+			return handleErrors(errors, values[i], newErrors);
+		}
+	});
+
+	return newErrors;
+};
+
+export const handleMultilanguageFormErrors = (
+	errors: FormikErrors<FormikValues>,
+	values: FormikValues
+): LanguageErrors => {
+	return handleErrors(values, errors);
+};
+
 export const addMultiLanguageValidatorToYup = (yup: typeof Yup): void => {
 	yup.addMethod(yup.mixed, 'validateMultiLanguage', function (languages, validation) {
 		return this.test('validateMultiLanguage', function (value):
@@ -32,28 +67,4 @@ export const addMultiLanguageValidatorToYup = (yup: typeof Yup): void => {
 			});
 		});
 	});
-};
-
-export const handleMultilanguageFormErrors = (
-	errors: FormikErrors<FormikValues>,
-	values: FormikValues
-): LanguageErrors => {
-	const newErrors: LanguageErrors = {};
-	Object.keys(values).forEach((i) => {
-		if (values[i].multilanguage) {
-			const fieldErrors = errors[i] || null;
-			//check for errors
-			if (fieldErrors) {
-				Object.keys(fieldErrors).forEach((j) => {
-					if (!newErrors[j]) {
-						newErrors[j] = [i];
-					} else if (!newErrors[j].includes(i)) {
-						newErrors[j].push(i);
-					}
-				});
-			}
-		}
-	});
-
-	return newErrors;
 };

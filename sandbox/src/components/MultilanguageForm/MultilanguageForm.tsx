@@ -3,7 +3,7 @@ import { LanguageHeaderContext } from '@acpaas-ui/react-editorial-components';
 import { TextField } from '@acpaas-ui/react-components';
 import { pathOr } from 'ramda';
 import { Form, Formik, Field, FormikErrors, FormikValues } from 'formik';
-import { FormikMultilanguageField, handleMultilanguageFormErrors, Language } from '@redactie/utils';
+import { FormikMultilanguageField, handleMultilanguageFormErrors } from '@redactie/utils';
 
 import {
   INITIAL_VALUES_MOCK,
@@ -53,6 +53,16 @@ const MultilanguageForm: FC<{activeLanguage: any}> = ({ activeLanguage }) => {
                       label="Omschrijving"
                       name="url.description"
                       state={activeLanguage && pathOr(null, [activeLanguage.key], formErrors.url?.description) && 'error'}
+                    />
+                  </div>
+                </div>
+								<div className="row u-margin-bottom">
+                  <div className="col-xs-12">
+                    <FormikMultilanguageField
+                      asComponent={TextField}
+                      label="Info"
+                      name="info"
+                      state={activeLanguage && pathOr(null, [activeLanguage.key], formErrors.info) && 'error'}
                     />
                   </div>
                 </div>
