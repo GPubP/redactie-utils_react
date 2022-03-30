@@ -8,12 +8,12 @@ export const LANGUAGE_HEADER_MOCK_LANGUAGES = [
 	{
 		key: 'fr',
 	},
-	/* {
+	{
 		key: 'de',
 	},
 	{
 		key: 'en',
-	}, */
+	},
 ];
 
 export const LANGUAGE_HEADER_MOCK_TOOLTIP = 'Er zijn opties voor meerdere talen in dit formulier. Selecteer een taal om specifieke instellingen te configureren.';
