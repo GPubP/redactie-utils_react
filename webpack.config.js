@@ -62,6 +62,7 @@ module.exports = () => {
 			classnames: 'classnames',
 			formik: 'formik',
 			react: 'react',
+			yup: 'yup',
 			'react-dom': 'react-dom',
 			'react-router-dom': 'react-router-dom',
 			'@acpaas-ui/react-components': '@acpaas-ui/react-components',

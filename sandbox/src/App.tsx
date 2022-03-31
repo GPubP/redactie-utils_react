@@ -10,8 +10,8 @@ import {
 	LANGUAGE_HEADER_MOCK_TOOLTIP,
 } from './components/MultilanguageForm/MultilanguageForm.mock';
 function App() {
-	const languages: Language[] = LANGUAGE_HEADER_MOCK_LANGUAGES;
-	const [activeLanguage, setActiveLanguage] = useState<Language | null>();
+	const languages: any = LANGUAGE_HEADER_MOCK_LANGUAGES;
+	const [activeLanguage, setActiveLanguage] = useState<any | null>();
 
 	  // setup preselected language
 		useEffect(() => {
