@@ -3,9 +3,14 @@ import { Field, useFormikContext } from 'formik';
 import { pathOr } from 'ramda';
 import React, { FC, useContext } from 'react';
 
+import { FieldWithError } from './FieldWithError';
 import { FormikMultilanguageFieldProps } from './FormikMultilanguageField.types';
 
-const FormikMultilanguageField: FC<FormikMultilanguageFieldProps> = ({ name, ...props }) => {
+const FormikMultilanguageField: FC<FormikMultilanguageFieldProps> = ({
+	name,
+	asComponent,
+	...props
+}) => {
 	const { activeLanguage } = useContext(LanguageHeaderContext);
 	const { values, setFieldValue } = useFormikContext();
 
@@ -33,12 +38,16 @@ const FormikMultilanguageField: FC<FormikMultilanguageFieldProps> = ({ name, ...
 	};
 
 	return (
-		<Field
-			as={MultilanguageField}
-			name={`${name}.${activeLanguage.key}`}
-			value={getFieldValue()}
-			{...props}
-		/>
+		<>
+			<Field
+				name={`${name}.${activeLanguage.key}`}
+				as={MultilanguageField}
+				asComponent={FieldWithError}
+				fieldWithErrorComponent={asComponent}
+				value={getFieldValue()}
+				{...props}
+			/>
+		</>
 	);
 };
 
