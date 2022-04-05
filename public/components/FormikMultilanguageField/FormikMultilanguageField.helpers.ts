@@ -10,7 +10,7 @@ const handleErrors = (
 	const newErrors: LanguageErrors = existingErrors || {};
 
 	Object.keys(values).forEach((i) => {
-		if (values[i].multilanguage) {
+		if (values[i].multiLanguage) {
 			const fieldErrors = errors[i] || null;
 			//check for errors
 			if (fieldErrors) {
