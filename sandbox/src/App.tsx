@@ -1,8 +1,7 @@
 import '@a-ui/core/dist/main.css';
 import { Container } from '@acpaas-ui/react-editorial-components';
 import React, { useState, useEffect } from 'react';
-import { LanguageHeader, LanguageHeaderContext } from '@acpaas-ui/react-editorial-components';
-import { Language } from '@redactie/utils';
+import { LanguageHeader } from '@acpaas-ui/react-editorial-components';
 
 import { MultilanguageForm } from './components';
 import {
