@@ -24,13 +24,13 @@ const FormikMultilanguageField: FC<FormikMultilanguageFieldProps> = ({
 		const value = pathOr(null, name.split('.'), values);
 
 		// if multilanguage, get value for active language
-		if (pathOr(false, ['multilanguage'], value)) {
+		if (pathOr(false, ['multiLanguage'], value)) {
 			return pathOr('', [activeLanguage.key], value);
 		}
 
 		// else, create multilanguage object and set empty value for active language
 		setFieldValue(name, {
-			multilanguage: true,
+			multiLanguage: true,
 			[activeLanguage.key]: value || '',
 		});
 

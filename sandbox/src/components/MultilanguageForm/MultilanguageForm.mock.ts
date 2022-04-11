@@ -22,10 +22,10 @@ export const INITIAL_VALUES_MOCK = {
 	title: '',
 	info: { nl: 'nederlands', fr: 'frans', multilanguage: true },
 	url: {
-		description: { nl: 'nederlands', fr: 'frans', multilanguage: true }
+		description: { nl: 'nederlands', fr: 'frans', multiLanguage: true }
 	},
 	slug: {
-		description: { nl: 'nederlands', fr: 'frans', multilanguage: true }
+		description: { nl: 'nederlands', fr: 'frans', multiLanguage: true }
 	}
 };
 // export const INITIAL_VALUES_MOCK = { title: '', description: 'test' };
