@@ -64,7 +64,7 @@ export class DynamicCompartmentsFacade<
 
 	public setValid(name: string, isValid: boolean): void {
 		this.store.update(
-			(name as unknown) as UpdateEntityPredicate<getEntityType<State>>,
+			name as unknown as UpdateEntityPredicate<getEntityType<State>>,
 			{ isValid } as Partial<getEntityType<State>>
 		);
 	}

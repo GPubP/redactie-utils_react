@@ -11,7 +11,6 @@ import { Field, Form, Formik } from 'formik';
 import React, { FC, useEffect } from 'react';
 import { RouteComponentProps } from 'react-router';
 import { Link } from 'react-router-dom';
-import { CONTENT_ITEM_MOCK } from './mockdata';
 
 const SandboxView: FC<RouteComponentProps> = ({ history }) => {
 	const [query, setQuery] = useAPIQueryParams({

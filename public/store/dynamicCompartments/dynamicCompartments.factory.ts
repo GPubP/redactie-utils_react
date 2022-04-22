@@ -35,29 +35,31 @@ const createDynamicCompartmentsStore = <
 	};
 };
 
-const createUseCompartments = <
-	State extends EntityState<DynamicCompartmentModel, string> = EntityState<
-		DynamicCompartmentModel,
-		string
-	>,
-	Facade extends DynamicCompartmentsFacade<State> = DynamicCompartmentsFacade<State>
->(
-	facade: Facade
-): UseCompartments<State> => () => {
-	const register = (
-		compartments: getEntityType<State>[] | getEntityType<State>,
-		options: DynamicCompartmentRegisterOptions
-	): void => {
-		facade.register(compartments, options);
+const createUseCompartments =
+	<
+		State extends EntityState<DynamicCompartmentModel, string> = EntityState<
+			DynamicCompartmentModel,
+			string
+		>,
+		Facade extends DynamicCompartmentsFacade<State> = DynamicCompartmentsFacade<State>
+	>(
+		facade: Facade
+	): UseCompartments<State> =>
+	() => {
+		const register = (
+			compartments: getEntityType<State>[] | getEntityType<State>,
+			options: DynamicCompartmentRegisterOptions
+		): void => {
+			facade.register(compartments, options);
+		};
+		const activate = (name: State['active']): void => facade.setActiveByNamOrSlug(name);
+		const setValid = (name: string, isValid: boolean): void => facade.setValid(name, isValid);
+
+		const compartments = useObservable(facade.all$, []);
+		const active = useObservable(facade.active$);
+
+		return [{ compartments, active }, register, activate, setValid];
 	};
-	const activate = (name: State['active']): void => facade.setActiveByNamOrSlug(name);
-	const setValid = (name: string, isValid: boolean): void => facade.setValid(name, isValid);
-
-	const compartments = useObservable(facade.all$, []);
-	const active = useObservable(facade.active$);
-
-	return [{ compartments, active }, register, activate, setValid];
-};
 
 const createDynamicCompartmentsHooks = <
 	State extends EntityState<DynamicCompartmentModel, string> = EntityState<
