@@ -15,7 +15,7 @@ const InfoTooltip: FC<InfoTooltipProps> = ({
 	const [isVisible, setVisibility] = useState(false);
 
 	useEffect(() => {
-		onVisibilityChange && onVisibilityChange(isVisible);
+		onVisibilityChange?.(isVisible);
 	}, [isVisible, onVisibilityChange]);
 
 	return (
@@ -23,8 +23,7 @@ const InfoTooltip: FC<InfoTooltipProps> = ({
 			<button
 				className="a-button a-button-transparent has-icon"
 				ref={tooltipRef}
-				onFocus={() => setVisibility(true)}
-				onBlur={() => setVisibility(false)}
+				onClick={() => setVisibility((prevIsVisible) => !prevIsVisible)}
 			>
 				<Icon name={icon}></Icon>
 			</button>
