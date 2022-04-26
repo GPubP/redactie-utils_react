@@ -3,6 +3,8 @@ import { Tooltip } from '@acpaas-ui/react-editorial-components';
 import classNames from 'classnames';
 import React, { FC, useEffect, useRef, useState } from 'react';
 
+import { useClickOutside } from '../../hooks';
+
 import { InfoTooltipProps } from './InfoTooltip.types';
 
 const InfoTooltip: FC<InfoTooltipProps> = ({
@@ -14,9 +16,15 @@ const InfoTooltip: FC<InfoTooltipProps> = ({
 	triggerClassName,
 	onVisibilityChange,
 }): any => {
-	const tooltipRef = useRef(null);
+	const triggerRef = useRef<HTMLButtonElement | null>(null);
+	const [tooltipRef, setTooltipRef] = useState<HTMLElement | null>(null);
 	const [isVisible, setVisibility] = useState(false);
 
+	useClickOutside(triggerRef.current as Element, () => setVisibility(false), [
+		tooltipRef as Element,
+	]);
+
+	// Trigger callback when visibility changes
 	useEffect(() => {
 		onVisibilityChange?.(isVisible);
 	}, [isVisible, onVisibilityChange]);
@@ -25,7 +33,7 @@ const InfoTooltip: FC<InfoTooltipProps> = ({
 		<>
 			<button
 				className={classNames(triggerClassName, 'a-button a-button-transparent has-icon')}
-				ref={tooltipRef}
+				ref={triggerRef}
 				onClick={() => setVisibility((prevIsVisible) => !prevIsVisible)}
 			>
 				<Icon name={icon}></Icon>
@@ -35,7 +43,8 @@ const InfoTooltip: FC<InfoTooltipProps> = ({
 				placement={placement}
 				isVisible={isVisible}
 				type={type}
-				targetRef={tooltipRef}
+				targetRef={triggerRef}
+				tooltipRef={setTooltipRef}
 			>
 				<div>
 					<Card style={{ border: 'none', padding: '0.5rem' }}>
