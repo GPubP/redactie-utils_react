@@ -2,6 +2,7 @@ import '@a-ui/core/dist/main.css';
 import { Container } from '@acpaas-ui/react-editorial-components';
 import React, { useState, useEffect } from 'react';
 import { LanguageHeader } from '@acpaas-ui/react-editorial-components';
+import { InfoTooltip } from '@redactie/utils';
 
 import { MultilanguageForm } from './components';
 import {
@@ -25,6 +26,9 @@ function App() {
 
 	return (
 		<Container>
+			<InfoTooltip icon="edit" placement="bottom" type="default">
+				<p>Hello tooltip</p>
+			</InfoTooltip>
 			<LanguageHeader
 				className="u-margin"
 				languages={languages}
