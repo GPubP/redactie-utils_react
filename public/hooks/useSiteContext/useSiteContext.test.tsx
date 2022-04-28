@@ -5,10 +5,12 @@ import { SiteContext } from '../../context';
 
 import useSiteContext from './useSiteContext';
 
-// eslint-disable-next-line react/display-name
-const RenderSiteContextWrapper = (siteId: string) => ({ children }: { children: any }) => {
-	return <SiteContext.Provider value={{ siteId }}>{children}</SiteContext.Provider>;
-};
+const RenderSiteContextWrapper =
+	(siteId: string) =>
+	// eslint-disable-next-line react/display-name
+	({ children }: { children: any }) => {
+		return <SiteContext.Provider value={{ siteId }}>{children}</SiteContext.Provider>;
+	};
 
 describe('useSiteContext', () => {
 	it('should return the siteContext', () => {
