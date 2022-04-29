@@ -15,18 +15,16 @@ jest.mock('react-router-dom', () => ({
 	}),
 }));
 
-// eslint-disable-next-line react/display-name
-const RenderRouterWrapper = (pathname: string, tenantId: string) => ({
-	children,
-}: {
-	children: any;
-}) => {
-	return (
-		<Router initialIndex={0} initialEntries={[{ pathname }]}>
-			<TenantContext.Provider value={{ tenantId }}>{children}</TenantContext.Provider>
-		</Router>
-	);
-};
+const RenderRouterWrapper =
+	(pathname: string, tenantId: string) =>
+	// eslint-disable-next-line react/display-name
+	({ children }: { children: any }) => {
+		return (
+			<Router initialIndex={0} initialEntries={[{ pathname }]}>
+				<TenantContext.Provider value={{ tenantId }}>{children}</TenantContext.Provider>
+			</Router>
+		);
+	};
 
 describe('useNavigate', () => {
 	it('should navigate correctly', () => {

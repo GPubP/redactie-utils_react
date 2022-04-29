@@ -16,3 +16,4 @@ export * from './useDetectValueChangesWorker';
 export * from './useQuery';
 export * from './useActiveRouteConfig';
 export * from './useOnNextRender';
+export * from './useClickOutside';

@@ -5,10 +5,12 @@ import { TenantContext } from '../../context';
 
 import useTenantContext from './useTenantContext';
 
-// eslint-disable-next-line react/display-name
-const RenderSiteContextWrapper = (tenantId: string) => ({ children }: { children: any }) => {
-	return <TenantContext.Provider value={{ tenantId }}>{children}</TenantContext.Provider>;
-};
+const RenderSiteContextWrapper =
+	(tenantId: string) =>
+	// eslint-disable-next-line react/display-name
+	({ children }: { children: any }) => {
+		return <TenantContext.Provider value={{ tenantId }}>{children}</TenantContext.Provider>;
+	};
 
 describe('useTenantContext', () => {
 	it('should return the siteContext', () => {

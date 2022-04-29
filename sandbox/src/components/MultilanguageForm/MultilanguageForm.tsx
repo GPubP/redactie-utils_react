@@ -3,7 +3,7 @@ import { LanguageHeaderContext } from '@acpaas-ui/react-editorial-components';
 import { TextField } from '@acpaas-ui/react-components';
 import { pathOr } from 'ramda';
 import { Form, Formik, Field, FormikErrors, FormikValues } from 'formik';
-import { FormikMultilanguageField, FormikOnChangeHandler, handleMultilanguageFormErrors } from '@redactie/utils';
+import { FormikMultilanguageField, FormikOnChangeHandler, handleMultilanguageFormErrors, LanguageErrors } from '@redactie/utils';
 
 import {
   INITIAL_VALUES_MOCK,
@@ -19,7 +19,15 @@ const MultilanguageForm: FC<{activeLanguage: any}> = ({ activeLanguage }) => {
     console.log(newValue);
   };
   const onChange = (newValue: any, formErrors: FormikErrors<FormikValues>) => {
-		const newErrors = handleMultilanguageFormErrors(formErrors, newValue);
+		const newErrors = handleMultilanguageFormErrors(formErrors, newValue, (errors: LanguageErrors) => {
+			return Object.keys(errors).reduce((acc, lang) => {
+				return {
+					...acc,
+					[lang]: errors[lang].filter(error => error.startsWith('url.'))
+				}
+			}, {});
+		});
+
 		if(newErrors !== formErrors) {
 			setErrors(newErrors);
 		}
@@ -59,6 +67,16 @@ const MultilanguageForm: FC<{activeLanguage: any}> = ({ activeLanguage }) => {
                     />
                   </div>
                 </div>
+                <div className="row u-margin-bottom">
+                  <div className="col-xs-12">
+                    <FormikMultilanguageField
+                      asComponent={TextField}
+                      label="Slug omschrijving"
+                      name="slug.description"
+                      state={activeLanguage && pathOr(null, [activeLanguage.key], formErrors.slug?.description) && 'error'}
+                    />
+                  </div>
+                </div>
 								<div className="row u-margin-bottom">
                   <div className="col-xs-12">
                     <FormikMultilanguageField
@@ -75,6 +93,7 @@ const MultilanguageForm: FC<{activeLanguage: any}> = ({ activeLanguage }) => {
           }}
         </Formik>
       </div>
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	), [activeLanguage, languages])
 };
 

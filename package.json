@@ -1,6 +1,6 @@
 {
   "name": "@redactie/utils",
-  "version": "2.4.1",
+  "version": "2.6.0",
   "description": "Redactie utils package",
   "main": "dist/redactie-utils.umd.js",
   "types": "dist/index.d.ts",
@@ -9,7 +9,7 @@
     "build": "webpack && npm run build:types",
     "build:w": "webpack -w && npm run build:types",
     "lint": "eslint . --ext .ts,.tsx",
-    "test": "jest ./public",
+    "test": "npx jest ./public",
     "prepack": "npm run build",
     "prepublishOnly": "npm run test && npm run build"
   },
@@ -34,7 +34,7 @@
   "license": "ISC",
   "devDependencies": {
     "@acpaas-ui/react-components": "5.0.9",
-    "@acpaas-ui/react-editorial-components": "^1.1.1",
+    "@acpaas-ui/react-editorial-components": "^1.4.1",
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.5",
     "@babel/preset-react": "^7.9.4",
