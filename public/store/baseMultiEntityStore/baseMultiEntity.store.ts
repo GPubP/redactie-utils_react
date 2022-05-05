@@ -32,7 +32,7 @@ export class BaseMultiEntityStore<
 			error: null,
 			isFetching: false,
 			...item,
-		} as EntityType);
+		} as unknown as EntityType);
 	}
 
 	public setItemValue(id: IDType, value: getEntityType<S>['value']): void {
@@ -56,6 +56,27 @@ export class BaseMultiEntityStore<
 		this.update(uuid, (state) => ({
 			...state,
 			isFetching: isFetching,
+		}));
+	}
+
+	public setItemIsRemoving(uuid: IDType, isRemoving = false): void {
+		this.update(uuid, (state) => ({
+			...state,
+			isRemoving: isRemoving,
+		}));
+	}
+
+	public setItemIsCreating(uuid: IDType, isCreating = false): void {
+		this.update(uuid, (state) => ({
+			...state,
+			isCreating: isCreating,
+		}));
+	}
+
+	public setItemIsUpdating(uuid: IDType, isUpdating = false): void {
+		this.update(uuid, (state) => ({
+			...state,
+			isUpdating: isUpdating,
 		}));
 	}
 
