@@ -12,8 +12,11 @@ export class BaseMultiEntityQuery<S extends BaseMultiEntityState<any, any>> exte
 		super(store as any, options);
 	}
 
-	protected convertModelToLoadingState(item: getEntityType<S> | undefined): LoadingState {
-		if (item?.isFetching) {
+	protected convertModelToLoadingState(
+		item: getEntityType<S> | undefined,
+		property: keyof getEntityType<S>
+	): LoadingState {
+		if (item && item[property]) {
 			return LoadingState.Loading;
 		}
 
@@ -34,6 +37,12 @@ export class BaseMultiEntityQuery<S extends BaseMultiEntityState<any, any>> exte
 	public getItemError = (uuid: getIDType<S>): any => this.getItem(uuid)?.error;
 	public getItemIsFetching = (uuid: getIDType<S>): boolean | undefined =>
 		this.getItem(uuid)?.isFetching;
+	public getItemIsCreating = (uuid: getIDType<S>): boolean | undefined =>
+		this.getItem(uuid)?.isCreating;
+	public getItemIsUpdating = (uuid: getIDType<S>): boolean | undefined =>
+		this.getItem(uuid)?.isUpdating;
+	public getItemIsRemoving = (uuid: getIDType<S>): boolean | undefined =>
+		this.getItem(uuid)?.isRemoving;
 
 	public selectItem = (uuid: getIDType<S>): Observable<getEntityType<S> | undefined> =>
 		this.selectEntity(uuid).pipe(distinctUntilChanged<getEntityType<S> | undefined>());
@@ -48,7 +57,21 @@ export class BaseMultiEntityQuery<S extends BaseMultiEntityState<any, any>> exte
 			map((item) => item?.error)
 		);
 	public selectItemIsFetching = (uuid: getIDType<S>): Observable<LoadingState> =>
-		this.selectEntity(uuid).pipe(map(this.convertModelToLoadingState));
+		this.selectEntity(uuid).pipe(
+			map((item) => this.convertModelToLoadingState(item, 'isFetching'))
+		);
+	public selectItemIsCreating = (uuid: getIDType<S>): Observable<LoadingState> =>
+		this.selectEntity(uuid).pipe(
+			map((item) => this.convertModelToLoadingState(item, 'isCreating'))
+		);
+	public selectItemIsUpdating = (uuid: getIDType<S>): Observable<LoadingState> =>
+		this.selectEntity(uuid).pipe(
+			map((item) => this.convertModelToLoadingState(item, 'isUpdating'))
+		);
+	public selectItemIsRemoving = (uuid: getIDType<S>): Observable<LoadingState> =>
+		this.selectEntity(uuid).pipe(
+			map((item) => this.convertModelToLoadingState(item, 'isRemoving'))
+		);
 
 	public isCreating$ = this.select((state) => state.isCreating).pipe(
 		map(this.convertBoolToLoadingState)
