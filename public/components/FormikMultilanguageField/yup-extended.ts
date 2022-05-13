@@ -1,4 +1,6 @@
 import * as yup from 'yup';
+import { AnyObject, AssertsShape, ObjectShape, TypeOfShape } from 'yup/lib/object';
+import { Maybe, Optionals } from 'yup/lib/types';
 
 import { Language } from './FormikMultilanguageField.types';
 
@@ -40,7 +42,12 @@ yup.addMethod<yup.ObjectSchema<any, any, any>>(
 );
 
 declare module 'yup' {
-	interface ObjectSchema<TShape, TContext, TIn, TOut> {
+	interface ObjectSchema<
+		TShape extends ObjectShape,
+		TContext extends AnyObject = AnyObject,
+		TIn extends Maybe<TypeOfShape<TShape>> = TypeOfShape<TShape>,
+		TOut extends Maybe<AssertsShape<TShape>> = AssertsShape<TShape> | Optionals<TIn>
+	> extends yup.BaseSchema<TIn, TContext, TOut> {
 		validateMultiLanguage(languages: Language[], schema: yup.AnySchema): any;
 	}
 }
