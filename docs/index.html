@@ -1,0 +1,1148 @@
+<!DOCTYPE html><html class="default"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>@redactie/utils</title><meta name="description" content="Documentation for @redactie/utils"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><script>document.body.classList.add(localStorage.getItem("tsd-theme") || "os")</script><header><div class="tsd-page-toolbar"><div class="container"><div class="table-wrap"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption">Search</label><input type="text" id="tsd-search-field"/></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">@redactie/utils</a></div><div class="table-cell" id="tsd-widgets"><div id="tsd-filter"><a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a><div class="tsd-filter-group"><div class="tsd-select" id="tsd-filter-visibility"><span class="tsd-select-label">All</span><ul class="tsd-select-list"><li data-value="public">Public</li><li data-value="protected">Public/Protected</li><li data-value="private" class="selected">All</li></ul></div> <input type="checkbox" id="tsd-filter-inherited" checked/><label class="tsd-widget" for="tsd-filter-inherited">Inherited</label><input type="checkbox" id="tsd-filter-externals" checked/><label class="tsd-widget" for="tsd-filter-externals">Externals</label></div></div><a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a></div></div></div></div><div class="tsd-page-title"><div class="container"><h1>@redactie/utils </h1></div></div></header><div class="container container-main"><div class="row"><div class="col-8 col-content"><div class="tsd-panel tsd-typography">
+<a href="#redactie-utils" id="redactie-utils" style="color: inherit; text-decoration: none;">
+  <h1>Redactie Utils</h1>
+</a>
+<p>Set of utilities to use in Redactie App and Modules.</p>
+
+<a href="#table-of-contents" id="table-of-contents" style="color: inherit; text-decoration: none;">
+  <h2>Table of Contents</h2>
+</a>
+<ul>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#usage">Usage</a></li>
+<li><a href="#features">Utilities</a><ul>
+<li><a href="#Components">Components</a><ul>
+<li><a href="#RenderChildRoutes">RenderChildRoutes</a></li>
+<li><a href="#DataLoader">DataLoader</a></li>
+<li><a href="#DeletePrompt">DeletePrompt</a></li>
+<li><a href="#ErrorMessage">ErrorMessage</a></li>
+<li><a href="#FormikOnChangeHandler">FormikOnChangeHandler</a></li>
+<li><a href="#LeavePromt">LeavePrompt</a></li>
+</ul>
+</li>
+<li><a href="#hooks">Hooks</a><ul>
+<li><a href="#useapiqueryparams">useAPIQueryParams</a></li>
+<li><a href="#usNavigate">useNavigate</a></li>
+<li><a href="#useCreateHandlerSetter">useCreateHandlerSetter</a></li>
+<li><a href="#useTenantContext">useTenantContext</a></li>
+<li><a href="#useSiteContext">useSiteContext</a></li>
+<li><a href="#useRoutes">useRoutes</a></li>
+<li><a href="#useDidMount">useDidMount</a></li>
+<li><a href="#useWillUnmount">useWillUnmount</a></li>
+<li><a href="#usePrevious">usePrevious</a></li>
+<li><a href="#usePersist">usePersist</a></li>
+<li><a href="#useObservable">useObservable</a></li>
+<li><a href="#useWorker">useWorker</a></li>
+<li><a href="#usePromiseWorker">usePromiseWorker</a></li>
+<li><a href="#useDetectValueChangesWorker">useDetectValueChangesWorker</a></li>
+<li><a href="#useActiveRouteConfig">useActiveRouteConfig</a></li>
+<li><a href="#useQuery">useQuery</a></li>
+</ul>
+</li>
+<li><a href="#Context">Context</a><ul>
+<li><a href="#TenantContext">TenantContext</a></li>
+<li><a href="#SiteContext">SiteContext</a></li>
+</ul>
+</li>
+<li><a href="#services">Services</a><ul>
+<li><a href="#alertservice">alertService</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#features">Sandbox</a></li>
+</ul>
+
+<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+  <h2>Installation</h2>
+</a>
+<p>Clone this repo to your local machine</p>
+<p>Now install all dependencies using npm</p>
+<pre><code class="language-shell"><span class="hl-0">$ npm install</span>
+</code></pre>
+<p>Run tests to see if everything is working correctly</p>
+<pre><code class="language-shell"><span class="hl-0">$ npm run </span><span class="hl-1">test</span>
+</code></pre>
+
+<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+  <h2>Usage</h2>
+</a>
+<p>Install the package using npm</p>
+<pre><code class="language-shell"><span class="hl-0">$ npm install @redactie/utils</span>
+</code></pre>
+<pre><code class="language-js"><span class="hl-2">import</span><span class="hl-0"> { </span><span class="hl-3">useAPIQueryParams</span><span class="hl-0"> } </span><span class="hl-2">from</span><span class="hl-0"> </span><span class="hl-4">&#39;@redactie/utils&#39;</span><span class="hl-0">;</span>
+</code></pre>
+
+<a href="#utilities" id="utilities" style="color: inherit; text-decoration: none;">
+  <h2>Utilities</h2>
+</a>
+
+<a href="#components" id="components" style="color: inherit; text-decoration: none;">
+  <h3>Components</h3>
+</a>
+<p>Commonly used components</p>
+</br>
+
+
+<a href="#renderchildroutes" id="renderchildroutes" style="color: inherit; text-decoration: none;">
+  <h4>RenderChildRoutes</h4>
+</a>
+<hr></br>
+
+<p>This component is used to render child routes.
+It wraps the <code>Core.routes.render</code> function inside a component</p>
+<p><strong>Usage</strong></p>
+<pre><code class="language-tsx"><span class="hl-2">import</span><span class="hl-0"> { </span><span class="hl-3">RenderChildRoutes</span><span class="hl-0"> } </span><span class="hl-2">from</span><span class="hl-0"> </span><span class="hl-4">&#39;@redactie/utils&#39;</span><span class="hl-0">;</span><br/><span class="hl-2">import</span><span class="hl-0"> </span><span class="hl-3">React</span><span class="hl-0"> </span><span class="hl-2">from</span><span class="hl-0"> </span><span class="hl-4">&#39;react&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-1">Root</span><span class="hl-0"> = () </span><span class="hl-5">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">    </span><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-6">routes</span><span class="hl-0"> = [</span><br/><span class="hl-0">        </span><span class="hl-3">component</span><span class="hl-0">: () </span><span class="hl-5">=&gt;</span><span class="hl-0"> </span><span class="hl-7">&lt;</span><span class="hl-8">div</span><span class="hl-7">&gt;</span><span class="hl-0">route component</span><span class="hl-7">&lt;/</span><span class="hl-8">div</span><span class="hl-7">&gt;</span><span class="hl-0">,</span><br/><span class="hl-0">        </span><span class="hl-3">path</span><span class="hl-0">: </span><span class="hl-4">&#39;path&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">        </span><span class="hl-3">guardOptions</span><span class="hl-0">: {}</span><br/><span class="hl-0">    ];</span><br/><span class="hl-0">    </span><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-6">guardsMeta</span><span class="hl-0"> = {</span><br/><span class="hl-0">        </span><span class="hl-3">tenantId:</span><span class="hl-0"> </span><span class="hl-4">&#39;id&#39;</span><br/><span class="hl-0">    };</span><br/><span class="hl-0">    </span><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-6">extraOptions</span><span class="hl-0"> = {</span><br/><span class="hl-0">        </span><span class="hl-3">data:</span><span class="hl-0"> </span><span class="hl-4">&#39;some data&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">    };</span><br/><span class="hl-0">    </span><span class="hl-2">return</span><span class="hl-0"> (</span><br/><span class="hl-0">        </span><span class="hl-7">&lt;</span><span class="hl-9">Router</span><span class="hl-7">&gt;</span><br/><span class="hl-0">            </span><span class="hl-7">&lt;</span><span class="hl-9">RenderChildRoutes</span><span class="hl-0"> </span><span class="hl-10">routes</span><span class="hl-0">=</span><span class="hl-5">{</span><span class="hl-3">routes</span><span class="hl-5">}</span><span class="hl-0"> </span><span class="hl-10">guardsMeta</span><span class="hl-0">=</span><span class="hl-5">{</span><span class="hl-3">guardsMeta</span><span class="hl-5">}</span><span class="hl-0"> </span><span class="hl-10">extraOptions</span><span class="hl-0">=</span><span class="hl-5">{</span><span class="hl-3">extraOptions</span><span class="hl-5">}</span><span class="hl-7">&gt;</span><br/><span class="hl-0">        </span><span class="hl-7">&lt;</span><span class="hl-9">Router</span><span class="hl-7">&gt;</span><br/><span class="hl-0">    )</span><br/><span class="hl-0">}</span>
+</code></pre>
+<p><strong>Props</strong>
+By default the config is extended with the following values:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default value</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>routes</td>
+<td><code>ModuleRouteConfig[] </code></td>
+<td>undefined</td>
+<td>routes to render</td>
+</tr>
+<tr>
+<td>guardsMeta</td>
+<td><code>Record&lt;string, any&gt;</code></td>
+<td>undefined</td>
+<td>meta data that will be available for all guards</td>
+</tr>
+<tr>
+<td>extraOptions</td>
+<td><code>Record&lt;string, any&gt;</code></td>
+<td>undefined</td>
+<td>extra options that will be available for each child route</td>
+</tr>
+</tbody></table>
+</br>
+
+
+<a href="#dataloader" id="dataloader" style="color: inherit; text-decoration: none;">
+  <h4>DataLoader</h4>
+</a>
+<hr></br>
+
+<p>Show component when data is loaded</p>
+<p><strong>Usage</strong></p>
+<pre><code class="language-tsx"><span class="hl-0">    </span><span class="hl-2">import</span><span class="hl-0"> </span><span class="hl-3">React</span><span class="hl-0">, { </span><span class="hl-3">useEffect</span><span class="hl-0">, </span><span class="hl-3">useState</span><span class="hl-0"> } </span><span class="hl-2">from</span><span class="hl-0"> </span><span class="hl-4">&#39;react&#39;</span><span class="hl-0">;</span><br/><span class="hl-0">    </span><span class="hl-2">import</span><span class="hl-0"> { </span><span class="hl-3">DataLoader</span><span class="hl-0">, </span><span class="hl-3">LoadingState</span><span class="hl-0"> } </span><span class="hl-2">from</span><span class="hl-0"> </span><span class="hl-4">&#39;@redactie/utils&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-0">    </span><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-1">DataLoaderComponent</span><span class="hl-0"> = () </span><span class="hl-5">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">        </span><span class="hl-5">const</span><span class="hl-0"> [</span><span class="hl-6">loading</span><span class="hl-0">, </span><span class="hl-6">setLoading</span><span class="hl-0">] = </span><span class="hl-1">useState</span><span class="hl-0">(</span><span class="hl-3">LoadingState</span><span class="hl-0">.</span><span class="hl-3">Loading</span><span class="hl-0">);</span><br/><br/><span class="hl-0">        </span><span class="hl-1">useEffect</span><span class="hl-0">(() </span><span class="hl-5">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">            </span><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-6">timer</span><span class="hl-0"> = </span><span class="hl-1">setTimeout</span><span class="hl-0">(() </span><span class="hl-5">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">                </span><span class="hl-1">setLoadingState</span><span class="hl-0">(</span><span class="hl-3">LoadingState</span><span class="hl-0">.</span><span class="hl-3">Loaded</span><span class="hl-0">);</span><br/><span class="hl-0">            }, </span><span class="hl-11">200</span><span class="hl-0">)</span><br/><br/><span class="hl-0">            </span><span class="hl-2">return</span><span class="hl-0"> () </span><span class="hl-5">=&gt;</span><span class="hl-0"> </span><span class="hl-1">clearTimeout</span><span class="hl-0">(</span><span class="hl-3">timer</span><span class="hl-0">);</span><br/><span class="hl-0">        }, [])</span><br/><br/><span class="hl-0">        </span><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-6">render</span><span class="hl-0"> = () = {</span><br/><span class="hl-0">            return &lt;p&gt;render component when data is loaded&lt;/p&gt;</span><br/><span class="hl-0">        };</span><br/><br/><span class="hl-0">        </span><span class="hl-2">return</span><span class="hl-0"> </span><span class="hl-7">&lt;</span><span class="hl-9">DataLoader</span><span class="hl-0"> </span><span class="hl-10">loadingState</span><span class="hl-0">=</span><span class="hl-5">{</span><span class="hl-3">loading</span><span class="hl-5">}</span><span class="hl-0"> </span><span class="hl-10">render</span><span class="hl-0">=</span><span class="hl-5">{</span><span class="hl-3">render</span><span class="hl-5">}</span><span class="hl-0"> </span><span class="hl-7">/&gt;</span><span class="hl-0">;</span><br/><span class="hl-0">    }</span><br/>
+</code></pre>
+<p><strong>Props</strong>
+By default the config is extended with the following values:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default value</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>loadingState</td>
+<td><code>LoadingState </code></td>
+<td>undefined</td>
+<td>the loading state</td>
+</tr>
+<tr>
+<td>render</td>
+<td>`() =&gt; ReactElement</td>
+<td>null`</td>
+<td>undefined</td>
+</tr>
+<tr>
+<td>errorMessage</td>
+<td><code>string</code></td>
+<td>&#39;Er ging iets mis tijdens het ophalen van de data&#39;</td>
+<td>Message that is shown when the loading state is set to Error</td>
+</tr>
+<tr>
+<td>notFoundMessage</td>
+<td><code>string</code></td>
+<td>&#39;Geen data gevonden&#39;</td>
+<td>Message that wil be shown when the render component return null</td>
+</tr>
+</tbody></table>
+</br>
+
+
+<a href="#deleteprompt" id="deleteprompt" style="color: inherit; text-decoration: none;">
+  <h4>DeletePrompt</h4>
+</a>
+<hr></br>
+
+<p>A prompt that can be shown when deleting items</p>
+<p><strong>Usage</strong></p>
+<pre><code class="language-tsx"><span class="hl-2">import</span><span class="hl-0"> { </span><span class="hl-3">DeletePrompt</span><span class="hl-0"> } </span><span class="hl-2">from</span><span class="hl-0"> </span><span class="hl-4">&#39;@redactie/utils&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-1">ViewComponent</span><span class="hl-0"> = ({</span><br/><span class="hl-0">    </span><span class="hl-3">showModal</span><span class="hl-0"> = </span><span class="hl-5">true</span><span class="hl-0">,</span><br/><span class="hl-0">    </span><span class="hl-1">onCancel</span><span class="hl-0"> = () </span><span class="hl-5">=&gt;</span><span class="hl-0"> </span><span class="hl-5">null</span><span class="hl-0">,</span><br/><span class="hl-0">    </span><span class="hl-1">onConfirm</span><span class="hl-0"> = () </span><span class="hl-5">=&gt;</span><span class="hl-0"> </span><span class="hl-5">null</span><span class="hl-0">,</span><br/><span class="hl-0">}) </span><span class="hl-5">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">    </span><span class="hl-2">return</span><span class="hl-0"> (</span><br/><span class="hl-0">        </span><span class="hl-7">&lt;&gt;</span><br/><span class="hl-0">            </span><span class="hl-7">&lt;</span><span class="hl-9">DeletePrompt</span><br/><span class="hl-0">                </span><span class="hl-10">showModal</span><span class="hl-0">=</span><span class="hl-5">{</span><span class="hl-3">showModal</span><span class="hl-5">}</span><br/><span class="hl-0">                </span><span class="hl-10">onConfirm</span><span class="hl-0">=</span><span class="hl-5">{</span><span class="hl-3">onConfirm</span><span class="hl-5">}</span><br/><span class="hl-0">                </span><span class="hl-10">onCancel</span><span class="hl-0">=</span><span class="hl-5">{</span><span class="hl-3">onCancel</span><span class="hl-5">}</span><br/><span class="hl-0">            </span><span class="hl-7">/&gt;</span><br/><span class="hl-0">        </span><span class="hl-7">&lt;/&gt;</span><br/><span class="hl-0">    )</span><br/><span class="hl-0">}</span>
+</code></pre>
+<p><strong>Props</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default value</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>body</td>
+<td><code>ReactNode</code></td>
+<td>DELETE_PROMPT_DEFAULT_PROPS</td>
+<td>body modal</td>
+</tr>
+<tr>
+<td>cancelText</td>
+<td><code>string</code></td>
+<td>DELETE_PROMPT_DEFAULT_PROPS</td>
+<td>cancel button text</td>
+</tr>
+<tr>
+<td>confirmText</td>
+<td><code>string</code></td>
+<td>DELETE_PROMPT_DEFAULT_PROPS</td>
+<td>confirm button text</td>
+</tr>
+<tr>
+<td>title</td>
+<td><code>string</code></td>
+<td>DELETE_PROMPT_DEFAULT_PROPS</td>
+<td>title modal</td>
+</tr>
+<tr>
+<td>showModal</td>
+<td><code>boolean</code></td>
+<td>true</td>
+<td>title modal</td>
+</tr>
+<tr>
+<td>onCancel</td>
+<td><code>() =&gt; void</code></td>
+<td>undefined</td>
+<td>onCancel callback</td>
+</tr>
+<tr>
+<td>onConfirm</td>
+<td><code>() =&gt; void</code></td>
+<td>undefined</td>
+<td>onConfirm callback</td>
+</tr>
+</tbody></table>
+<br>
+
+
+<a href="#errormessage" id="errormessage" style="color: inherit; text-decoration: none;">
+  <h4>ErrorMessage</h4>
+</a>
+<hr></br>
+
+<p>A custom formik ErrorMessage</p>
+<p><strong>Usage</strong></p>
+<pre><code class="language-tsx"><span class="hl-2">import</span><span class="hl-0"> { </span><span class="hl-3">ErrorMessage</span><span class="hl-0"> } </span><span class="hl-2">from</span><span class="hl-0"> </span><span class="hl-4">&#39;@redactie/utils&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-1">renderErrorMessage</span><span class="hl-0"> = () </span><span class="hl-5">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">    </span><span class="hl-5">function</span><span class="hl-0"> </span><span class="hl-1">validateName</span><span class="hl-0">(</span><span class="hl-3">value</span><span class="hl-0">: </span><span class="hl-9">string</span><span class="hl-0">): </span><span class="hl-9">string</span><span class="hl-0"> | </span><span class="hl-9">undefined</span><span class="hl-0"> {</span><br/><span class="hl-0">        </span><span class="hl-5">let</span><span class="hl-0"> </span><span class="hl-3">error</span><span class="hl-0">;</span><br/><br/><span class="hl-0">        </span><span class="hl-2">if</span><span class="hl-0"> (</span><span class="hl-3">value</span><span class="hl-0"> === </span><span class="hl-4">&#39;admin&#39;</span><span class="hl-0">) {</span><br/><span class="hl-0">            </span><span class="hl-3">error</span><span class="hl-0"> = </span><span class="hl-4">&#39;Nice try!&#39;</span><span class="hl-0">;</span><br/><span class="hl-0">        }</span><br/><br/><span class="hl-0">        </span><span class="hl-2">return</span><span class="hl-0"> </span><span class="hl-3">error</span><span class="hl-0">;</span><br/><span class="hl-0">    }</span><br/><br/><span class="hl-0">    </span><span class="hl-2">return</span><span class="hl-0"> (</span><br/><span class="hl-0">        </span><span class="hl-7">&lt;</span><span class="hl-9">Formik</span><br/><span class="hl-0">            </span><span class="hl-10">initialValues</span><span class="hl-0">=</span><span class="hl-5">{</span><span class="hl-12">{</span><br/><span class="hl-12">                </span><span class="hl-3">name:</span><span class="hl-12"> </span><span class="hl-4">&#39;&#39;</span><span class="hl-12">,</span><br/><span class="hl-12">            }</span><span class="hl-5">}</span><br/><span class="hl-0">            </span><span class="hl-10">onSubmit</span><span class="hl-0">=</span><span class="hl-5">{</span><span class="hl-12">() </span><span class="hl-5">=&gt;</span><span class="hl-12"> {</span><br/><span class="hl-12">                </span><span class="hl-13">//</span><br/><span class="hl-12">            }</span><span class="hl-5">}</span><br/><span class="hl-0">        </span><span class="hl-7">&gt;</span><br/><span class="hl-0">            </span><span class="hl-5">{</span><span class="hl-12">() </span><span class="hl-5">=&gt;</span><span class="hl-12"> (</span><br/><span class="hl-12">                </span><span class="hl-7">&lt;</span><span class="hl-9">Form</span><span class="hl-7">&gt;</span><br/><span class="hl-12">                    </span><span class="hl-7">&lt;</span><span class="hl-9">Field</span><span class="hl-12"> </span><span class="hl-10">name</span><span class="hl-0">=</span><span class="hl-4">&quot;name&quot;</span><span class="hl-12"> </span><span class="hl-10">validate</span><span class="hl-0">=</span><span class="hl-5">{</span><span class="hl-3">validateName</span><span class="hl-5">}</span><span class="hl-12"> </span><span class="hl-7">/&gt;</span><br/><span class="hl-12">                    </span><span class="hl-7">&lt;</span><span class="hl-9">ErrorMessage</span><span class="hl-12"> </span><span class="hl-10">className</span><span class="hl-0">=</span><span class="hl-4">&quot;custom-class&quot;</span><span class="hl-12"> </span><span class="hl-10">name</span><span class="hl-0">=</span><span class="hl-4">&quot;name&quot;</span><span class="hl-12"> </span><span class="hl-7">/&gt;</span><br/><span class="hl-12">                </span><span class="hl-7">&lt;/</span><span class="hl-9">Form</span><span class="hl-7">&gt;</span><br/><span class="hl-12">            )</span><span class="hl-5">}</span><br/><span class="hl-0">        </span><span class="hl-7">&lt;/</span><span class="hl-9">Formik</span><span class="hl-7">&gt;</span><br/><span class="hl-0">    );</span><br/><span class="hl-0">};</span><br/>
+</code></pre>
+<p><strong>Props</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default value</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>component</td>
+<td><code>() =&gt; ReactElement</code></td>
+<td>Div</td>
+<td>component to render</td>
+</tr>
+<tr>
+<td>className</td>
+<td><code>string</code></td>
+<td>&#39;&#39;</td>
+<td>className</td>
+</tr>
+</tbody></table>
+</br>
+
+
+<a href="#formikonchangehandler" id="formikonchangehandler" style="color: inherit; text-decoration: none;">
+  <h4>FormikOnChangeHandler</h4>
+</a>
+<hr></br>
+
+<p>A custom formik on change handler</p>
+<p><strong>Usage</strong></p>
+<pre><code class="language-tsx"><span class="hl-2">import</span><span class="hl-0"> { </span><span class="hl-3">FormikOnChangeHandler</span><span class="hl-0"> } </span><span class="hl-2">from</span><span class="hl-0"> </span><span class="hl-4">&#39;@redactie/utils&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-1">renderFormikForm</span><span class="hl-0"> = ({</span><br/><span class="hl-0">    </span><span class="hl-1">onChangeHanlder</span><span class="hl-3">:</span><span class="hl-0"> () </span><span class="hl-5">=&gt;</span><span class="hl-0"> </span><span class="hl-5">null</span><br/><span class="hl-0">}) </span><span class="hl-5">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">    </span><span class="hl-2">return</span><span class="hl-0"> (</span><br/><span class="hl-0">        </span><span class="hl-7">&lt;</span><span class="hl-9">Formik</span><br/><span class="hl-0">            </span><span class="hl-10">initialValues</span><span class="hl-0">=</span><span class="hl-5">{</span><span class="hl-12">{</span><br/><span class="hl-12">                </span><span class="hl-3">name:</span><span class="hl-12"> </span><span class="hl-4">&#39;&#39;</span><span class="hl-12">,</span><br/><span class="hl-12">            }</span><span class="hl-5">}</span><br/><span class="hl-0">            </span><span class="hl-10">onSubmit</span><span class="hl-0">=</span><span class="hl-5">{</span><span class="hl-12">() </span><span class="hl-5">=&gt;</span><span class="hl-12"> {</span><br/><span class="hl-12">                </span><span class="hl-13">//</span><br/><span class="hl-12">            }</span><span class="hl-5">}</span><br/><span class="hl-0">        </span><span class="hl-7">&gt;</span><br/><span class="hl-0">            </span><span class="hl-5">{</span><span class="hl-12">() </span><span class="hl-5">=&gt;</span><span class="hl-12"> (</span><br/><span class="hl-12">                </span><span class="hl-7">&lt;</span><span class="hl-9">Form</span><span class="hl-7">&gt;</span><br/><span class="hl-12">                    </span><span class="hl-7">&lt;</span><span class="hl-9">FormikOnChangeHandler</span><br/><span class="hl-12">                        </span><span class="hl-10">delay</span><span class="hl-0">=</span><span class="hl-5">{</span><span class="hl-11">300</span><span class="hl-5">}</span><br/><span class="hl-12">                        </span><span class="hl-10">onChange</span><span class="hl-0">=</span><span class="hl-5">{</span><span class="hl-12">(</span><span class="hl-3">values</span><span class="hl-12">) </span><span class="hl-5">=&gt;</span><span class="hl-12"> </span><span class="hl-1">onChangeHanlder</span><span class="hl-12">(</span><span class="hl-3">values</span><span class="hl-12">)</span><span class="hl-5">}</span><br/><span class="hl-12">                    </span><span class="hl-7">/&gt;</span><br/><span class="hl-12">                    </span><span class="hl-7">&lt;</span><span class="hl-9">Field</span><span class="hl-12"> </span><span class="hl-10">name</span><span class="hl-0">=</span><span class="hl-4">&quot;name&quot;</span><span class="hl-12"> </span><span class="hl-7">/&gt;</span><br/><span class="hl-12">                </span><span class="hl-7">&lt;/</span><span class="hl-9">Form</span><span class="hl-7">&gt;</span><br/><span class="hl-12">            )</span><span class="hl-5">}</span><br/><span class="hl-0">        </span><span class="hl-7">&lt;/</span><span class="hl-9">Formik</span><span class="hl-7">&gt;</span><br/><span class="hl-0">    );</span><br/><span class="hl-0">};</span><br/>
+</code></pre>
+<p><strong>Props</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default value</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>delay</td>
+<td><code>number</code></td>
+<td>300</td>
+<td>delay</td>
+</tr>
+<tr>
+<td>onChange</td>
+<td><code>(values: FormikValues) =&gt; void</code></td>
+<td>&#39;() =&gt; null&#39;</td>
+<td>onChange callback function</td>
+</tr>
+</tbody></table>
+</br>
+
+
+<a href="#leavepromt" id="leavepromt" style="color: inherit; text-decoration: none;">
+  <h4>LeavePromt</h4>
+</a>
+<hr></br>
+
+<p>A prompt that can be shown when navigating through the app</p>
+<p><strong>Usage</strong></p>
+<pre><code class="language-tsx"><span class="hl-2">import</span><span class="hl-0"> { </span><span class="hl-3">LeavePrompt</span><span class="hl-0"> } </span><span class="hl-2">from</span><span class="hl-0"> </span><span class="hl-4">&#39;@redactie/utils&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-1">ViewComponent</span><span class="hl-0"> = ({</span><br/><span class="hl-0">    </span><span class="hl-1">onFieldSubmit</span><span class="hl-0"> = () </span><span class="hl-5">=&gt;</span><span class="hl-0"> </span><span class="hl-5">null</span><span class="hl-0">,</span><br/><span class="hl-0">}) </span><span class="hl-5">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">    </span><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-6">showPromptOnLeave</span><span class="hl-0"> = </span><span class="hl-5">true</span><span class="hl-0">;</span><br/><span class="hl-0">    </span><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-1">shouldBlockNavigationOnConfirm</span><span class="hl-0"> = () </span><span class="hl-5">=&gt;</span><span class="hl-0"> </span><span class="hl-5">true</span><span class="hl-0">;</span><br/><span class="hl-0">    </span><span class="hl-2">return</span><span class="hl-0"> (</span><br/><span class="hl-0">        </span><span class="hl-7">&lt;&gt;</span><br/><span class="hl-0">            </span><span class="hl-7">&lt;</span><span class="hl-9">LeavePrompt</span><br/><span class="hl-0">                    </span><span class="hl-10">shouldBlockNavigationOnConfirm</span><span class="hl-0">=</span><span class="hl-5">{</span><span class="hl-3">shouldBlockNavigationOnConfirm</span><span class="hl-5">}</span><br/><span class="hl-0">                    </span><span class="hl-10">when</span><span class="hl-0">=</span><span class="hl-5">{</span><span class="hl-3">showPromptOnLeave</span><span class="hl-12"> </span><span class="hl-5">}</span><br/><span class="hl-0">                    </span><span class="hl-10">onConfirm</span><span class="hl-0">=</span><span class="hl-5">{</span><span class="hl-3">onFieldSubmit</span><span class="hl-5">}</span><br/><span class="hl-0">                </span><span class="hl-7">/&gt;</span><br/><span class="hl-0">        </span><span class="hl-7">&lt;/&gt;</span><br/><span class="hl-0">    )</span><br/><span class="hl-0">}</span>
+</code></pre>
+<p><strong>Props</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default value</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>body</td>
+<td><code>ReactNode</code></td>
+<td>LEAVE_PROMPT_DEFAULT_PROPS</td>
+<td>body modal</td>
+</tr>
+<tr>
+<td>cancelText</td>
+<td><code>string</code></td>
+<td>LEAVE_PROMPT_DEFAULT_PROPS</td>
+<td>cancel button text</td>
+</tr>
+<tr>
+<td>confirmText</td>
+<td><code>string</code></td>
+<td>LEAVE_PROMPT_DEFAULT_PROPS</td>
+<td>confirm button text</td>
+</tr>
+<tr>
+<td>deleteText</td>
+<td><code>string</code></td>
+<td>LEAVE_PROMPT_DEFAULT_PROPS</td>
+<td>delete button text</td>
+</tr>
+<tr>
+<td>title</td>
+<td><code>string</code></td>
+<td>LEAVE_PROMPT_DEFAULT_PROPS</td>
+<td>title modal</td>
+</tr>
+<tr>
+<td>when</td>
+<td><code>boolean</code></td>
+<td>undefined</td>
+<td>show modal on navigate when true</td>
+</tr>
+<tr>
+<td>navigate</td>
+<td><code>(path: string) =&gt; void</code></td>
+<td>history.push</td>
+<td>navigate function</td>
+</tr>
+<tr>
+<td>onCancel</td>
+<td><code>() =&gt; void</code></td>
+<td>undefined</td>
+<td>onCancel callback</td>
+</tr>
+<tr>
+<td>onConfirm</td>
+<td><code>() =&gt; void</code></td>
+<td>undefined</td>
+<td>onConfirm callback</td>
+</tr>
+<tr>
+<td>onDelete</td>
+<td><code>() =&gt; void</code></td>
+<td>undefined</td>
+<td>onDelete callback</td>
+</tr>
+<tr>
+<td>shouldBlockNavigationOnConfirm</td>
+<td><code>location: Location) =&gt; boolean</code></td>
+<td>() =&gt; false</td>
+<td>block navigation on confirm</td>
+</tr>
+</tbody></table>
+<br>
+
+
+<a href="#hooks" id="hooks" style="color: inherit; text-decoration: none;">
+  <h3>Hooks</h3>
+</a>
+<p>Custom React hooks.</p>
+
+<a href="#useapiqueryparams" id="useapiqueryparams" style="color: inherit; text-decoration: none;">
+  <h4>useAPIQueryParams</h4>
+</a>
+<hr></br>
+
+<p>Built upon <a href="https://github.com/pbeshai/use-query-params">use-query-params</a>. For more info on <code>&lt;QueryParamProvider /&gt;</code> or <code>setQuery()</code> options be sure to check their API docs.</p>
+<p><strong>Usage</strong>:</p>
+<p>Wrap your app with the <code>&lt;QueryParamProvider /&gt;</code> and link your routing system (like react-router).</p>
+<pre><code class="language-tsx"><span class="hl-2">import</span><span class="hl-0"> { </span><span class="hl-3">QueryParamProvider</span><span class="hl-0"> } </span><span class="hl-2">from</span><span class="hl-0"> </span><span class="hl-4">&#39;@redactie/utils&#39;</span><span class="hl-0">;</span><br/><span class="hl-2">import</span><span class="hl-0"> </span><span class="hl-3">React</span><span class="hl-0"> </span><span class="hl-2">from</span><span class="hl-0"> </span><span class="hl-4">&#39;react&#39;</span><span class="hl-0">;</span><br/><span class="hl-2">import</span><span class="hl-0"> { </span><span class="hl-3">BrowserRouter</span><span class="hl-0"> </span><span class="hl-2">as</span><span class="hl-0"> </span><span class="hl-3">Router</span><span class="hl-0">, </span><span class="hl-3">Route</span><span class="hl-0"> } </span><span class="hl-2">from</span><span class="hl-0"> </span><span class="hl-4">&#39;react-router-dom&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-1">Root</span><span class="hl-0"> = () </span><span class="hl-5">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">    </span><span class="hl-2">return</span><span class="hl-0"> (</span><br/><span class="hl-0">        </span><span class="hl-7">&lt;</span><span class="hl-9">Router</span><span class="hl-7">&gt;</span><br/><span class="hl-0">            </span><span class="hl-7">&lt;</span><span class="hl-9">QueryParamProvider</span><span class="hl-0"> </span><span class="hl-10">ReactRouterRoute</span><span class="hl-0">=</span><span class="hl-5">{</span><span class="hl-3">Route</span><span class="hl-5">}</span><span class="hl-7">&gt;</span><br/><span class="hl-0">                </span><span class="hl-7">&lt;</span><span class="hl-9">App</span><span class="hl-0"> </span><span class="hl-7">/&gt;</span><br/><span class="hl-0">            </span><span class="hl-7">&lt;/</span><span class="hl-9">QueryParamProvider</span><span class="hl-7">&gt;</span><br/><span class="hl-0">        </span><span class="hl-7">&lt;/</span><span class="hl-9">Router</span><span class="hl-7">&gt;</span><br/><span class="hl-0">    );</span><br/><span class="hl-0">}</span>
+</code></pre>
+<p>Then we can call <code>useAPIQueryParams()</code> from within our App component with a given config.</p>
+<pre><code class="language-tsx"><span class="hl-2">import</span><span class="hl-0"> { </span><span class="hl-3">useAPIQueryParams</span><span class="hl-0"> } </span><span class="hl-2">from</span><span class="hl-0"> </span><span class="hl-4">&#39;@redactie/utils&#39;</span><span class="hl-0">;</span><br/><span class="hl-2">import</span><span class="hl-0"> </span><span class="hl-3">React</span><span class="hl-0"> </span><span class="hl-2">from</span><span class="hl-0"> </span><span class="hl-4">&#39;react&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-1">Example</span><span class="hl-0"> = () </span><span class="hl-5">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">    </span><span class="hl-5">const</span><span class="hl-0"> [</span><span class="hl-6">query</span><span class="hl-0">, </span><span class="hl-6">setQuery</span><span class="hl-0">] = </span><span class="hl-1">useAPIQueryParams</span><span class="hl-0">({</span><br/><span class="hl-0">        </span><span class="hl-3">search:</span><span class="hl-0"> { </span><span class="hl-3">type:</span><span class="hl-0"> </span><span class="hl-4">&#39;string&#39;</span><span class="hl-0"> },</span><br/><span class="hl-0">        </span><span class="hl-3">until:</span><span class="hl-0"> { </span><span class="hl-3">defaultValue:</span><span class="hl-0"> </span><span class="hl-9">Date</span><span class="hl-0">.</span><span class="hl-1">now</span><span class="hl-0">(), </span><span class="hl-3">type:</span><span class="hl-0"> </span><span class="hl-4">&#39;date&#39;</span><span class="hl-0"> },</span><br/><span class="hl-0">    });</span><br/><span class="hl-0">}</span>
+</code></pre>
+<p><strong>Config</strong></p>
+<p>useAPIQueryParams options:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>defaultValue (optional)</td>
+<td><code>any</code></td>
+</tr>
+<tr>
+<td>type</td>
+<td><code>&#39;string&#39; | &#39;number&#39; | &#39;boolean&#39; | &#39;object&#39; | &#39;date&#39; | &#39;dateTime&#39; | &#39;numericObject&#39; | &#39;array&#39; | &#39;delimitedArray&#39; | &#39;numericArray&#39; | &#39;delimitedNumericArray&#39; | &#39;json&#39;</code></td>
+</tr>
+</tbody></table>
+<p>By default the config is extended with the following values:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>page</td>
+<td><code>number</code></td>
+<td>1</td>
+</tr>
+<tr>
+<td>pagesize</td>
+<td><code>number</code></td>
+<td>20</td>
+</tr>
+<tr>
+<td>sort</td>
+<td><code>string</code></td>
+<td>undefined</td>
+</tr>
+<tr>
+<td>direction</td>
+<td><code>&#39;asc&#39; | &#39;desc&#39;</code></td>
+<td>undefined</td>
+</tr>
+</tbody></table>
+<p>you can disable these defaults by adding your config and <code>false</code> as second param:</p>
+<pre><code class="language-tsx"><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-1">Example</span><span class="hl-0"> = () </span><span class="hl-5">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">    </span><span class="hl-5">const</span><span class="hl-0"> [</span><span class="hl-6">query</span><span class="hl-0">, </span><span class="hl-6">setQuery</span><span class="hl-0">] = </span><span class="hl-1">useAPIQueryParams</span><span class="hl-0">(</span><br/><span class="hl-0">        {</span><br/><span class="hl-0">            </span><span class="hl-3">search:</span><span class="hl-0"> { </span><span class="hl-3">type:</span><span class="hl-0"> </span><span class="hl-4">&#39;string&#39;</span><span class="hl-0"> },</span><br/><span class="hl-0">            </span><span class="hl-3">until:</span><span class="hl-0"> { </span><span class="hl-3">defaultValue:</span><span class="hl-0"> </span><span class="hl-9">Date</span><span class="hl-0">.</span><span class="hl-1">now</span><span class="hl-0">(), </span><span class="hl-3">type:</span><span class="hl-0"> </span><span class="hl-4">&#39;date&#39;</span><span class="hl-0"> },</span><br/><span class="hl-0">        },</span><br/><span class="hl-0">        </span><span class="hl-5">false</span><br/><span class="hl-0">    );</span><br/><span class="hl-0">}</span>
+</code></pre>
+
+<a href="#usenavigate" id="usenavigate" style="color: inherit; text-decoration: none;">
+  <h4>useNavigate</h4>
+</a>
+<hr></br>
+
+<p>Navigate through the application by using the tenantContext</p>
+<p><strong>Usage</strong></p>
+<pre><code class="language-tsx"><span class="hl-2">import</span><span class="hl-0"> { </span><span class="hl-3">useNavigate</span><span class="hl-0">, </span><span class="hl-3">TenantContext</span><span class="hl-0"> } </span><span class="hl-2">from</span><span class="hl-0"> </span><span class="hl-4">&#39;@redactie/utils&#39;</span><span class="hl-0">;</span><br/><span class="hl-2">import</span><span class="hl-0"> </span><span class="hl-3">React</span><span class="hl-0"> </span><span class="hl-2">from</span><span class="hl-0"> </span><span class="hl-4">&#39;react&#39;</span><span class="hl-0">;</span><br/><span class="hl-2">import</span><span class="hl-0"> { </span><span class="hl-3">BrowserRouter</span><span class="hl-0"> </span><span class="hl-2">as</span><span class="hl-0"> </span><span class="hl-3">Router</span><span class="hl-0">, </span><span class="hl-3">Route</span><span class="hl-0"> } </span><span class="hl-2">from</span><span class="hl-0"> </span><span class="hl-4">&#39;react-router-dom&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-1">Root</span><span class="hl-0"> = () </span><span class="hl-5">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">    </span><span class="hl-2">return</span><span class="hl-0"> (</span><br/><br/><span class="hl-0">        </span><span class="hl-7">&lt;</span><span class="hl-9">Router</span><span class="hl-7">&gt;</span><br/><span class="hl-0">            </span><span class="hl-7">&lt;</span><span class="hl-9">TenantContext.Provider</span><span class="hl-0"> </span><span class="hl-10">value</span><span class="hl-0">=</span><span class="hl-5">{</span><span class="hl-12">{ </span><span class="hl-3">tenantId</span><span class="hl-12"> }</span><span class="hl-5">}</span><span class="hl-7">&gt;</span><br/><span class="hl-0">                </span><span class="hl-7">&lt;</span><span class="hl-9">NavigateComponent</span><span class="hl-7">/&gt;</span><br/><span class="hl-0">            </span><span class="hl-7">&lt;/</span><span class="hl-9">TenantContext.Provider</span><span class="hl-7">&gt;</span><br/><span class="hl-0">        </span><span class="hl-7">&lt;/</span><span class="hl-9">Router</span><span class="hl-7">&gt;</span><br/><span class="hl-0">    );</span><br/><span class="hl-0">}</span><br/><br/><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-1">NavigateComponent</span><span class="hl-0"> = () </span><span class="hl-5">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">    </span><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-6">pathPrefix</span><span class="hl-0"> = </span><span class="hl-4">&#39;sites&#39;</span><span class="hl-0">;</span><br/><span class="hl-0">    </span><span class="hl-5">const</span><span class="hl-0"> { </span><span class="hl-6">navigate</span><span class="hl-0">, </span><span class="hl-6">generatePath</span><span class="hl-0"> } = </span><span class="hl-1">useNavigate</span><span class="hl-0">(</span><span class="hl-3">pathPrefix</span><span class="hl-0">);</span><br/><span class="hl-0">    </span><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-6">siteId</span><span class="hl-0">: </span><span class="hl-4">&#39;123&#39;</span><span class="hl-0">;</span><br/><span class="hl-0">    </span><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-6">path</span><span class="hl-0"> = </span><span class="hl-4">&#39;/:siteId/some-path&#39;</span><span class="hl-0">;</span><br/><span class="hl-0">    </span><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-6">locactionState</span><span class="hl-0"> = {</span><br/><span class="hl-0">        </span><span class="hl-3">state:</span><span class="hl-0"> </span><span class="hl-4">&#39;value&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">    };</span><br/><span class="hl-0">    </span><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-6">queryParams</span><span class="hl-0"> = </span><span class="hl-5">new</span><span class="hl-0"> </span><span class="hl-1">URLSearchParams</span><span class="hl-0">({</span><br/><span class="hl-0">        </span><span class="hl-3">search:</span><span class="hl-0"> </span><span class="hl-4">&#39;name&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">    });</span><br/><br/><span class="hl-0">    </span><span class="hl-1">navigate</span><span class="hl-0">(</span><span class="hl-3">path</span><span class="hl-0">, { </span><span class="hl-3">siteId</span><span class="hl-0"> }, </span><span class="hl-3">locactionState</span><span class="hl-0">, </span><span class="hl-3">queryParams</span><span class="hl-0">);</span><br/><br/><span class="hl-0">    </span><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-6">generatedPath</span><span class="hl-0"> = </span><span class="hl-1">generatePath</span><span class="hl-0">(</span><span class="hl-3">path</span><span class="hl-0">, { </span><span class="hl-3">siteId</span><span class="hl-0"> }, </span><span class="hl-3">queryParams</span><span class="hl-0">);</span><br/><br/><span class="hl-0">    </span><span class="hl-2">return</span><span class="hl-0"> </span><span class="hl-5">null</span><span class="hl-0">;</span><br/><span class="hl-0">}</span>
+</code></pre>
+<p><strong>Props useNavigate</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default value</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>pathPrefix</td>
+<td><code>string</code></td>
+<td>undefined</td>
+<td>prefix the location path with the given string</td>
+</tr>
+</tbody></table>
+</br>
+
+<p><strong>Props navigate</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default value</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>path</td>
+<td><code>string</code></td>
+<td>undefined</td>
+<td>path to navigate to</td>
+</tr>
+<tr>
+<td>params</td>
+<td><code>Record&lt;string, string&gt;</code></td>
+<td>undefined</td>
+<td>route params</td>
+</tr>
+<tr>
+<td>state</td>
+<td><code>Record&lt;string, string&gt;</code></td>
+<td>undefined</td>
+<td>location state</td>
+</tr>
+<tr>
+<td>queryParams</td>
+<td><code>URLSearchParams</code></td>
+<td>undefined</td>
+<td>query params</td>
+</tr>
+</tbody></table>
+</br>
+
+<p><strong>Props generatePath</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default value</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>path</td>
+<td><code>string</code></td>
+<td>undefined</td>
+<td>path to navigate to</td>
+</tr>
+<tr>
+<td>params</td>
+<td><code>Record&lt;string, string&gt;</code></td>
+<td>undefined</td>
+<td>route params</td>
+</tr>
+<tr>
+<td>queryParams</td>
+<td><code>URLSearchParams</code></td>
+<td>undefined</td>
+<td>query params</td>
+</tr>
+</tbody></table>
+</br>
+
+
+<a href="#usecreatehandlersetter" id="usecreatehandlersetter" style="color: inherit; text-decoration: none;">
+  <h4>useCreateHandlerSetter</h4>
+</a>
+<hr></br>
+
+<p>Returns an array where the first item is the <a href="https://reactjs.org/docs/hooks-reference.html#useref">ref</a> to a callback function and the second one is setter for that function.<br /><br />
+Although it function looks quite similar to the <a href="https://reactjs.org/docs/hooks-reference.html#usestate">useState</a>,
+hook, in this case the setter just makes sure the given callback is indeed a new function.<br /><br /></p>
+<p><strong>Setting a callback ref does not imply your component to re-render.</strong><br /><br />
+<code>createHandlerSetter</code> is useful when abstracting other hooks to possibly implement handlers setters.</p>
+<p><strong>Usage</strong>:</p>
+<pre><code class="language-tsx"><br/><span class="hl-2">import</span><span class="hl-0"> </span><span class="hl-3">React</span><span class="hl-0"> </span><span class="hl-2">from</span><span class="hl-0"> </span><span class="hl-4">&#39;react&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-2">import</span><span class="hl-0"> { </span><span class="hl-3">useCreateHandlerSetter</span><span class="hl-0"> } </span><span class="hl-2">from</span><span class="hl-0"> </span><span class="hl-4">&#39;@redactie/utils&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-1">Component</span><span class="hl-0"> = (): </span><span class="hl-9">ReactElement</span><span class="hl-0"> </span><span class="hl-5">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">    </span><span class="hl-5">const</span><span class="hl-0"> [</span><span class="hl-6">onMountHandler</span><span class="hl-0">, </span><span class="hl-6">setOnMountHandler</span><span class="hl-0">] = </span><span class="hl-1">useCreateHandlerSetter</span><span class="hl-0">(() </span><span class="hl-5">=&gt;</span><span class="hl-0"> {});</span><br/><br/><span class="hl-0">    </span><span class="hl-13">// current value</span><br/><span class="hl-0">    </span><span class="hl-3">onMountHandler</span><span class="hl-0">.</span><span class="hl-1">current</span><span class="hl-0">();</span><br/><br/><span class="hl-0">    </span><span class="hl-13">// set handler</span><br/><span class="hl-0">    </span><span class="hl-1">setOnMountHandler</span><span class="hl-0">(() </span><span class="hl-5">=&gt;</span><span class="hl-0"> {})</span><br/><br/><span class="hl-0">    </span><span class="hl-2">return</span><span class="hl-0"> </span><span class="hl-5">null</span><span class="hl-0">;</span><br/><span class="hl-0">};</span><br/>
+</code></pre>
+<p><strong>Props</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default value</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>handlerFn</td>
+<td><code>Function </code></td>
+<td>undefined</td>
+<td>callback function</td>
+</tr>
+</tbody></table>
+</br>
+
+
+<a href="#usetenantcontext" id="usetenantcontext" style="color: inherit; text-decoration: none;">
+  <h4>useTenantContext</h4>
+</a>
+<hr></br>
+
+<p>Returns the current tenant context</p>
+<p><strong>Usage</strong></p>
+<pre><code class="language-jsx"><span class="hl-2">import</span><span class="hl-0"> { </span><span class="hl-3">useTenantContext</span><span class="hl-0">, </span><span class="hl-3">TenantContext</span><span class="hl-0"> } </span><span class="hl-2">from</span><span class="hl-0"> </span><span class="hl-4">&#39;@redactie/utils&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-1">TenantContextComponent</span><span class="hl-0"> = () </span><span class="hl-5">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">    </span><span class="hl-5">const</span><span class="hl-0"> { </span><span class="hl-6">tenantId</span><span class="hl-0"> } = </span><span class="hl-1">useTenantContext</span><span class="hl-0">();</span><br/><br/><span class="hl-0">    </span><span class="hl-2">return</span><span class="hl-0"> </span><span class="hl-5">null</span><span class="hl-0">;</span><br/><span class="hl-0">}</span><br/><br/><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-1">Root</span><span class="hl-0"> = () </span><span class="hl-5">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">    </span><span class="hl-2">return</span><span class="hl-0"> (</span><br/><span class="hl-0">        </span><span class="hl-7">&lt;</span><span class="hl-9">TenantContext.Provider</span><span class="hl-0"> </span><span class="hl-10">value</span><span class="hl-0">=</span><span class="hl-5">{</span><span class="hl-12">{ </span><span class="hl-3">tenantId:</span><span class="hl-12"> </span><span class="hl-4">&#39;123&#39;</span><span class="hl-12"> }</span><span class="hl-5">}</span><span class="hl-7">&gt;</span><br/><span class="hl-0">            </span><span class="hl-7">&lt;</span><span class="hl-9">TenantContextComponent</span><span class="hl-0"> </span><span class="hl-7">/&gt;</span><br/><span class="hl-0">        </span><span class="hl-7">&lt;/</span><span class="hl-9">TenantContext.Provider</span><span class="hl-7">&gt;</span><span class="hl-0">;</span><br/><span class="hl-0">    )</span><br/><span class="hl-0">}</span><br/>
+</code></pre>
+
+<a href="#usesitecontext" id="usesitecontext" style="color: inherit; text-decoration: none;">
+  <h4>useSiteContext</h4>
+</a>
+<hr></br>
+
+<p>Returns the current site context</p>
+<p><strong>Usage</strong></p>
+<pre><code class="language-jsx"><span class="hl-2">import</span><span class="hl-0"> { </span><span class="hl-3">useSiteContext</span><span class="hl-0">, </span><span class="hl-3">SiteContext</span><span class="hl-0"> } </span><span class="hl-2">from</span><span class="hl-0"> </span><span class="hl-4">&#39;@redactie/utils&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-1">SiteContextComponent</span><span class="hl-0"> = () </span><span class="hl-5">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">    </span><span class="hl-5">const</span><span class="hl-0"> { </span><span class="hl-6">siteId</span><span class="hl-0"> } = </span><span class="hl-1">useSiteContext</span><span class="hl-0">();</span><br/><br/><span class="hl-0">    </span><span class="hl-2">return</span><span class="hl-0"> </span><span class="hl-5">null</span><span class="hl-0">;</span><br/><span class="hl-0">}</span><br/><br/><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-1">Root</span><span class="hl-0"> = () </span><span class="hl-5">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">    </span><span class="hl-2">return</span><span class="hl-0"> (</span><br/><span class="hl-0">        </span><span class="hl-7">&lt;</span><span class="hl-9">SiteContext.Provider</span><span class="hl-0"> </span><span class="hl-10">value</span><span class="hl-0">=</span><span class="hl-5">{</span><span class="hl-12">{ </span><span class="hl-3">siteId:</span><span class="hl-12"> </span><span class="hl-4">&#39;123&#39;</span><span class="hl-12"> }</span><span class="hl-5">}</span><span class="hl-7">&gt;</span><br/><span class="hl-0">            </span><span class="hl-7">&lt;</span><span class="hl-9">SiteContextComponent</span><span class="hl-0"> </span><span class="hl-7">/&gt;</span><br/><span class="hl-0">        </span><span class="hl-7">&lt;/</span><span class="hl-9">SiteContext.Provider</span><span class="hl-7">&gt;</span><span class="hl-0">;</span><br/><span class="hl-0">    )</span><br/><span class="hl-0">}</span><br/>
+</code></pre>
+
+<a href="#useroutes" id="useroutes" style="color: inherit; text-decoration: none;">
+  <h4>useRoutes</h4>
+</a>
+<hr></br>
+
+<p>returns all routes available on the <code>Core.routes</code> module.</p>
+<p><strong>Usage</strong></p>
+<pre><code class="language-tsx"><span class="hl-2">import</span><span class="hl-0"> { </span><span class="hl-3">useRoutes</span><span class="hl-0"> } </span><span class="hl-2">from</span><span class="hl-0"> </span><span class="hl-4">&#39;@redactie/utils&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-1">ModuleRouteComponent</span><span class="hl-0"> = () </span><span class="hl-5">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">    </span><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-6">routes</span><span class="hl-0"> = </span><span class="hl-1">userRoutes</span><span class="hl-0">();</span><br/><br/><br/><span class="hl-0">    </span><span class="hl-2">return</span><span class="hl-0"> </span><span class="hl-5">null</span><span class="hl-0">;</span><br/><span class="hl-0">}</span>
+</code></pre>
+
+<a href="#usedidmount" id="usedidmount" style="color: inherit; text-decoration: none;">
+  <h4>useDidMount</h4>
+</a>
+<hr></br>
+
+<p>Accepts a function to be performed when the component did mount.</p>
+<p>It is a shortcut to <code>useEffect(onMount, [])</code></p>
+<p><strong>Usage</strong>:</p>
+<pre><code class="language-tsx"><span class="hl-2">import</span><span class="hl-0"> </span><span class="hl-3">React</span><span class="hl-0"> </span><span class="hl-2">from</span><span class="hl-0"> </span><span class="hl-4">&#39;react&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-2">import</span><span class="hl-0"> { </span><span class="hl-3">useDidMount</span><span class="hl-0"> } </span><span class="hl-2">from</span><span class="hl-0"> </span><span class="hl-4">&#39;@redactie/utils&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-1">Component</span><span class="hl-0"> = (): </span><span class="hl-9">ReactElement</span><span class="hl-0"> </span><span class="hl-5">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">    </span><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-6">onMount</span><span class="hl-0"> = </span><span class="hl-1">useDidMount</span><span class="hl-0">();</span><br/><br/><span class="hl-0">    </span><span class="hl-1">onMount</span><span class="hl-0">(() </span><span class="hl-5">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">        </span><span class="hl-3">console</span><span class="hl-0">.</span><span class="hl-1">log</span><span class="hl-0">(</span><span class="hl-4">&#39;component did mount&#39;</span><span class="hl-0">);</span><br/><span class="hl-0">    });</span><br/><br/><span class="hl-0">    </span><span class="hl-2">return</span><span class="hl-0"> </span><span class="hl-5">null</span><span class="hl-0">;</span><br/><span class="hl-0">};</span><br/>
+</code></pre>
+<p><strong>Props</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default value</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>handlerFn</td>
+<td><code>Function </code></td>
+<td>undefined</td>
+<td>callback function</td>
+</tr>
+</tbody></table>
+</br>
+
+
+<a href="#usewillunmount" id="usewillunmount" style="color: inherit; text-decoration: none;">
+  <h4>useWillUnmount</h4>
+</a>
+<hr></br>
+
+<p>Accepts a function to be performed right before the component unmounts.</p>
+<p>It&#39;s as a shortcut to <code>useEffect(() =&gt; () =&gt; willUnmount, [])</code></p>
+<p><strong>Usage</strong>:</p>
+<pre><code class="language-tsx"><span class="hl-2">import</span><span class="hl-0"> </span><span class="hl-3">React</span><span class="hl-0"> </span><span class="hl-2">from</span><span class="hl-0"> </span><span class="hl-4">&#39;react&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-2">import</span><span class="hl-0"> { </span><span class="hl-3">useWillUnmount</span><span class="hl-0"> } </span><span class="hl-2">from</span><span class="hl-0"> </span><span class="hl-4">&#39;@redactie/utils&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-1">Component</span><span class="hl-0"> = (): </span><span class="hl-9">ReactElement</span><span class="hl-0"> </span><span class="hl-5">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">    </span><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-6">onUnMount</span><span class="hl-0"> = </span><span class="hl-1">useWillUnmount</span><span class="hl-0">();</span><br/><br/><span class="hl-0">    </span><span class="hl-1">onUnMount</span><span class="hl-0">(() </span><span class="hl-5">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">        </span><span class="hl-3">console</span><span class="hl-0">.</span><span class="hl-1">log</span><span class="hl-0">(</span><span class="hl-4">&#39;Component will unmount&#39;</span><span class="hl-0">);</span><br/><span class="hl-0">    });</span><br/><br/><span class="hl-0">    </span><span class="hl-2">return</span><span class="hl-0"> </span><span class="hl-5">null</span><span class="hl-0">;</span><br/><span class="hl-0">};</span><br/>
+</code></pre>
+<p><strong>Props</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default value</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>handlerFn</td>
+<td><code>Function </code></td>
+<td>undefined</td>
+<td>callback function</td>
+</tr>
+</tbody></table>
+<br/>
+
+
+<a href="#useprevious" id="useprevious" style="color: inherit; text-decoration: none;">
+  <h4>usePrevious</h4>
+</a>
+<hr></br>
+
+<p>A Hook to store the previous value</p>
+<p><strong>Usage</strong>:</p>
+<pre><code class="language-tsx"><span class="hl-2">import</span><span class="hl-0"> { </span><span class="hl-3">usePrevious</span><span class="hl-0"> } </span><span class="hl-2">from</span><span class="hl-0"> </span><span class="hl-4">&#39;@redactie/utils&#39;</span><span class="hl-0">;</span><br/><span class="hl-2">import</span><span class="hl-0"> </span><span class="hl-3">React</span><span class="hl-0">, { </span><span class="hl-3">useState</span><span class="hl-0"> } </span><span class="hl-2">from</span><span class="hl-0"> </span><span class="hl-4">&#39;react&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-1">Component</span><span class="hl-0"> = () </span><span class="hl-5">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">  </span><span class="hl-5">const</span><span class="hl-0"> [</span><span class="hl-6">count</span><span class="hl-0">, </span><span class="hl-6">setCount</span><span class="hl-0">] = </span><span class="hl-1">useState</span><span class="hl-0">(</span><span class="hl-11">0</span><span class="hl-0">);</span><br/><span class="hl-0">  </span><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-6">previous</span><span class="hl-0"> = </span><span class="hl-1">usePrevious</span><span class="hl-0">(</span><span class="hl-3">count</span><span class="hl-0">);</span><br/><span class="hl-0">  </span><span class="hl-2">return</span><span class="hl-0"> (</span><br/><span class="hl-0">    </span><span class="hl-7">&lt;&gt;</span><br/><span class="hl-0">      </span><span class="hl-7">&lt;</span><span class="hl-8">div</span><span class="hl-7">&gt;</span><span class="hl-0">counter current value: </span><span class="hl-5">{</span><span class="hl-3">count</span><span class="hl-5">}</span><span class="hl-7">&lt;/</span><span class="hl-8">div</span><span class="hl-7">&gt;</span><br/><span class="hl-0">      </span><span class="hl-7">&lt;</span><span class="hl-8">div</span><span class="hl-7">&gt;</span><span class="hl-0">counter previous value: </span><span class="hl-5">{</span><span class="hl-3">previous</span><span class="hl-5">}</span><span class="hl-7">&lt;/</span><span class="hl-8">div</span><span class="hl-7">&gt;</span><br/><span class="hl-0">      </span><span class="hl-7">&lt;</span><span class="hl-8">button</span><span class="hl-0"> </span><span class="hl-10">type</span><span class="hl-0">=</span><span class="hl-4">&quot;button&quot;</span><span class="hl-0"> </span><span class="hl-10">onClick</span><span class="hl-0">=</span><span class="hl-5">{</span><span class="hl-12">() </span><span class="hl-5">=&gt;</span><span class="hl-12"> </span><span class="hl-1">setCount</span><span class="hl-12">((</span><span class="hl-3">c</span><span class="hl-12">) </span><span class="hl-5">=&gt;</span><span class="hl-12"> </span><span class="hl-3">c</span><span class="hl-12"> </span><span class="hl-0">+</span><span class="hl-12"> </span><span class="hl-11">1</span><span class="hl-12">)</span><span class="hl-5">}</span><span class="hl-7">&gt;</span><br/><span class="hl-0">        increase</span><br/><span class="hl-0">      </span><span class="hl-7">&lt;/</span><span class="hl-8">button</span><span class="hl-7">&gt;</span><br/><span class="hl-0">      </span><span class="hl-7">&lt;</span><span class="hl-8">button</span><span class="hl-0"> </span><span class="hl-10">type</span><span class="hl-0">=</span><span class="hl-4">&quot;button&quot;</span><span class="hl-0"> </span><span class="hl-10">onClick</span><span class="hl-0">=</span><span class="hl-5">{</span><span class="hl-12">() </span><span class="hl-5">=&gt;</span><span class="hl-12"> </span><span class="hl-1">setCount</span><span class="hl-12">((</span><span class="hl-3">c</span><span class="hl-12">) </span><span class="hl-5">=&gt;</span><span class="hl-12"> </span><span class="hl-3">c</span><span class="hl-12"> </span><span class="hl-0">-</span><span class="hl-12"> </span><span class="hl-11">1</span><span class="hl-12">)</span><span class="hl-5">}</span><span class="hl-7">&gt;</span><br/><span class="hl-0">        decrease</span><br/><span class="hl-0">      </span><span class="hl-7">&lt;/</span><span class="hl-8">button</span><span class="hl-7">&gt;</span><br/><span class="hl-0">    </span><span class="hl-7">&lt;/&gt;</span><br/><span class="hl-0">  );</span><br/><span class="hl-0">};</span><br/>
+</code></pre>
+<p><strong>Props</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default value</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>state</td>
+<td><code>T</code></td>
+<td>undefined</td>
+<td>the state needed to be tracked</td>
+</tr>
+<tr>
+<td>compareFunction</td>
+<td>`(prev: T</td>
+<td>undefined, next: T) =&gt; boolean`</td>
+<td>undefined</td>
+</tr>
+</tbody></table>
+<br/>
+
+
+<a href="#usepersist" id="usepersist" style="color: inherit; text-decoration: none;">
+  <h4>usePersist</h4>
+</a>
+<hr></br>
+
+<p>Hooks for persistent functions</p>
+<p><strong>Usage</strong>:</p>
+<pre><code class="language-tsx"><span class="hl-2">import</span><span class="hl-0"> </span><span class="hl-3">React</span><span class="hl-0">, { </span><span class="hl-3">useState</span><span class="hl-0">, </span><span class="hl-3">useCallback</span><span class="hl-0">, </span><span class="hl-3">useRef</span><span class="hl-0"> } </span><span class="hl-2">from</span><span class="hl-0"> </span><span class="hl-4">&#39;react&#39;</span><span class="hl-0">;</span><br/><span class="hl-2">import</span><span class="hl-0"> { </span><span class="hl-3">usePersistFn</span><span class="hl-0"> } </span><span class="hl-2">from</span><span class="hl-0"> </span><span class="hl-4">&#39;@redactie/utils&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-2">export</span><span class="hl-0"> </span><span class="hl-2">default</span><span class="hl-0"> () </span><span class="hl-5">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">    </span><span class="hl-5">const</span><span class="hl-0"> [</span><span class="hl-6">count</span><span class="hl-0">, </span><span class="hl-6">setCount</span><span class="hl-0">] = </span><span class="hl-1">useState</span><span class="hl-0">(</span><span class="hl-11">0</span><span class="hl-0">);</span><br/><span class="hl-0">    </span><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-6">showCountPersistFn</span><span class="hl-0"> = </span><span class="hl-1">usePersistFn</span><span class="hl-0">(() </span><span class="hl-5">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">        </span><span class="hl-3">console</span><span class="hl-0">.</span><span class="hl-1">log</span><span class="hl-0">(</span><span class="hl-4">`Current count is </span><span class="hl-5">${</span><span class="hl-3">count</span><span class="hl-5">}</span><span class="hl-4">`</span><span class="hl-0">);</span><br/><span class="hl-0">    });</span><br/><span class="hl-0">    </span><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-6">showCountCommon</span><span class="hl-0"> = </span><span class="hl-1">useCallback</span><span class="hl-0">(() </span><span class="hl-5">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">        </span><span class="hl-3">console</span><span class="hl-0">.</span><span class="hl-1">log</span><span class="hl-0">(</span><span class="hl-4">`Current count is </span><span class="hl-5">${</span><span class="hl-3">count</span><span class="hl-5">}</span><span class="hl-4">`</span><span class="hl-0">);</span><br/><span class="hl-0">    }, [</span><span class="hl-3">count</span><span class="hl-0">]);</span><br/><span class="hl-0">    </span><span class="hl-2">return</span><span class="hl-0"> (</span><br/><span class="hl-0">        </span><span class="hl-7">&lt;&gt;</span><br/><span class="hl-0">            </span><span class="hl-7">&lt;</span><span class="hl-8">button</span><br/><span class="hl-0">                </span><span class="hl-10">type</span><span class="hl-0">=</span><span class="hl-4">&quot;button&quot;</span><br/><span class="hl-0">                </span><span class="hl-10">onClick</span><span class="hl-0">=</span><span class="hl-5">{</span><span class="hl-12">() </span><span class="hl-5">=&gt;</span><span class="hl-12"> {</span><br/><span class="hl-12">                    </span><span class="hl-1">setCount</span><span class="hl-12">((</span><span class="hl-3">c</span><span class="hl-12">) </span><span class="hl-5">=&gt;</span><span class="hl-12"> </span><span class="hl-3">c</span><span class="hl-12"> </span><span class="hl-0">+</span><span class="hl-12"> </span><span class="hl-11">1</span><span class="hl-12">);</span><br/><span class="hl-12">                }</span><span class="hl-5">}</span><br/><span class="hl-0">            </span><span class="hl-7">&gt;</span><br/><span class="hl-0">                Add Count</span><br/><span class="hl-0">            </span><span class="hl-7">&lt;/</span><span class="hl-8">button</span><span class="hl-7">&gt;</span><br/><span class="hl-0">            </span><span class="hl-7">&lt;</span><span class="hl-8">p</span><span class="hl-7">&gt;</span><br/><span class="hl-0">                You can click the button to see the number of sub-component renderings</span><br/><span class="hl-0">            </span><span class="hl-7">&lt;/</span><span class="hl-8">p</span><span class="hl-7">&gt;</span><br/><span class="hl-0">            </span><span class="hl-7">&lt;</span><span class="hl-8">div</span><span class="hl-7">&gt;</span><br/><span class="hl-0">                </span><span class="hl-7">&lt;</span><span class="hl-8">h4</span><span class="hl-7">&gt;</span><span class="hl-0">Component with persist function:</span><span class="hl-7">&lt;/</span><span class="hl-8">h4</span><span class="hl-7">&gt;</span><br/><span class="hl-0">                </span><span class="hl-5">{</span><span class="hl-13">/* use persist function, ExpensiveTree component will only render once */</span><span class="hl-5">}</span><br/><span class="hl-0">                </span><span class="hl-7">&lt;</span><span class="hl-9">ExpensiveTree</span><span class="hl-0"> </span><span class="hl-10">showCount</span><span class="hl-0">=</span><span class="hl-5">{</span><span class="hl-3">showCountPersistFn</span><span class="hl-5">}</span><span class="hl-0"> </span><span class="hl-7">/&gt;</span><br/><span class="hl-0">            </span><span class="hl-7">&lt;/</span><span class="hl-8">div</span><span class="hl-7">&gt;</span><br/><span class="hl-0">            </span><span class="hl-7">&lt;</span><span class="hl-8">div</span><span class="hl-7">&gt;</span><br/><span class="hl-0">                </span><span class="hl-7">&lt;</span><span class="hl-8">h4</span><span class="hl-7">&gt;</span><span class="hl-0">Component without persist function:</span><span class="hl-7">&lt;/</span><span class="hl-8">h4</span><span class="hl-7">&gt;</span><br/><span class="hl-0">                </span><span class="hl-5">{</span><span class="hl-13">/* without persist function, ExpensiveTree component will re-render on state change */</span><span class="hl-5">}</span><br/><span class="hl-0">                </span><span class="hl-7">&lt;</span><span class="hl-9">ExpensiveTree</span><span class="hl-0"> </span><span class="hl-10">showCount</span><span class="hl-0">=</span><span class="hl-5">{</span><span class="hl-3">showCountCommon</span><span class="hl-5">}</span><span class="hl-0"> </span><span class="hl-7">/&gt;</span><br/><span class="hl-0">            </span><span class="hl-7">&lt;/</span><span class="hl-8">div</span><span class="hl-7">&gt;</span><br/><span class="hl-0">        </span><span class="hl-7">&lt;/&gt;</span><br/><span class="hl-0">    );</span><br/><span class="hl-0">};</span><br/><span class="hl-13">// some expensive component with React.memo</span><br/><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-6">ExpensiveTree</span><span class="hl-0"> = </span><span class="hl-3">React</span><span class="hl-0">.</span><span class="hl-1">memo</span><span class="hl-0">&lt;{ [</span><span class="hl-3">key</span><span class="hl-0">: </span><span class="hl-9">string</span><span class="hl-0">]: </span><span class="hl-9">any</span><span class="hl-0"> }&gt;(({ </span><span class="hl-3">showCount</span><span class="hl-0"> }) </span><span class="hl-5">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">    </span><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-6">renderCountRef</span><span class="hl-0"> = </span><span class="hl-1">useRef</span><span class="hl-0">(</span><span class="hl-11">0</span><span class="hl-0">);</span><br/><span class="hl-0">    </span><span class="hl-3">renderCountRef</span><span class="hl-0">.</span><span class="hl-3">current</span><span class="hl-0"> += </span><span class="hl-11">1</span><span class="hl-0">;</span><br/><span class="hl-0">    </span><span class="hl-2">return</span><span class="hl-0"> (</span><br/><span class="hl-0">        </span><span class="hl-7">&lt;</span><span class="hl-8">div</span><span class="hl-7">&gt;</span><br/><span class="hl-0">            </span><span class="hl-7">&lt;</span><span class="hl-8">p</span><span class="hl-7">&gt;</span><span class="hl-0">Render Count: </span><span class="hl-5">{</span><span class="hl-3">renderCountRef</span><span class="hl-12">.</span><span class="hl-3">current</span><span class="hl-5">}</span><span class="hl-7">&lt;/</span><span class="hl-8">p</span><span class="hl-7">&gt;</span><br/><span class="hl-0">            </span><span class="hl-7">&lt;</span><span class="hl-8">button</span><span class="hl-0"> </span><span class="hl-10">type</span><span class="hl-0">=</span><span class="hl-4">&quot;button&quot;</span><span class="hl-0"> </span><span class="hl-10">onClick</span><span class="hl-0">=</span><span class="hl-5">{</span><span class="hl-3">showCount</span><span class="hl-5">}</span><span class="hl-7">&gt;</span><br/><span class="hl-0">                showParentCount</span><br/><span class="hl-0">            </span><span class="hl-7">&lt;/</span><span class="hl-8">button</span><span class="hl-7">&gt;</span><br/><span class="hl-0">        </span><span class="hl-7">&lt;/</span><span class="hl-8">div</span><span class="hl-7">&gt;</span><br/><span class="hl-0">    );</span><br/><span class="hl-0">});</span><br/>
+</code></pre>
+<p><strong>Props</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default value</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>fn</td>
+<td><code>(...args: any[]) =&gt; any</code></td>
+<td>undefined</td>
+<td>Function that requires persistence</td>
+</tr>
+</tbody></table>
+<br/>
+
+
+<a href="#useobservable" id="useobservable" style="color: inherit; text-decoration: none;">
+  <h4>useObservable</h4>
+</a>
+<hr></br>
+
+<p>React state hook that tracks the latest value of an Observable.</p>
+<p><strong>Usage</strong>:</p>
+<pre><code class="language-tsx"><span class="hl-2">import</span><span class="hl-0"> {</span><span class="hl-3">useObservable</span><span class="hl-0">} </span><span class="hl-2">from</span><span class="hl-0"> </span><span class="hl-4">&#39;@redactie/utils&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-6">counter$</span><span class="hl-0"> = </span><span class="hl-5">new</span><span class="hl-0"> </span><span class="hl-1">BehaviorSubject</span><span class="hl-0">(</span><span class="hl-11">0</span><span class="hl-0">);</span><br/><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-1">Demo</span><span class="hl-0"> = () </span><span class="hl-5">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">  </span><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-6">value</span><span class="hl-0"> = </span><span class="hl-1">useObservable</span><span class="hl-0">(</span><span class="hl-3">counter$</span><span class="hl-0">, </span><span class="hl-11">0</span><span class="hl-0">);</span><br/><br/><span class="hl-0">  </span><span class="hl-2">return</span><span class="hl-0"> (</span><br/><span class="hl-0">    </span><span class="hl-7">&lt;</span><span class="hl-8">button</span><span class="hl-0"> </span><span class="hl-10">onClick</span><span class="hl-0">=</span><span class="hl-5">{</span><span class="hl-12">() </span><span class="hl-5">=&gt;</span><span class="hl-12"> </span><span class="hl-3">counter$</span><span class="hl-12">.</span><span class="hl-1">next</span><span class="hl-12">(</span><span class="hl-3">value</span><span class="hl-12"> </span><span class="hl-0">+</span><span class="hl-12"> </span><span class="hl-11">1</span><span class="hl-12">)</span><span class="hl-5">}</span><span class="hl-7">&gt;</span><br/><span class="hl-0">      Clicked </span><span class="hl-5">{</span><span class="hl-3">value</span><span class="hl-5">}</span><span class="hl-0"> times</span><br/><span class="hl-0">    </span><span class="hl-7">&lt;/</span><span class="hl-8">button</span><span class="hl-7">&gt;</span><br/><span class="hl-0">  );</span><br/><span class="hl-0">};</span><br/>
+</code></pre>
+<p><strong>Props</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default value</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Observable</td>
+<td>Observable</td>
+<td>undefined</td>
+<td>The Observable to subscribe on</td>
+</tr>
+<tr>
+<td>initialValue</td>
+<td>any</td>
+<td>undefined</td>
+<td>First emitted value</td>
+</tr>
+</tbody></table>
+<br/>
+
+
+<a href="#useworker" id="useworker" style="color: inherit; text-decoration: none;">
+  <h4>useWorker</h4>
+</a>
+<hr></br>
+
+<p>A hook to use a web worker</p>
+<p><strong>Usage</strong>:</p>
+<pre><code class="language-tsx"><span class="hl-2">import</span><span class="hl-0"> { </span><span class="hl-3">useWorker</span><span class="hl-0"> } </span><span class="hl-2">from</span><span class="hl-0"> </span><span class="hl-4">&#39;@redactie/utils&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-6">workerData</span><span class="hl-0"> = </span><span class="hl-1">useMemo</span><span class="hl-0">(</span><br/><span class="hl-0">    () </span><span class="hl-5">=&gt;</span><br/><span class="hl-0">        ({</span><br/><span class="hl-0">            </span><span class="hl-3">data</span><br/><span class="hl-0">        }),</span><br/><span class="hl-0">    [</span><span class="hl-3">data</span><span class="hl-0">]</span><br/><span class="hl-0">);</span><br/><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-6">defaultResult</span><span class="hl-0"> = </span><span class="hl-5">null</span><span class="hl-0">;</span><br/><span class="hl-5">const</span><span class="hl-0"> [</span><span class="hl-6">result</span><span class="hl-0">] = </span><span class="hl-1">useWorker</span><span class="hl-0">&lt;</span><span class="hl-9">WorkerData</span><span class="hl-0">, </span><span class="hl-9">ResultData</span><span class="hl-0">&gt;(</span><br/><span class="hl-0">    </span><span class="hl-6">BFF_MODULE_PUBLIC_PATH</span><span class="hl-0">,</span><br/><span class="hl-0">    </span><span class="hl-4">&#39;custom.worker&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">    </span><span class="hl-3">workerData</span><span class="hl-0">,</span><br/><span class="hl-0">    </span><span class="hl-3">defaultResult</span><span class="hl-0">,</span><br/><span class="hl-0">);</span>
+</code></pre>
+<p><strong>Props</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default value</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>bffModulePath</td>
+<td>string</td>
+<td>undefined</td>
+<td>path where we can find the worker</td>
+</tr>
+<tr>
+<td>workerOrPath</td>
+<td>Worker</td>
+<td>string</td>
+<td>undefined</td>
+</tr>
+<tr>
+<td>data</td>
+<td>any</td>
+<td>undefined</td>
+<td>data send to the worker</td>
+</tr>
+<tr>
+<td>defaultValue</td>
+<td>any</td>
+<td>undefined</td>
+<td>default result</td>
+</tr>
+<tr>
+<td>tenantContext</td>
+<td>any</td>
+<td>Tenantcontext</td>
+<td>context where we can find the tenantId</td>
+</tr>
+</tbody></table>
+<br/>
+
+
+<a href="#usepromiseworker" id="usepromiseworker" style="color: inherit; text-decoration: none;">
+  <h4>usePromiseWorker</h4>
+</a>
+<hr></br>
+
+<p>A hook that makes it possible to communicate with a web worker by using a Promise API</p>
+<pre><code class="language-tsx"><span class="hl-2">import</span><span class="hl-0"> { </span><span class="hl-3">usePromiseWorker</span><span class="hl-0"> } </span><span class="hl-2">from</span><span class="hl-0"> </span><span class="hl-4">&#39;@redactie/utils&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-5">const</span><span class="hl-0"> [</span><span class="hl-6">promiseWorker</span><span class="hl-0">] = </span><span class="hl-1">usePromiseWorker</span><span class="hl-0">&lt;</span><span class="hl-9">WorkerData</span><span class="hl-0">, </span><span class="hl-9">ResultData</span><span class="hl-0">&gt;(</span><br/><span class="hl-0">    </span><span class="hl-6">BFF_MODULE_PUBLIC_PATH</span><span class="hl-0">,</span><br/><span class="hl-0">    </span><span class="hl-4">&#39;custom.worker&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">);</span><br/><span class="hl-3">promiseWorker</span><span class="hl-0">.</span><span class="hl-1">postMessage</span><span class="hl-0">({</span><span class="hl-3">data</span><span class="hl-0">})</span><br/><span class="hl-0">    .</span><span class="hl-1">then</span><span class="hl-0">(</span><span class="hl-3">result</span><span class="hl-0"> </span><span class="hl-5">=&gt;</span><span class="hl-0"> </span><span class="hl-3">console</span><span class="hl-0">.</span><span class="hl-1">log</span><span class="hl-0">(</span><span class="hl-3">result</span><span class="hl-0">))</span><br/><span class="hl-0">    .</span><span class="hl-1">catch</span><span class="hl-0">(</span><span class="hl-3">error</span><span class="hl-0"> </span><span class="hl-5">=&gt;</span><span class="hl-0"> </span><span class="hl-3">console</span><span class="hl-0">.</span><span class="hl-1">log</span><span class="hl-0">(</span><span class="hl-3">error</span><span class="hl-0">))</span><br/>
+</code></pre>
+<p><strong>Props</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default value</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>bffModulePath</td>
+<td>string</td>
+<td>undefined</td>
+<td>path where we can find the worker</td>
+</tr>
+<tr>
+<td>workerOrPath</td>
+<td>Worker</td>
+<td>string</td>
+<td>undefined</td>
+</tr>
+<tr>
+<td>timeoutTime</td>
+<td>number</td>
+<td>30000ms</td>
+<td>max time the worker has to respond</td>
+</tr>
+<tr>
+<td>tenantContext</td>
+<td>any</td>
+<td>Tenantcontext</td>
+<td>context where we can find the tenantId</td>
+</tr>
+</tbody></table>
+<br/>
+
+
+<a href="#usedetectvaluechangesworker" id="usedetectvaluechangesworker" style="color: inherit; text-decoration: none;">
+  <h4>useDetectValueChangesWorker</h4>
+</a>
+<hr></br>
+
+<p>A hook that detect value changes by use a worker</p>
+<pre><code class="language-tsx"><span class="hl-2">import</span><span class="hl-0"> { </span><span class="hl-3">useDetectValueChangesWorker</span><span class="hl-0"> } </span><span class="hl-2">from</span><span class="hl-0"> </span><span class="hl-4">&#39;@redactie/utils&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-5">const</span><span class="hl-0"> [</span><span class="hl-6">hasChanges</span><span class="hl-0">] = </span><span class="hl-1">useDetectValueChangesWorker</span><span class="hl-0">(</span><br/><span class="hl-0">        </span><span class="hl-3">isLoaded</span><span class="hl-0">,</span><br/><span class="hl-0">        </span><span class="hl-3">valueToCheck</span><span class="hl-0">,</span><br/><span class="hl-0">        </span><span class="hl-6">BFF_MODULE_PUBLIC_PATH</span><br/><span class="hl-0">    );</span>
+</code></pre>
+<p><strong>Props</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default value</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>isLoaded</td>
+<td>boolean</td>
+<td>undefined</td>
+<td>Indicates that the value to check is loaded successfully</td>
+</tr>
+<tr>
+<td>value</td>
+<td>any</td>
+<td>undefined</td>
+<td>value to check</td>
+</tr>
+<tr>
+<td>bffModulePath</td>
+<td>string</td>
+<td>undefined</td>
+<td>path where we can find the worker</td>
+</tr>
+<tr>
+<td>tenantContext</td>
+<td>any</td>
+<td>Tenantcontext</td>
+<td>context where we can find the tenantId</td>
+</tr>
+</tbody></table>
+<br/>
+
+
+<a href="#useactiverouteconfig" id="useactiverouteconfig" style="color: inherit; text-decoration: none;">
+  <h4>useActiveRouteConfig</h4>
+</a>
+<hr></br>
+
+<p>Get the current active route configuration</p>
+<pre><code class="language-tsx"><span class="hl-2">import</span><span class="hl-0"> { </span><span class="hl-3">usActiveRouteConfig</span><span class="hl-0"> } </span><span class="hl-2">from</span><span class="hl-0"> </span><span class="hl-4">&#39;@redactie/utils&#39;</span><span class="hl-0">;</span><br/><span class="hl-2">import</span><span class="hl-0"> { </span><span class="hl-3">useLocation</span><span class="hl-0"> } </span><span class="hl-2">from</span><span class="hl-0"> </span><span class="hl-4">&#39;react-router-dom&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-6">location</span><span class="hl-0"> = </span><span class="hl-1">useLocation</span><span class="hl-0">();</span><br/><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-6">route</span><span class="hl-0"> = {</span><br/><span class="hl-0">    </span><span class="hl-3">path:</span><span class="hl-0"> </span><span class="hl-4">&#39;path&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">    </span><span class="hl-3">component:</span><span class="hl-0"> </span><span class="hl-3">Component</span><span class="hl-0">,</span><br/><span class="hl-0">    </span><span class="hl-3">routes:</span><span class="hl-0"> [</span><br/><span class="hl-0">        {</span><br/><span class="hl-0">            </span><span class="hl-3">path:</span><span class="hl-0"> </span><span class="hl-4">&#39;path/child&#39;</span><span class="hl-0">,</span><br/><span class="hl-0">            </span><span class="hl-3">component:</span><span class="hl-0"> </span><span class="hl-3">Component</span><span class="hl-0">,</span><br/><span class="hl-0">        },</span><br/><span class="hl-0">    ],</span><br/><span class="hl-0">}</span><br/><br/><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-6">activeRouteConfig</span><span class="hl-0"> = </span><span class="hl-1">usActiveRouteConfig</span><span class="hl-0">(</span><br/><span class="hl-0">        </span><span class="hl-3">location</span><br/><span class="hl-0">        </span><span class="hl-3">route</span><br/><span class="hl-0">    );</span>
+</code></pre>
+<p><strong>Props</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default value</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>location</td>
+<td>Location</td>
+<td>/</td>
+<td>Browser Location</td>
+</tr>
+<tr>
+<td>route</td>
+<td>ModuleRouteConfig</td>
+<td>/</td>
+<td>Route config</td>
+</tr>
+</tbody></table>
+<br/>
+
+
+<a href="#usequery" id="usequery" style="color: inherit; text-decoration: none;">
+  <h4>useQuery</h4>
+</a>
+<hr></br>
+
+<p>Get the query params from the current url</p>
+<pre><code class="language-tsx"><span class="hl-2">import</span><span class="hl-0"> { </span><span class="hl-3">useQuery</span><span class="hl-0"> } </span><span class="hl-2">from</span><span class="hl-0"> </span><span class="hl-4">&#39;@redactie/utils&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-6">query</span><span class="hl-0"> = </span><span class="hl-1">useQuery</span><span class="hl-0">();</span><br/>
+</code></pre>
+<br/>
+
+
+<a href="#context" id="context" style="color: inherit; text-decoration: none;">
+  <h3>Context</h3>
+</a>
+
+<a href="#tenantcontext" id="tenantcontext" style="color: inherit; text-decoration: none;">
+  <h4>TenantContext</h4>
+</a>
+<hr></br>
+
+<p>Holds the tenantId</p>
+<p><strong>Usage</strong></p>
+<pre><code class="language-tsx"><span class="hl-2">import</span><span class="hl-0"> { </span><span class="hl-3">TenantContext</span><span class="hl-0"> } </span><span class="hl-2">from</span><span class="hl-0"> </span><span class="hl-4">&#39;@redactie/utils&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-1">SiteContentTypesComponent</span><span class="hl-0">: </span><span class="hl-9">FC</span><span class="hl-0">&lt;</span><span class="hl-9">RouteProps</span><span class="hl-0">&gt; = ({</span><br/><span class="hl-0">    </span><span class="hl-3">match</span><span class="hl-0">,</span><br/><span class="hl-0">    </span><span class="hl-3">route</span><span class="hl-0">,</span><br/><span class="hl-0">    </span><span class="hl-3">tenantId</span><span class="hl-0">,</span><br/><span class="hl-0">}) </span><span class="hl-5">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">    </span><span class="hl-2">return</span><span class="hl-0"> (</span><br/><span class="hl-0">        </span><span class="hl-7">&lt;</span><span class="hl-9">TenantContext.Provider</span><span class="hl-0"> </span><span class="hl-10">value</span><span class="hl-0">=</span><span class="hl-5">{</span><span class="hl-12">{ </span><span class="hl-3">tenantId</span><span class="hl-12"> }</span><span class="hl-5">}</span><span class="hl-7">&gt;</span><br/><span class="hl-0">            </span><span class="hl-7">&lt;</span><span class="hl-8">div</span><span class="hl-7">&gt;</span><span class="hl-0">some component</span><span class="hl-7">&lt;/</span><span class="hl-8">div</span><span class="hl-7">&gt;</span><br/><span class="hl-0">        </span><span class="hl-7">&lt;/</span><span class="hl-9">TenantContext.Provider</span><span class="hl-7">&gt;</span><br/><span class="hl-0">    );</span><br/><span class="hl-0">};</span><br/>
+</code></pre>
+<p><strong>Props</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default value</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>value</td>
+<td><code>{ tenantId: string }</code></td>
+<td>undefined</td>
+<td>The tenantId</td>
+</tr>
+</tbody></table>
+<br/>
+
+
+<a href="#sitecontext" id="sitecontext" style="color: inherit; text-decoration: none;">
+  <h4>SiteContext</h4>
+</a>
+<hr></br>
+
+<p>Holds the sideId</p>
+<p><strong>Usage</strong></p>
+<pre><code class="language-tsx"><span class="hl-2">import</span><span class="hl-0"> { </span><span class="hl-3">TenantContext</span><span class="hl-0">, </span><span class="hl-3">SiteContext</span><span class="hl-0"> } </span><span class="hl-2">from</span><span class="hl-0"> </span><span class="hl-4">&#39;@redactie/utils&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-6">SiteContentTypesComponent</span><span class="hl-0">: </span><span class="hl-9">FC</span><span class="hl-0">&lt;</span><span class="hl-9">RouteProps</span><span class="hl-0">&lt;{ </span><span class="hl-3">siteId</span><span class="hl-0">: </span><span class="hl-9">string</span><span class="hl-0"> }&gt;&gt; = ({</span><br/><span class="hl-0">    </span><span class="hl-3">match</span><span class="hl-0">,</span><br/><span class="hl-0">    </span><span class="hl-3">route</span><span class="hl-0">,</span><br/><span class="hl-0">    </span><span class="hl-3">tenantId</span><span class="hl-0">,</span><br/><span class="hl-0">}) </span><span class="hl-5">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">    </span><span class="hl-5">const</span><span class="hl-0"> { </span><span class="hl-6">siteId</span><span class="hl-0"> } = </span><span class="hl-3">match</span><span class="hl-0">.</span><span class="hl-3">params</span><span class="hl-0">;</span><br/><br/><span class="hl-0">    </span><span class="hl-2">return</span><span class="hl-0"> (</span><br/><span class="hl-0">        </span><span class="hl-7">&lt;</span><span class="hl-9">TenantContext.Provider</span><span class="hl-0"> </span><span class="hl-10">value</span><span class="hl-0">=</span><span class="hl-5">{</span><span class="hl-12">{ </span><span class="hl-3">tenantId</span><span class="hl-12"> }</span><span class="hl-5">}</span><span class="hl-7">&gt;</span><br/><span class="hl-0">            </span><span class="hl-7">&lt;</span><span class="hl-9">SiteContext.Provider</span><span class="hl-0"> </span><span class="hl-10">value</span><span class="hl-0">=</span><span class="hl-5">{</span><span class="hl-12">{ </span><span class="hl-3">siteId</span><span class="hl-12"> }</span><span class="hl-5">}</span><span class="hl-7">&gt;</span><br/><span class="hl-0">                </span><span class="hl-7">&lt;</span><span class="hl-8">div</span><span class="hl-7">&gt;</span><span class="hl-0">some component</span><span class="hl-7">&lt;/</span><span class="hl-8">div</span><span class="hl-7">&gt;</span><br/><span class="hl-0">            </span><span class="hl-7">&lt;/</span><span class="hl-9">SiteContext.Provider</span><span class="hl-7">&gt;</span><br/><span class="hl-0">        </span><span class="hl-7">&lt;/</span><span class="hl-9">TenantContext.Provider</span><span class="hl-7">&gt;</span><br/><span class="hl-0">    );</span><br/><span class="hl-0">};</span><br/>
+</code></pre>
+<p><strong>Props</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Default value</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>value</td>
+<td><code>{ siteId: string }</code></td>
+<td>undefined</td>
+<td>The siteId</td>
+</tr>
+</tbody></table>
+<br/>
+
+
+<a href="#services" id="services" style="color: inherit; text-decoration: none;">
+  <h3>Services</h3>
+</a>
+
+<a href="#alertservice" id="alertservice" style="color: inherit; text-decoration: none;">
+  <h4>AlertService</h4>
+</a>
+<hr></br>
+
+<p>Built upon <a href="https://github.com/fkhadra/react-toastify">react-toastify</a>. For more info on <code>&lt;AlertContainer /&gt;</code> or <code>alertService()</code> options be sure to check their API docs.</p>
+<p><strong>Usage</strong>:</p>
+<p>Add the <code>&lt;AlertContainer /&gt;</code> component where you want your alerts to show in the app.</p>
+<pre><code class="language-tsx"><span class="hl-2">import</span><span class="hl-0"> { </span><span class="hl-3">AlertContainer</span><span class="hl-0"> } </span><span class="hl-2">from</span><span class="hl-0"> </span><span class="hl-4">&#39;@redactie/utils&#39;</span><span class="hl-0">;</span><br/><span class="hl-2">import</span><span class="hl-0"> </span><span class="hl-3">React</span><span class="hl-0"> </span><span class="hl-2">from</span><span class="hl-0"> </span><span class="hl-4">&#39;react&#39;</span><span class="hl-0">;</span><br/><span class="hl-2">import</span><span class="hl-0"> { </span><span class="hl-3">BrowserRouter</span><span class="hl-0"> </span><span class="hl-2">as</span><span class="hl-0"> </span><span class="hl-3">Router</span><span class="hl-0">, </span><span class="hl-3">Route</span><span class="hl-0"> } </span><span class="hl-2">from</span><span class="hl-0"> </span><span class="hl-4">&#39;react-router-dom&#39;</span><span class="hl-0">;</span><br/><br/><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-1">Root</span><span class="hl-0"> = () </span><span class="hl-5">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">    </span><span class="hl-2">return</span><span class="hl-0"> (</span><br/><span class="hl-0">        </span><span class="hl-7">&lt;</span><span class="hl-9">AlertContainer</span><span class="hl-0"> </span><span class="hl-7">/&gt;</span><br/><span class="hl-0">        </span><span class="hl-7">&lt;</span><span class="hl-9">Router</span><span class="hl-7">&gt;</span><br/><span class="hl-0">            </span><span class="hl-7">&lt;</span><span class="hl-9">App</span><span class="hl-0"> </span><span class="hl-7">/&gt;</span><br/><span class="hl-0">        </span><span class="hl-7">&lt;/</span><span class="hl-9">Router</span><span class="hl-7">&gt;</span><br/><span class="hl-0">    );</span><br/><span class="hl-0">}</span>
+</code></pre>
+<p>Then we can call our <code>alertService.[info|success|warning|danger]()</code> to show an alert in our container.</p>
+<pre><code class="language-tsx"><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-1">Example</span><span class="hl-0"> = () </span><span class="hl-5">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">    </span><span class="hl-5">const</span><span class="hl-0"> </span><span class="hl-1">showAlert</span><span class="hl-0"> = () </span><span class="hl-5">=&gt;</span><span class="hl-0"> {</span><br/><span class="hl-0">        </span><span class="hl-3">alertService</span><span class="hl-0">.</span><span class="hl-1">info</span><span class="hl-0">({ </span><span class="hl-3">title:</span><span class="hl-0"> </span><span class="hl-4">&#39;A title&#39;</span><span class="hl-0">, </span><span class="hl-3">message:</span><span class="hl-0"> </span><span class="hl-4">&#39;Lorem ipsum&#39;</span><span class="hl-0"> });</span><br/><span class="hl-0">    };</span><br/><br/><span class="hl-0">    </span><span class="hl-2">return</span><span class="hl-0"> (</span><br/><span class="hl-0">        </span><span class="hl-7">&lt;</span><span class="hl-8">button</span><span class="hl-0"> </span><span class="hl-10">onClick</span><span class="hl-0">=</span><span class="hl-5">{</span><span class="hl-3">showAlert</span><span class="hl-5">}</span><span class="hl-7">&gt;</span><span class="hl-0">Alert me</span><span class="hl-7">&lt;/</span><span class="hl-8">button</span><span class="hl-7">&gt;</span><br/><span class="hl-0">    );</span><br/><span class="hl-0">}</span>
+</code></pre>
+<p><strong>Config</strong></p>
+<p><code>&lt;AlertContainer /&gt;</code> prop defaults:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>autoClose</td>
+<td>false</td>
+</tr>
+<tr>
+<td>closeButton</td>
+<td>false</td>
+</tr>
+<tr>
+<td>closeOnClick</td>
+<td>false</td>
+</tr>
+<tr>
+<td>draggable</td>
+<td>false</td>
+</tr>
+<tr>
+<td>enableMultiContainer</td>
+<td>true</td>
+</tr>
+<tr>
+<td>hideProgressBar</td>
+<td>true</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>1</td>
+</tr>
+</tbody></table>
+<p><code>alertService()</code> alert props:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Default value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>className?:</td>
+<td><code>string | undefined</code></td>
+<td>undefined</td>
+</tr>
+<tr>
+<td>closable?:</td>
+<td><code>boolean | undefined</code></td>
+<td>true</td>
+</tr>
+<tr>
+<td>ariaLabelClose</td>
+<td><code>string | undefined</code></td>
+<td>undefined</td>
+</tr>
+<tr>
+<td>message:</td>
+<td><code>ReactNode</code></td>
+<td>undefined</td>
+</tr>
+<tr>
+<td>title?:</td>
+<td><code>string | undefined</code></td>
+<td>undefined</td>
+</tr>
+</tbody></table>
+
+<a href="#sandbox" id="sandbox" style="color: inherit; text-decoration: none;">
+  <h2>Sandbox</h2>
+</a>
+<p>You can test utilities in the sandbox environment before publishing</p>
+<p>Create a tarball file from utils package.
+This will create a file <code>redactie-utils-x.x.x.tgz</code></p>
+<pre><code class="language-shell"><span class="hl-0">$ npm pack</span>
+</code></pre>
+<p>Install dependencies and the newly created tarball</p>
+<pre><code class="language-shell"><span class="hl-0">$ </span><span class="hl-1">cd</span><span class="hl-0"> sandbox/</span><br/><span class="hl-0">$ npm install</span><br/><span class="hl-0">$ npm install ../redactie-utils-x.x.x.tgz</span>
+</code></pre>
+<p>Start up the local sandbox server</p>
+<pre><code class="language-shell"><span class="hl-0">$ npm start</span>
+</code></pre>
+</div></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class="current"><a href="modules.html">Exports</a></li><li class="label tsd-is-external"><span>Internals</span></li><li class="label tsd-is-external"><span>Externals</span></li><li class=" tsd-kind-namespace tsd-is-external"><a href="modules/MultilanguageYup.html">Multilanguage<wbr/>Yup</a></li></ul></nav><nav class="tsd-navigation secondary menu-sticky"><ul><li class="tsd-kind-enum"><a href="enums/AlertType.html" class="tsd-kind-icon">Alert<wbr/>Type</a></li><li class="tsd-kind-enum"><a href="enums/LoadingState.html" class="tsd-kind-icon">Loading<wbr/>State</a></li><li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/BaseEntityFacade.html" class="tsd-kind-icon">Base<wbr/>Entity<wbr/>Facade</a></li><li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/BaseEntityQuery.html" class="tsd-kind-icon">Base<wbr/>Entity<wbr/>Query</a></li><li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/BaseEntityStore.html" class="tsd-kind-icon">Base<wbr/>Entity<wbr/>Store</a></li><li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/BaseMultiEntityFacade.html" class="tsd-kind-icon">Base<wbr/>Multi<wbr/>Entity<wbr/>Facade</a></li><li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/BaseMultiEntityQuery.html" class="tsd-kind-icon">Base<wbr/>Multi<wbr/>Entity<wbr/>Query</a></li><li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/BaseMultiEntityStore.html" class="tsd-kind-icon">Base<wbr/>Multi<wbr/>Entity<wbr/>Store</a></li><li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/CacheEntityFacade.html" class="tsd-kind-icon">Cache<wbr/>Entity<wbr/>Facade</a></li><li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/CacheEntityQuery.html" class="tsd-kind-icon">Cache<wbr/>Entity<wbr/>Query</a></li><li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/CacheEntityStore.html" class="tsd-kind-icon">Cache<wbr/>Entity<wbr/>Store</a></li><li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/DynamicCompartmentsFacade.html" class="tsd-kind-icon">Dynamic<wbr/>Compartments<wbr/>Facade</a></li><li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/DynamicCompartmentsQuery.html" class="tsd-kind-icon">Dynamic<wbr/>Compartments<wbr/>Query</a></li><li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/DynamicCompartmentsStore.html" class="tsd-kind-icon">Dynamic<wbr/>Compartments<wbr/>Store</a></li><li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/PromiseWorker.html" class="tsd-kind-icon">Promise<wbr/>Worker</a></li><li class="tsd-kind-interface"><a href="interfaces/AlertProps.html" class="tsd-kind-icon">Alert<wbr/>Props</a></li><li class="tsd-kind-interface"><a href="interfaces/AlertWithOnCloseProps.html" class="tsd-kind-icon">Alert<wbr/>With<wbr/>On<wbr/>Close<wbr/>Props</a></li><li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/BaseEntityState.html" class="tsd-kind-icon">Base<wbr/>Entity<wbr/>State</a></li><li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/BaseMultiEntityState.html" class="tsd-kind-icon">Base<wbr/>Multi<wbr/>Entity<wbr/>State</a></li><li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/CacheEntityState.html" class="tsd-kind-icon">Cache<wbr/>Entity<wbr/>State</a></li><li class="tsd-kind-interface"><a href="interfaces/CacheEntityUI.html" class="tsd-kind-icon">Cache<wbr/>EntityUI</a></li><li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/CascaderOption.html" class="tsd-kind-icon">Cascader<wbr/>Option</a></li><li class="tsd-kind-interface"><a href="interfaces/ContextHeaderBadge.html" class="tsd-kind-icon">Context<wbr/>Header<wbr/>Badge</a></li><li class="tsd-kind-interface"><a href="interfaces/ContextHeaderTab.html" class="tsd-kind-icon">Context<wbr/>Header<wbr/>Tab</a></li><li class="tsd-kind-interface"><a href="interfaces/ContextHeaderTabLinkProps.html" class="tsd-kind-icon">Context<wbr/>Header<wbr/>Tab<wbr/>Link<wbr/>Props</a></li><li class="tsd-kind-interface"><a href="interfaces/CustomOptions.html" class="tsd-kind-icon">Custom<wbr/>Options</a></li><li class="tsd-kind-interface"><a href="interfaces/DataLoaderProps.html" class="tsd-kind-icon">Data<wbr/>Loader<wbr/>Props</a></li><li class="tsd-kind-interface"><a href="interfaces/DeletePromptProps.html" class="tsd-kind-icon">Delete<wbr/>Prompt<wbr/>Props</a></li><li class="tsd-kind-interface"><a href="interfaces/DynamicCompartmentModel.html" class="tsd-kind-icon">Dynamic<wbr/>Compartment<wbr/>Model</a></li><li class="tsd-kind-interface"><a href="interfaces/DynamicCompartmentRegisterOptions.html" class="tsd-kind-icon">Dynamic<wbr/>Compartment<wbr/>Register<wbr/>Options</a></li><li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/EmbeddedResourceResponse.html" class="tsd-kind-icon">Embedded<wbr/>Resource<wbr/>Response</a></li><li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/EmbeddedResponse.html" class="tsd-kind-icon">Embedded<wbr/>Response</a></li><li class="tsd-kind-interface"><a href="interfaces/FieldWithErrorProps.html" class="tsd-kind-icon">Field<wbr/>With<wbr/>Error<wbr/>Props</a></li><li class="tsd-kind-interface"><a href="interfaces/FilterItem.html" class="tsd-kind-icon">Filter<wbr/>Item</a></li><li class="tsd-kind-interface"><a href="interfaces/FormikOnChangeHandlerProps.html" class="tsd-kind-icon">Formik<wbr/>On<wbr/>Change<wbr/>Handler<wbr/>Props</a></li><li class="tsd-kind-interface"><a href="interfaces/HasChangesWorkerData.html" class="tsd-kind-icon">Has<wbr/>Changes<wbr/>Worker<wbr/>Data</a></li><li class="tsd-kind-interface"><a href="interfaces/LeavePromptModalProps.html" class="tsd-kind-icon">Leave<wbr/>Prompt<wbr/>Modal<wbr/>Props</a></li><li class="tsd-kind-interface"><a href="interfaces/LeavePromptProps.html" class="tsd-kind-icon">Leave<wbr/>Prompt<wbr/>Props</a></li><li class="tsd-kind-interface"><a href="interfaces/Links.html" class="tsd-kind-icon">Links</a></li><li class="tsd-kind-interface"><a href="interfaces/NavListItem.html" class="tsd-kind-icon">Nav<wbr/>List<wbr/>Item</a></li><li class="tsd-kind-interface"><a href="interfaces/OrderBy.html" class="tsd-kind-icon">Order<wbr/>By</a></li><li class="tsd-kind-interface"><a href="interfaces/Page.html" class="tsd-kind-icon">Page</a></li><li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/PromiseWorkerMessage.html" class="tsd-kind-icon">Promise<wbr/>Worker<wbr/>Message</a></li><li class="tsd-kind-interface"><a href="interfaces/RenderChildRoutesProps.html" class="tsd-kind-icon">Render<wbr/>Child<wbr/>Routes<wbr/>Props</a></li><li class="tsd-kind-interface"><a href="interfaces/SearchParams.html" class="tsd-kind-icon">Search<wbr/>Params</a></li><li class="tsd-kind-interface"><a href="interfaces/SelectOption.html" class="tsd-kind-icon">Select<wbr/>Option</a></li><li class="tsd-kind-interface"><a href="interfaces/SiteContextValue.html" class="tsd-kind-icon">Site<wbr/>Context<wbr/>Value</a></li><li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/TableColumn.html" class="tsd-kind-icon">Table<wbr/>Column</a></li><li class="tsd-kind-interface"><a href="interfaces/TenantContextValue.html" class="tsd-kind-icon">Tenant<wbr/>Context<wbr/>Value</a></li><li class="tsd-kind-interface"><a href="interfaces/WorkerCtx.html" class="tsd-kind-icon">Worker<wbr/>Ctx</a></li><li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/WorkerMessageEvent.html" class="tsd-kind-icon">Worker<wbr/>Message<wbr/>Event</a></li><li class="tsd-kind-type-alias"><a href="modules.html#APIQueryParamType" class="tsd-kind-icon">APIQuery<wbr/>Param<wbr/>Type</a></li><li class="tsd-kind-type-alias"><a href="modules.html#APIQueryParamsConfig" class="tsd-kind-icon">APIQuery<wbr/>Params<wbr/>Config</a></li><li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="modules.html#CacheEntityUIState" class="tsd-kind-icon">Cache<wbr/>EntityUIState</a></li><li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="modules.html#CompareFn" class="tsd-kind-icon">Compare<wbr/>Fn</a></li><li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="modules.html#Config" class="tsd-kind-icon">Config</a></li><li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="modules.html#ConfigMap" class="tsd-kind-icon">Config<wbr/>Map</a></li><li class="tsd-kind-type-alias"><a href="modules.html#DefaultAPIQueryParamsConfig" class="tsd-kind-icon">DefaultAPIQuery<wbr/>Params<wbr/>Config</a></li><li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="modules.html#FormikChildrenFn" class="tsd-kind-icon">Formik<wbr/>Children<wbr/>Fn</a></li><li class="tsd-kind-type-alias"><a href="modules.html#FormikMultilanguageFieldProps" class="tsd-kind-icon">Formik<wbr/>Multilanguage<wbr/>Field<wbr/>Props</a></li><li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="modules.html#GetBaseMultiEntityStateByStore" class="tsd-kind-icon">Get<wbr/>Base<wbr/>Multi<wbr/>Entity<wbr/>State<wbr/>By<wbr/>Store</a></li><li class="tsd-kind-type-alias"><a href="modules.html#HandlerFn" class="tsd-kind-icon">Handler<wbr/>Fn</a></li><li class="tsd-kind-type-alias"><a href="modules.html#Language" class="tsd-kind-icon">Language</a></li><li class="tsd-kind-type-alias"><a href="modules.html#LanguageErrors" class="tsd-kind-icon">Language<wbr/>Errors</a></li><li class="tsd-kind-type-alias"><a href="modules.html#NavigateFn" class="tsd-kind-icon">Navigate<wbr/>Fn</a></li><li class="tsd-kind-type-alias"><a href="modules.html#NavigateGenerateFn" class="tsd-kind-icon">Navigate<wbr/>Generate<wbr/>Fn</a></li><li class="tsd-kind-type-alias"><a href="modules.html#NavigateParams" class="tsd-kind-icon">Navigate<wbr/>Params</a></li><li class="tsd-kind-type-alias"><a href="modules.html#NavigateQuery" class="tsd-kind-icon">Navigate<wbr/>Query</a></li><li class="tsd-kind-type-alias"><a href="modules.html#QueryParamsMap" class="tsd-kind-icon">Query<wbr/>Params<wbr/>Map</a></li><li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="modules.html#UseAPIQUeryParamsReturnValue" class="tsd-kind-icon">UseAPIQUery<wbr/>Params<wbr/>Return<wbr/>Value</a></li><li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="modules.html#UseCompartments" class="tsd-kind-icon">Use<wbr/>Compartments</a></li><li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="modules.html#WorkerOnMessage" class="tsd-kind-icon">Worker<wbr/>On<wbr/>Message</a></li><li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="modules.html#WorkerPostMessage" class="tsd-kind-icon">Worker<wbr/>Post<wbr/>Message</a></li><li class="tsd-kind-variable"><a href="modules.html#AlertContainer" class="tsd-kind-icon">Alert<wbr/>Container</a></li><li class="tsd-kind-variable"><a href="modules.html#CheckboxList" class="tsd-kind-icon">Checkbox<wbr/>List</a></li><li class="tsd-kind-variable"><a href="modules.html#CopyValue" class="tsd-kind-icon">Copy<wbr/>Value</a></li><li class="tsd-kind-variable"><a href="modules.html#DEFAULT_INITIAL_STATE" class="tsd-kind-icon">DEFAULT_<wbr/>INITIAL_<wbr/>STATE</a></li><li class="tsd-kind-variable"><a href="modules.html#DEFAULT_INITIAL_UI_STATE" class="tsd-kind-icon">DEFAULT_<wbr/>INITIAL_<wbr/>UI_<wbr/>STATE</a></li><li class="tsd-kind-variable"><a href="modules.html#DELETE_PROMPT_DEFAULT_PROPS" class="tsd-kind-icon">DELETE_<wbr/>PROMPT_<wbr/>DEFAULT_<wbr/>PROPS</a></li><li class="tsd-kind-variable"><a href="modules.html#DataLoader" class="tsd-kind-icon">Data<wbr/>Loader</a></li><li class="tsd-kind-variable"><a href="modules.html#DeletePrompt" class="tsd-kind-icon">Delete<wbr/>Prompt</a></li><li class="tsd-kind-variable"><a href="modules.html#ErrorMessage" class="tsd-kind-icon">Error<wbr/>Message</a></li><li class="tsd-kind-variable"><a href="modules.html#FormikMultilanguageField" class="tsd-kind-icon">Formik<wbr/>Multilanguage<wbr/>Field</a></li><li class="tsd-kind-variable"><a href="modules.html#FormikOnChangeHandler" class="tsd-kind-icon">Formik<wbr/>On<wbr/>Change<wbr/>Handler</a></li><li class="tsd-kind-variable"><a href="modules.html#InfoTooltip" class="tsd-kind-icon">Info<wbr/>Tooltip</a></li><li class="tsd-kind-variable"><a href="modules.html#LEAVE_PROMPT_DEFAULT_PROPS" class="tsd-kind-icon">LEAVE_<wbr/>PROMPT_<wbr/>DEFAULT_<wbr/>PROPS</a></li><li class="tsd-kind-variable"><a href="modules.html#LeavePrompt" class="tsd-kind-icon">Leave<wbr/>Prompt</a></li><li class="tsd-kind-variable"><a href="modules.html#RenderChildRoutes" class="tsd-kind-icon">Render<wbr/>Child<wbr/>Routes</a></li><li class="tsd-kind-variable"><a href="modules.html#SiteContext" class="tsd-kind-icon">Site<wbr/>Context</a></li><li class="tsd-kind-variable"><a href="modules.html#TenantContext" class="tsd-kind-icon">Tenant<wbr/>Context</a></li><li class="tsd-kind-variable"><a href="modules.html#alertService" class="tsd-kind-icon">alert<wbr/>Service</a></li><li class="tsd-kind-variable"><a href="modules.html#dynamicCompartmentsFactory" class="tsd-kind-icon">dynamic<wbr/>Compartments<wbr/>Factory</a></li><li class="tsd-kind-function tsd-is-external"><a href="modules.html#QueryParamProvider" class="tsd-kind-icon">Query<wbr/>Param<wbr/>Provider</a></li><li class="tsd-kind-function"><a href="modules.html#handleMultilanguageFormErrors" class="tsd-kind-icon">handle<wbr/>Multilanguage<wbr/>Form<wbr/>Errors</a></li><li class="tsd-kind-function"><a href="modules.html#parseObjToOrderBy" class="tsd-kind-icon">parse<wbr/>Obj<wbr/>To<wbr/>Order<wbr/>By</a></li><li class="tsd-kind-function"><a href="modules.html#parseOrderByToObj" class="tsd-kind-icon">parse<wbr/>Order<wbr/>By<wbr/>To<wbr/>Obj</a></li><li class="tsd-kind-function"><a href="modules.html#parseOrderByToString" class="tsd-kind-icon">parse<wbr/>Order<wbr/>By<wbr/>To<wbr/>String</a></li><li class="tsd-kind-function"><a href="modules.html#parseSearchParams" class="tsd-kind-icon">parse<wbr/>Search<wbr/>Params</a></li><li class="tsd-kind-function"><a href="modules.html#parseStringToOrderBy" class="tsd-kind-icon">parse<wbr/>String<wbr/>To<wbr/>Order<wbr/>By</a></li><li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#useAPIQueryParams" class="tsd-kind-icon">useAPIQuery<wbr/>Params</a></li><li class="tsd-kind-function"><a href="modules.html#useActiveRouteConfig" class="tsd-kind-icon">use<wbr/>Active<wbr/>Route<wbr/>Config</a></li><li class="tsd-kind-function"><a href="modules.html#useClickOutside" class="tsd-kind-icon">use<wbr/>Click<wbr/>Outside</a></li><li class="tsd-kind-function"><a href="modules.html#useCreateHandlerSetter" class="tsd-kind-icon">use<wbr/>Create<wbr/>Handler<wbr/>Setter</a></li><li class="tsd-kind-function"><a href="modules.html#useDetectValueChanges" class="tsd-kind-icon">use<wbr/>Detect<wbr/>Value<wbr/>Changes</a></li><li class="tsd-kind-function"><a href="modules.html#useDetectValueChangesWorker" class="tsd-kind-icon">use<wbr/>Detect<wbr/>Value<wbr/>Changes<wbr/>Worker</a></li><li class="tsd-kind-function"><a href="modules.html#useDidMount" class="tsd-kind-icon">use<wbr/>Did<wbr/>Mount</a></li><li class="tsd-kind-function"><a href="modules.html#useNavigate" class="tsd-kind-icon">use<wbr/>Navigate</a></li><li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#useObservable" class="tsd-kind-icon">use<wbr/>Observable</a></li><li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#useOnNextRender" class="tsd-kind-icon">use<wbr/>On<wbr/>Next<wbr/>Render</a></li><li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#usePersistFn" class="tsd-kind-icon">use<wbr/>Persist<wbr/>Fn</a></li><li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#usePrevious" class="tsd-kind-icon">use<wbr/>Previous</a></li><li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#usePromiseWorker" class="tsd-kind-icon">use<wbr/>Promise<wbr/>Worker</a></li><li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#useQuery" class="tsd-kind-icon">use<wbr/>Query</a></li><li class="tsd-kind-function"><a href="modules.html#useRoutes" class="tsd-kind-icon">use<wbr/>Routes</a></li><li class="tsd-kind-function"><a href="modules.html#useSiteContext" class="tsd-kind-icon">use<wbr/>Site<wbr/>Context</a></li><li class="tsd-kind-function"><a href="modules.html#useTenantContext" class="tsd-kind-icon">use<wbr/>Tenant<wbr/>Context</a></li><li class="tsd-kind-function"><a href="modules.html#useWillUnmount" class="tsd-kind-icon">use<wbr/>Will<wbr/>Unmount</a></li><li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#useWorker" class="tsd-kind-icon">use<wbr/>Worker</a></li></ul></nav></div></div></div><footer class="with-border-bottom"><div class="container"><h2>Legend</h2><div class="tsd-legend-group"><ul class="tsd-legend"><li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li><li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li><li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li><li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li></ul></div><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="container tsd-generator"><p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div><div class="overlay"></div><script src="assets/main.js"></script></body></html>
