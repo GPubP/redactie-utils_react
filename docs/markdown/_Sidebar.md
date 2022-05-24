@@ -5,11 +5,4 @@
 
 ### Namespaces
 
-- [MultilanguageYup](../wiki/MultilanguageYup)
-- [array](../wiki/MultilanguageYup.array)
-- [bool](../wiki/MultilanguageYup.bool)
-- [date](../wiki/MultilanguageYup.date)
-- [mixed](../wiki/MultilanguageYup.mixed)
-- [number](../wiki/MultilanguageYup.number)
-- [object](../wiki/MultilanguageYup.object)
-- [string](../wiki/MultilanguageYup.string)
+- [<internal>](../wiki/%3Cinternal%3E)

@@ -23,7 +23,7 @@ ___
 
 ### type
 
-• **type**: ``"success"`` \| ``"warning"`` \| ``"danger"`` \| ``"primary"`` \| ``"secondary"``
+• **type**: ``"danger"`` \| ``"primary"`` \| ``"secondary"`` \| ``"success"`` \| ``"warning"``
 
 #### Defined in
 
