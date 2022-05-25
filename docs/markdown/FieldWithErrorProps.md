@@ -72,7 +72,7 @@ ___
 
 ### validation
 
-• `Optional` **validation**: [`AnySchema`](../wiki/MultilanguageYup#anyschema)<`any`, `any`, `any`\>
+• `Optional` **validation**: `AnySchema`<`any`, `any`, `any`\>
 
 #### Inherited from
 
